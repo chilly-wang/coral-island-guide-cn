@@ -14,9 +14,10 @@ import { OfferingComponent } from "../shared/components/database-item-details/of
 import { ListDetailContainerComponent } from "../shared/components/list-detail-container/list-detail-container.component";
 import { DatabaseItemDetailsDirective } from "../shared/directives/database-item-details.directive";
 import { MatInput } from "@angular/material/input";
-import { RouterLink } from "@angular/router";
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 import { UserDataService } from "../core/services/user-data.service";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-to-do',
@@ -40,9 +41,10 @@ import { UserDataService } from "../core/services/user-data.service";
         MatOption,
         ReactiveFormsModule,
         MatInput,
-        RouterLink,
         CdkTextareaAutosize,
-        FormsModule
+        FormsModule,
+        TranslatePipe,
+        LocalizedDisplayPipe
     ]
 })
 export class ToDoComponent extends BaseSelectableContainerComponent<ItemEntry> {

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { BaseSelectableContainerComponent } from "../../../shared/components/base-selectable-container/base-selectable-container.component";
 import {
     ItemProcessShopData,
@@ -12,6 +12,7 @@ import {
 } from "@ci/data-types";
 import { Observable } from "rxjs";
 import { HttpResourceRef } from "@angular/common/http";
+import { DisplayTranslationService } from "../../../shared/pipes/localized-display.pipe";
 
 @Component({
     changeDetection: ChangeDetectionStrategy.Eager,
@@ -23,7 +24,8 @@ export abstract class BaseShopComponent extends BaseSelectableContainerComponent
     protected readonly SHOP_DISPLAY_NAMES = ShopDisplayNames
     protected readonly SHOP_ICONS = ShopIcons
 
-    protected upgradeHeaderText = 'Upgrades';
+    protected upgradeHeaderText = 'APP.SHOP.UPGRADES';
+    protected readonly display = inject(DisplayTranslationService);
 
     protected shopItemData$?: Observable<ShopItemData[]>;
     protected uiIcon = UiIcon;

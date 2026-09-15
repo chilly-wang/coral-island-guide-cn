@@ -8,6 +8,7 @@ import { MeritShopDetailsComponent } from "../merit-shop-details/merit-shop-deta
 import { ListDetailContainerComponent } from "../../../shared/components/list-detail-container/list-detail-container.component";
 import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
 import { AsyncPipe } from "@angular/common";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-merit-shop',
@@ -20,7 +21,8 @@ import { AsyncPipe } from "@angular/common";
         MeritShopDetailsComponent,
         ListDetailContainerComponent,
         ItemIconComponent,
-        AsyncPipe
+        AsyncPipe,
+        TranslatePipe
     ]
 })
 export class MeritShopComponent extends BaseSelectableContainerComponent<MeritExchangeShopData> {

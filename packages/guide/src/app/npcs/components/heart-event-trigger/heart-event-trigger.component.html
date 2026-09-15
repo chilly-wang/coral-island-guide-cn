@@ -1,10 +1,10 @@
 @let requirements = heartEventTrigger().requirements;
-@let location = heartEventTrigger().location | translate;
+@let location = heartEventTrigger().location | localizedDisplay:'location';
 @let timeRange = `${ heartEventTrigger().time.fromTime | ingameTime }-${ heartEventTrigger().time.toTime | ingameTime }`;
 <header class="flex justify-between items-center text-black mb-1">
     <p>{{ HEART_EVENT_TRIGGER_LOCATION_KEY |translate: {locationName: location, timeRange} }}</p>
     <mat-checkbox (change)="toggleHeartEvent($event.checked)"
-                  [checked]="heartEventChecklist.isChecked(heartEventTrigger().cutscene)">Cutscene seen
+                  [checked]="heartEventChecklist.isChecked(heartEventTrigger().cutscene)">{{ 'APP.NPC_DETAIL.CUTSCENE_SEEN' | translate }}
     </mat-checkbox>
 </header>
 
@@ -12,37 +12,37 @@
 @if(heartEventTrigger().descriptionRequirements.length) {
     <ul>
         @for (effect of heartEventTrigger().descriptionRequirements; track effect) {
-            <li>{{ effect | translate }}</li>
+            <li>{{ effect | translate | localizedDisplay:'weather' }}</li>
         }
     </ul>
 }
 
 <hr class="my-3"/>
 <div class="flex flex-col">
-    <h4>{{ heartEventTrigger().cutscene }}</h4>
-    <span>Id: {{ heartEventTrigger().id }} </span>
+    <h4>{{ 'APP.NPC_DETAIL.EVENT_DETAILS' | translate }}</h4>
+    <span>{{ 'APP.NPC_DETAIL.ID' | translate }}: {{ heartEventTrigger().id }} </span>
 </div>
-<div>Enabled: <span
-        class="text-black font-normal">{{ heartEventTrigger().enabled ? 'Yes' : 'No' }}</span>
+<div>{{ 'APP.NPC_DETAIL.ENABLED' | translate }}: <span
+        class="text-black font-normal">{{ (heartEventTrigger().enabled ? 'Yes' : 'No') | localizedDisplay }}</span>
 </div>
-<div>Location: <span
-        class="text-black font-normal">{{ location }}</span>
+<div>{{ 'APP.DETAIL.LOCATION' | translate }}: <span
+        class="text-black font-normal">{{ location }}</span><!-- i18n-audit-ignore: localized @let -->
 </div>
-<div>Day Time of day:
+<div>{{ 'APP.NPC_DETAIL.TIME_OF_DAY' | translate }}:
     <span class="text-black font-normal">
     {{ timeRange }}
 </span>
 </div>
-<div>Can trigger on the same day: <span
-        class="text-black font-normal">{{ heartEventTrigger().canTriggerSameDay ? 'Yes' : 'No' }}</span>
+<div>{{ 'APP.NPC_DETAIL.SAME_DAY' | translate }}: <span
+        class="text-black font-normal">{{ (heartEventTrigger().canTriggerSameDay ? 'Yes' : 'No') | localizedDisplay }}</span>
 </div>
 @if (heartEventTrigger().otherCutscenesState.length) {
-    <div>Other cutscenes requirements:
+    <div>{{ 'APP.NPC_DETAIL.OTHER_EVENTS' | translate }}:
         @for (otherStates of heartEventTrigger().otherCutscenesState; track otherStates) {
 
             @for (cutscenes of (otherStates | keyvalue); track cutscenes) {
                 <div class="text-black font-normal">{{ cutscenes.key }}
-                    : {{ cutscenes.value ? 'Has to be seen' : 'Has to be unseen' }}
+                    : {{ (cutscenes.value ? 'APP.NPC_DETAIL.HAS_TO_BE_SEEN' : 'APP.NPC_DETAIL.HAS_TO_BE_UNSEEN') | translate }}
                 </div>
             }
 
@@ -50,24 +50,24 @@
     </div>
 }
 @if (heartEventTrigger().specificDay.length) {
-    <div>Only on days: <span
+    <div>{{ 'APP.NPC_DETAIL.ONLY_DAYS' | translate }}: <span
             class="text-black font-normal">{{ heartEventTrigger().specificDay.join(', ') }}</span>
     </div>
 }
 @if (heartEventTrigger().specificMonth.length) {
-    <div>Only in seasons: <span
-            class="text-black font-normal">{{ heartEventTrigger().specificMonth.join(', ') }}</span>
+    <div>{{ 'APP.NPC_DETAIL.ONLY_SEASONS' | translate }}: <span
+            class="text-black font-normal">{{ heartEventTrigger().specificMonth | localizedDisplay:'season' }}</span>
     </div>
 }
 @if (heartEventTrigger().specificWeather.length) {
-    <div>Only with weather: <span
-            class="text-black font-normal">{{ heartEventTrigger().specificWeather.join(', ') }}</span>
+    <div>{{ 'APP.NPC_DETAIL.ONLY_WEATHER' | translate }}: <span
+            class="text-black font-normal">{{ heartEventTrigger().specificWeather | localizedDisplay:'weather' }}</span>
     </div>
 }
 
 @if (heartEventTrigger().effects && heartEventTrigger().effects.length) {
     <div class="my-4">
-        <span class="text-lg text-black">Effects when seen</span>
+        <span class="text-lg text-black">{{ 'APP.NPC_DETAIL.EFFECTS_SEEN' | translate }}</span>
         <div class="flex flex-col text-black font-normal">
             @for (effect of heartEventTrigger().effects; track effect) {
                 <app-effect [effect]="effect"/>
@@ -79,10 +79,10 @@
     <div class="my-4">
     <span class="text-lg text-black">
         @if (requirements.requirements.length > 1) {
-            Unlock requirements ({{ requirements.type === 'And' ? 'all' : 'any' }} of them):
+            {{ 'APP.NPC_DETAIL.UNLOCK_REQUIREMENTS' | translate }} ({{ (requirements.type === 'And' ? 'APP.NPC_DETAIL.ALL_OF_THEM' : 'APP.NPC_DETAIL.ANY_OF_THEM') | translate }}):
         }
         @if (requirements.requirements.length < 2) {
-            Unlock requirement:
+            {{ 'APP.NPC_DETAIL.UNLOCK_REQUIREMENT' | translate }}:
         }
     </span>
 

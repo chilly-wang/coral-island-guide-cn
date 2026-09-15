@@ -1,10 +1,11 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { Consumable } from "@ci/data-types";
-import { AddSpacesToPascalCasePipe } from "../../../pipes/add-spaces-to-pascal-case.pipe";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../../../pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-consumable',
-    imports: [AddSpacesToPascalCasePipe],
+    imports: [TranslatePipe, LocalizedDisplayPipe],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './consumable.component.html'
 })

@@ -2,19 +2,21 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Critter, Fish, Season, Seasons, Weather, Weathers } from '@ci/data-types';
 import { BaseJournalPageComponent } from '../base-journal-page/base-journal-page.component';
 import { getTruthyValues } from '@ci/util';
-import { FilterForm } from "../../../shared/types/filter-form.type";
-import { FormControl, FormGroup } from "@angular/forms";
-import { ListDetailContainerComponent } from "../../../shared/components/list-detail-container/list-detail-container.component";
-import { CaughtDetailsComponent } from "../caught-details/caught-details.component";
-import { MatTab, MatTabGroup } from "@angular/material/tabs";
-import { DataFilterComponent } from "../../../shared/components/data-filter/data-filter.component";
-import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
-import { CaughtTableComponent } from "../tables/caught-table/caught-table.component";
-import { AsyncPipe } from "@angular/common";
+import { FilterForm } from '../../../shared/types/filter-form.type';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ListDetailContainerComponent } from '../../../shared/components/list-detail-container/list-detail-container.component';
+import { CaughtDetailsComponent } from '../caught-details/caught-details.component';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { DataFilterComponent } from '../../../shared/components/data-filter/data-filter.component';
+import { ItemIconComponent } from '../../../shared/components/item-icon/item-icon.component';
+import { CaughtTableComponent } from '../tables/caught-table/caught-table.component';
+import { AsyncPipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-caught',
     templateUrl: './caught.component.html',
+    styleUrl: './caught.component.scss',
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
@@ -25,53 +27,67 @@ import { AsyncPipe } from "@angular/common";
         DataFilterComponent,
         ItemIconComponent,
         CaughtTableComponent,
-        AsyncPipe
-    ]
+        AsyncPipe,
+        TranslatePipe,
+    ],
 })
 export class CaughtComponent extends BaseJournalPageComponent<Fish | Critter> {
-
-
     private readonly SEA_CRITTERS_INDEX = 2;
+    protected showMap = false;
+    protected readonly spawnZoneMapPaths = [
+        '/assets/guide/maps/fish-spawn-zones-zh-cn.png',
+        '/assets/guide/maps/bug-spawn-zones-zh-cn.png',
+        '/assets/guide/maps/ocean-critter-zones-zh-cn.png',
+    ];
 
     constructor() {
-        super(new FormGroup<FilterForm>({
-            season: new FormControl<Season[]>([...Seasons], {nonNullable: true}),
-            weather: new FormControl<Weather[]>([...Weathers], {nonNullable: true}),
-            location: new FormControl<string | null>(null),
-            showTable: new FormControl<boolean>(false, {nonNullable: true}),
-        }));
-
+        super(
+            new FormGroup<FilterForm>({
+                season: new FormControl<Season[]>([...Seasons], { nonNullable: true }),
+                weather: new FormControl<Weather[]>([...Weathers], { nonNullable: true }),
+                location: new FormControl<string | null>(null),
+                showTable: new FormControl<boolean>(false, { nonNullable: true }),
+            }),
+        );
 
         this.tabs = [
             {
                 title: 'Fish',
+                translationKey: 'APP.JOURNAL_TABS.FISH',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-fish'),
                     this._database.fetchFish$(),
-                    0
-                )
-            }, {
+                    0,
+                ),
+            },
+            {
                 title: 'Insects',
+                translationKey: 'APP.JOURNAL_TABS.INSECTS',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-insects'),
                     this._database.fetchBugsAndInsects$(),
-                    1
-                )
-            }, {
+                    1,
+                ),
+            },
+            {
                 title: 'Sea Critters',
+                translationKey: 'APP.JOURNAL_TABS.SEA_CRITTERS',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-sea-critters'),
                     this._database.fetchOceanCritters$(),
-                    this.SEA_CRITTERS_INDEX
-                )
+                    this.SEA_CRITTERS_INDEX,
+                ),
             },
         ];
 
-        this.activateTabFromRoute(this.tabs.map(tab => tab.title));
-
+        this.activateTabFromRoute(this.tabs.map((tab) => tab.title));
     }
 
-    override filterPredicate(foundEntry: Fish | Critter, filterValues: FormGroup<FilterForm>["value"], index: number): boolean {
+    override filterPredicate(
+        foundEntry: Fish | Critter,
+        filterValues: FormGroup<FilterForm>['value'],
+        index: number,
+    ): boolean {
         if (!filterValues.season?.length) return false;
         if (!filterValues.weather?.length) return false;
 
@@ -107,7 +123,7 @@ export class CaughtComponent extends BaseJournalPageComponent<Fish | Critter> {
             blizzard: boolean;
         },
         index: number,
-        weather?: string[] | undefined
+        weather?: string[] | undefined,
     ) {
         const weatherString = getTruthyValues(spawnWeather).toLowerCase();
         const match =
@@ -120,7 +136,7 @@ export class CaughtComponent extends BaseJournalPageComponent<Fish | Critter> {
 
     private matchSeason(
         spawnSeason: { spring: boolean; summer: boolean; fall: boolean; winter: boolean },
-        season?: Season[]
+        season?: Season[],
     ) {
         const seasonString = getTruthyValues(spawnSeason).toLowerCase();
         const match =
@@ -134,22 +150,22 @@ export class CaughtComponent extends BaseJournalPageComponent<Fish | Critter> {
     getLocations(entries: (Fish | Critter)[]): string[] {
         if (!entries.length) return [];
 
-        return [...new Set(
-            entries
-                .map(entry => {
-                    if ('fishName' in entry) {
-                        return entry.spawnSettings.map(spawnSettings => spawnSettings.spawnLocation)
-                    } else {
-                        return entry.spawnLocation
-                    }
-                })
-                .flat(2))
-        ].sort()
-
-
+        return [
+            ...new Set(
+                entries
+                    .map((entry) => {
+                        if ('fishName' in entry) {
+                            return entry.spawnSettings.map((spawnSettings) => spawnSettings.spawnLocation);
+                        } else {
+                            return entry.spawnLocation;
+                        }
+                    })
+                    .flat(2),
+            ),
+        ].sort();
     }
 
     resetLocationFilter() {
-        this.formControl.get('location')?.setValue(null)
+        this.formControl.get('location')?.setValue(null);
     }
 }

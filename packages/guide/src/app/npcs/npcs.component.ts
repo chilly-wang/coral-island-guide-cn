@@ -6,6 +6,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ModuleSidebarItemComponent } from "../shared/components/module-sidebar-item/module-sidebar-item.component";
 import { ModuleSidebarComponent } from "../shared/components/module-sidebar/module-sidebar.component";
 import { SidebarContainerComponent } from "../shared/components/sidebar-container/sidebar-container.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-people',
@@ -16,7 +17,8 @@ import { SidebarContainerComponent } from "../shared/components/sidebar-containe
         RouterOutlet,
         ModuleSidebarItemComponent,
         ModuleSidebarComponent,
-        SidebarContainerComponent
+        SidebarContainerComponent,
+        TranslatePipe
     ]
 })
 export class NPCsComponent {

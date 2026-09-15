@@ -1,11 +1,10 @@
 <div class="container block mx-auto my-10">
     <app-card>
         <div class="prose lg:prose-xl">
-            <h1>Live only feature!</h1>
+            <h1>{{ 'APP.AVAILABILITY.LIVE_TITLE' | translate }}</h1>
             <p>
-                This feature is only available in live! If you would like to check it out, go to <a
-                    routerLink="/my/settings">settings</a>
-                and turn off beta data.
+                {{ 'APP.AVAILABILITY.LIVE_TEXT' | translate }}
+                <a routerLink="/my/settings">{{ 'APP.AVAILABILITY.SETTINGS' | translate }}</a>
             </p>
         </div>
     </app-card>

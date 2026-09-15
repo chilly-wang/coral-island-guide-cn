@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { map, Observable, take, tap } from 'rxjs';
 import { ItemProcessing, Quality } from '@ci/data-types';
 import { BaseTabbedSelectableContainerComponent } from "../../../shared/components/base-tabbed-selectable-container/base-tabbed-selectable-container.component";
@@ -7,12 +7,12 @@ import { DatabaseItemDetailsComponent } from "../../../shared/components/databas
 import { ProcessingComponent } from "../../../shared/components/database-item-details/processing/processing.component";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { DataFilterComponent } from "../../../shared/components/data-filter/data-filter.component";
-import { AsyncPipe, TitleCasePipe } from "@angular/common";
-import { AddSpacesToPascalCasePipe } from "../../../shared/pipes/add-spaces-to-pascal-case.pipe";
+import { AsyncPipe } from "@angular/common";
 import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
 import { ProcessorTableComponent } from "../tables/processor-table/processor-table.component";
 import { DatabaseItemDetailsDirective } from "../../../shared/directives/database-item-details.directive";
-import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from '../../../shared/pipes/localized-display.pipe';
+import { DisplayTranslationService } from '../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-processor',
@@ -27,12 +27,10 @@ import { TranslatePipe } from "@ngx-translate/core";
         MatTab,
         DataFilterComponent,
         AsyncPipe,
-        AddSpacesToPascalCasePipe,
-        TitleCasePipe,
         ItemIconComponent,
         ProcessorTableComponent,
         DatabaseItemDetailsDirective,
-        TranslatePipe
+        LocalizedDisplayPipe
     ]
 })
 export class ProcessorComponent extends BaseTabbedSelectableContainerComponent<ItemProcessing> {
@@ -40,6 +38,7 @@ export class ProcessorComponent extends BaseTabbedSelectableContainerComponent<I
     quality = Quality;
     machineNames: string[] = [];
     protected processorMapping = this._database.getProcessorMapping()
+    readonly #display = inject(DisplayTranslationService);
 
     constructor() {
         super();
@@ -54,7 +53,13 @@ export class ProcessorComponent extends BaseTabbedSelectableContainerComponent<I
 
     override urlPathFromLabel = (label: string) => {
 
-        const foundKey = Object.keys(this.processorMapping).find(key => this.processorMapping[key].displayName === label);
+        const foundKey = Object.keys(this.processorMapping).find(key =>
+            this.#display.translate(this.processorMapping[key].displayName, 'processor') === label
+        );
+        if (!foundKey) {
+            const machineKey = this.machineNames.find(machine => this.#display.translate(machine, 'processor') === label);
+            if (machineKey) return machineKey.toLowerCase().replaceAll(' ', '');
+        }
         if (foundKey) {
             return foundKey
         }

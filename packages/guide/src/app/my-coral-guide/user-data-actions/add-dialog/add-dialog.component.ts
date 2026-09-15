@@ -11,6 +11,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
 import { UiIcon } from "@ci/data-types";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-add-dialog',
@@ -24,7 +25,8 @@ import { UiIcon } from "@ci/data-types";
         MatInput,
         MatLabel,
         ReactiveFormsModule,
-        UiIconComponent
+        UiIconComponent,
+        TranslatePipe
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './add-dialog.component.html'

@@ -5,6 +5,7 @@ import { filter } from 'rxjs';
 import { SettingsService } from '../../../shared/services/settings.service';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from "@angular/cdk/overlay";
 import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 type NaviLinks = {
     path: RouterLink['routerLink'];
@@ -22,7 +23,8 @@ type NaviLinks = {
         RouterLinkActive,
         RouterLink,
         UiIconComponent,
-        CdkOverlayOrigin
+        CdkOverlayOrigin,
+        TranslatePipe
     ],
 
     changeDetection: ChangeDetectionStrategy.Eager,
@@ -34,32 +36,32 @@ type NaviLinks = {
 export class HeaderComponent {
     naviLinks: NaviLinks = [
         {
-            text: 'Journal',
+            text: 'APP.NAV.JOURNAL',
             uiIcon: UiIcon.JOURNAL,
             path: 'journal/produce/crops',
         },
         {
-            text: 'Crafting',
+            text: 'APP.NAV.CRAFTING',
             uiIcon: UiIcon.CRAFTING,
             path: 'crafting',
         },
         {
-            text: 'NPCs',
+            text: 'APP.NAV.NPCS',
             uiIcon: UiIcon.PEOPLE,
             path: 'npcs',
         },
         {
-            text: 'Locations',
+            text: 'APP.NAV.LOCATIONS',
             uiIcon: UiIcon.MAP,
             path: 'locations',
         },
         {
-            text: 'My Guide',
+            text: 'APP.NAV.MY_GUIDE',
             uiIcon: UiIcon.MY_CORAL,
             path: 'my',
         },
         {
-            text: 'Item database',
+            text: 'APP.NAV.ITEM_DATABASE',
             uiIcon: UiIcon.DATABASE,
             path: 'database',
         },

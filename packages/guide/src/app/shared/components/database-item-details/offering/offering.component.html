@@ -22,7 +22,7 @@
 }
 
 @if (details().chanceAsProcessResult) {
-    <div>Possible drop from:</div>
+    <div>{{ 'APP.DATABASE.POSSIBLE_DROP_FROM' | translate }}:</div>
     <app-shop-processing-result class="mb-4" [itemProcessData]="details().chanceAsProcessResult"/>
 }
 

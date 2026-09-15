@@ -6,10 +6,10 @@
 
 <app-base-item-card [item]="festivalShopItemData().item">
     @if (!festivalShopItemData().enabled) {
-        <div class="mb-3">Enabled: <span class="text-black">NO</span></div>
+        <div class="mb-3">{{ 'APP.SHOP_DETAIL.ENABLED' | translate }}: <span class="text-black">{{ 'No' | localizedDisplay }}</span></div>
     }
 
-    <div>Buy price:
+    <div>{{ 'APP.SHOP_DETAIL.BUY_PRICE' | translate }}:
         <span class="text-black">
          @if (festivalShopItemData().festivalSetting.hasDiscount) {
              <span
@@ -20,33 +20,33 @@
         </span>
     </div>
     @if (festivalShopItemData().festivalSetting.hasDiscount) {
-        <div>Discount:
+        <div>{{ 'APP.FESTIVAL.DISCOUNT' | translate }}:
             <span class="text-black">
         {{ festivalShopItemData().festivalSetting.discount | percent }}
         </span>
         </div>
     }
     @if (festivalShopItemData().festivalSetting.isLimitedItem) {
-        <div>Item limit (all time):
+        <div>{{ 'APP.FESTIVAL.ITEM_LIMIT' | translate }}:
             <span class="text-black">
            {{ festivalShopItemData().festivalSetting.itemLimit }}
         </span>
         </div>
     }
     @if (festivalShopItemData().festivalSetting.hasYearlyLimit) {
-        <div>Yearly limit:
+        <div>{{ 'APP.FESTIVAL.YEARLY_LIMIT' | translate }}:
             <span class="text-black">
            {{ festivalShopItemData().festivalSetting.itemLimitPerYear }}
         </span>
         </div>
     }
-    <div>Town rank:
+    <div>{{ 'APP.SHOP_DETAIL.TOWN_RANK' | translate }}:
         <span class="text-black">
            {{ festivalShopItemData().townRank | townrank }}
         </span>
     </div>
     @if (festivalShopItemData().availableDuringTime && timeRange) {
-        <div>Only at times:
+        <div>{{ 'APP.SHOP_DETAIL.ONLY_TIMES' | translate }}:
             <span class="inline-flex">
             {{ (timeRange.fromTime.hours | number: '2.0') + ':' + (timeRange.fromTime.minutes | number: '2.0') }}
                 -
@@ -57,7 +57,7 @@
 
 
     @if (festivalShopItemData().availableSinceDate && sinceDate) {
-        <div>Available since:
+        <div>{{ 'APP.SHOP_DETAIL.AVAILABLE_SINCE' | translate }}:
             <span
                     class="text-black">{{ sinceDate | ingameDate }}
         </span>
@@ -65,7 +65,7 @@
     }
 
     @if (festivalShopItemData().availableTillDate && tillDate) {
-        <div>Available until:
+        <div>{{ 'APP.SHOP_DETAIL.AVAILABLE_UNTIL' | translate }}:
             <span
                     class="text-black">{{ tillDate | ingameDate }}
         </span>
@@ -73,62 +73,61 @@
     }
 
     @if (festivalShopItemData().forbiddenDays.length) {
-        <div>Except on days:
+        <div>{{ 'APP.SHOP_DETAIL.EXCEPT_DAYS' | translate }}:
             <span
-                    class="text-black">{{ festivalShopItemData().forbiddenDays.join(', ') }}
+                    class="text-black">{{ festivalShopItemData().forbiddenDays | localizedDisplay:'weekday' }}
         </span>
         </div>
     }
 
     @if (festivalShopItemData().allowedDays.length && festivalShopItemData().allowedDays.length !== 7) {
-        <div>Only on days:
+        <div>{{ 'APP.SHOP_DETAIL.ONLY_DAYS' | translate }}:
             <span
-                    class="text-black">{{ festivalShopItemData().allowedDays.join(', ') }}
+                    class="text-black">{{ festivalShopItemData().allowedDays | localizedDisplay:'weekday' }}
         </span>
         </div>
     }
     @if (festivalShopItemData().forbiddenDays.length) {
-        <div>Except on days:
+        <div>{{ 'APP.SHOP_DETAIL.EXCEPT_DAYS' | translate }}:
             <span
-                    class="text-black">{{ festivalShopItemData().forbiddenDays.join(', ') }}
+                    class="text-black">{{ festivalShopItemData().forbiddenDays | localizedDisplay:'weekday' }}
         </span>
         </div>
     }
 
     @if (festivalShopItemData().allowedWeather.length) {
-        <div>Only at weather:
+        <div>{{ 'APP.SHOP_DETAIL.ONLY_WEATHER' | translate }}:
             <span
-                    class="text-black">{{ festivalShopItemData().allowedWeather.join(', ') }}
+                    class="text-black">{{ festivalShopItemData().allowedWeather | localizedDisplay:'weather' }}
         </span>
         </div>
     }
     @if (festivalShopItemData().forbiddenWeather.length) {
-        <div>Except at weather:
+        <div>{{ 'APP.SHOP_DETAIL.EXCEPT_WEATHER' | translate }}:
             <span
-                    class="text-black">{{ festivalShopItemData().forbiddenWeather.join(', ') }}
+                    class="text-black">{{ festivalShopItemData().forbiddenWeather | localizedDisplay:'weather' }}
         </span>
         </div>
     }
 
 
     @if (festivalShopItemData().allowedSeasons.length && festivalShopItemData().allowedSeasons.length !== 4) {
-        <div>Only at
-            seasons:
+        <div>{{ 'APP.SHOP_DETAIL.ONLY_SEASONS' | translate }}:
             <span
-                    class="text-black">{{ festivalShopItemData().allowedSeasons.join(', ') }}
+                    class="text-black">{{ festivalShopItemData().allowedSeasons | localizedDisplay:'season' }}
         </span>
         </div>
     }
     @if (festivalShopItemData().forbiddenSeasons.length) {
-        <div>Except at seasons:
+        <div>{{ 'APP.SHOP_DETAIL.EXCEPT_SEASONS' | translate }}:
             <span
-                    class="text-black">{{ festivalShopItemData().forbiddenSeasons.join(', ') }}
+                    class="text-black">{{ festivalShopItemData().forbiddenSeasons | localizedDisplay:'season' }}
         </span>
         </div>
     }
 
     @if (effects && effects.length) {
-        <div class="my-2">Effects when bought:
+        <div class="my-2">{{ 'APP.SHOP_DETAIL.EFFECTS_BOUGHT' | translate }}:
             <div class="flex flex-col text-black">
                 @for (effect of effects; track effect) {
                     <app-effect [effect]="effect"/>
@@ -142,12 +141,12 @@
                 class="my-2">
             @if (requirements.requirements.length > 1) {
 
-                Unlock requirements ({{ requirements.type === 'And' ? 'all' : 'any' }} of them):
+                {{ 'APP.SHOP_DETAIL.UNLOCK_REQUIREMENTS' | translate }} ({{ (requirements.type === 'And' ? 'APP.NPC_DETAIL.ALL_OF_THEM' : 'APP.NPC_DETAIL.ANY_OF_THEM') | translate }}):
 
             }
             @if (requirements.requirements.length < 2) {
 
-                Unlock requirement:
+                {{ 'APP.SHOP_DETAIL.UNLOCK_REQUIREMENT' | translate }}:
 
             }
 

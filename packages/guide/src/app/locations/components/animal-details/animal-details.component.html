@@ -1,6 +1,6 @@
 <app-card class="text-lg font-semibold relative">
     <div cardActions class="card-actions">
-        <button (click)="listDetails.close()" matTooltip="Close">
+        <button (click)="listDetails.close()" [matTooltip]="'APP.COMMON.CLOSE' | translate">
             <app-ui-icon [uiIcon]="uiIcon.CROSS" class="!w-8 !h-8 hover:text-black focus-visible:text-black"/>
         </button>
     </div>
@@ -9,10 +9,10 @@
 
     <div class="flex justify-between items-center">
         <div class="flex flex-col">
-            <div class="text-black text-2xl">{{ mappedAnimalShopData().readableName |translate }}</div>
-            @if (!mappedAnimalShopData().readableCategory) {
+            <div class="text-black text-2xl">{{ mappedAnimalShopData() | localizedEntityName }}</div>
+            @if (mappedAnimalShopData().readableCategory) {
                 <span
-                        class="text-accent text-2xl">   {{ mappedAnimalShopData().readableCategory |translate }}</span>
+                        class="text-accent text-2xl">{{ mappedAnimalShopData().readableCategory | localizedDisplay:'animal_category' }}</span>
             }
         </div>
     </div>
@@ -21,21 +21,21 @@
         <span class="text-lg mb-6">{{ mappedAnimalShopData().description |translate }}</span>
     }
 
-    <div class="flex">Price:
+    <div class="flex">{{ 'APP.ANIMAL_DETAIL.PRICE' | translate }}:
         <app-money [amount]="mappedAnimalShopData().price" class="ml-2 text-black"/>
     </div>
-    <div>Amount on purchase:
+    <div>{{ 'APP.ANIMAL_DETAIL.AMOUNT_ON_PURCHASE' | translate }}:
         <span class="text-black">
 {{ mappedAnimalShopData().amountOnPurchase }}
         </span>
     </div>
-    <div>Town rank:
+    <div>{{ 'APP.ANIMAL_DETAIL.TOWN_RANK' | translate }}:
         <span class="text-black">
 {{ mappedAnimalShopData().townRank | townrank }}
         </span>
     </div>
     @if (mappedAnimalShopData().itemLimit >= 0) {
-        <div>Limited amount:
+        <div>{{ 'APP.ANIMAL_DETAIL.AMOUNT_LIMIT' | translate }}:
             <span class="text-black">
 {{ mappedAnimalShopData().itemLimit }}
         </span>
@@ -44,49 +44,49 @@
     @if (mappedAnimalShopData().animal; as animal) {
         <div class="mt-4">
 
-            <div>Variants:
+            <div>{{ 'APP.ANIMAL_DETAIL.VARIANTS' | translate }}:
                 <span class="text-black">
                 @for (variant of animal.variants; track variant; let last = $last) {
 
-                    {{ variant.variant | addSpacesToPascalCase }}{{ !last ? ', ' : '' }}
+                    {{ variant.variant | localizedDisplay:'animal_variant' }}{{ !last ? ', ' : '' }}
 
                 }
             </span>
             </div>
-            <div>Building:
+            <div>{{ 'APP.ANIMAL_DETAIL.BUILDING' | translate }}:
                 <span class="text-black">
-              {{ animal.building  | addSpacesToPascalCase }}
+              {{ animal.building | localizedDisplay:'animal_building' }}
             </span>
             </div>
             @if (animal.animalProduceType !== 'None') {
 
                 @if (animal.produceDropLocation !== 'None') {
-                    <div>Drop location:
+                    <div>{{ 'APP.DETAIL.LOCATION' | translate }}:
                         <span class="text-black">
-              {{ animal.produceDropLocation  | addSpacesToPascalCase }}
+              {{ animal.produceDropLocation | localizedDisplay:'location' }}
             </span>
                     </div>
                 }
-                <div>Type of producing:
+                <div>{{ 'APP.ANIMAL_DETAIL.PRODUCTION_TYPE' | translate }}:
                     <span class="text-black">
-                {{ animal.animalProduceType | addSpacesToPascalCase }}
+                {{ animal.animalProduceType | localizedDisplay:'animal_produce_type' }}
             </span>
                 </div>
                 @if (animal.itemHarvestTool) {
-                    <div>Tool for harvesting:
+                    <div>{{ 'APP.ANIMAL_DETAIL.HARVEST_TOOL' | translate }}:
                         <span class="text-black">
                <app-item-icon [itemName]="animal.itemHarvestTool.iconName"
                               class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-                            {{ animal.itemHarvestTool.displayName  | translate }}
+                            {{ animal.itemHarvestTool | localizedEntityName }}
             </span>
                     </div>
                 }
-                <div>Harvest cooldown:
+                <div>{{ 'APP.ANIMAL_DETAIL.HARVEST_COOLDOWN' | translate }}:
                     <span class="text-black">
-                    {{ animal.harvestCooldown }} day{{ animal.harvestCooldown > 1 ? 's' : '' }}
+                    {{ 'APP.ANIMAL_DETAIL.DAY_COUNT' | translate: {count: animal.harvestCooldown} }}
             </span>
                 </div>
-                <div class="my-3">Produces:
+                <div class="my-3">{{ 'APP.ANIMAL_DETAIL.PRODUCES' | translate }}:
                     @for (produce of animal.produces; track produce) {
 
                         @for (keValuePair of produce | keyvalue: null; track keValuePair) {
@@ -94,10 +94,10 @@
                             @if (keValuePair.value | isMinimalItem) {
                                 <div
                                         class="text-black">
-                                    {{ keValuePair.key | addSpacesToPascalCase | titlecase }}:
+                                    {{ keValuePair.key | localizedDisplay:'animal_product_size' }}:
                                     <app-item-icon [itemName]="keValuePair.value.iconName"
                                                    class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-                                    {{ keValuePair.value.displayName |translate }}
+                                    {{ keValuePair.value | localizedEntityName }}
                                 </div>
                             }
 
@@ -115,7 +115,7 @@
     }
 
     <div class="flex">
-        Sells for:
+        {{ 'APP.ANIMAL_DETAIL.SELLS_FOR' | translate }}:
         <app-money [amount]="mappedAnimalShopData().sellPrice" class="ml-2 text-black"/>
     </div>
 </app-card>

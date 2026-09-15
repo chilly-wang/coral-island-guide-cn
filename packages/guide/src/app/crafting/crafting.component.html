@@ -2,13 +2,13 @@
     <app-module-sidebar>
         @if (itemProcessingRecipes$ | async) {
 
-            <app-module-sidebar-item [uiIcon]="UI_ICONS.CRAFTING" routerLink="inventory">Inventory-Crafting
+            <app-module-sidebar-item [uiIcon]="UI_ICONS.CRAFTING" routerLink="inventory">{{ 'APP.CRAFTING.INVENTORY' | translate }}
             </app-module-sidebar-item>
-            <app-module-sidebar-item [uiIcon]="UI_ICONS.ARTISAN" routerLink="artisan">Processing
+            <app-module-sidebar-item [uiIcon]="UI_ICONS.ARTISAN" routerLink="artisan">{{ 'APP.CRAFTING.PROCESSING' | translate }}
             </app-module-sidebar-item>
-            <app-module-sidebar-item [uiIcon]="UI_ICONS.COOKING" routerLink="cooking">Cooking
+            <app-module-sidebar-item [uiIcon]="UI_ICONS.COOKING" routerLink="cooking">{{ 'APP.CRAFTING.COOKING' | translate }}
             </app-module-sidebar-item>
-            <app-module-sidebar-item [uiIcon]="UI_ICONS.PLANT" routerLink="mixing">Mixing
+            <app-module-sidebar-item [uiIcon]="UI_ICONS.PLANT" routerLink="mixing">{{ 'APP.CRAFTING.MIXING' | translate }}
             </app-module-sidebar-item>
 
         }

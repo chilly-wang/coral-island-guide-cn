@@ -9,12 +9,14 @@ import { ShippedChecklistService } from "../../../core/services/checklists/shipp
 import { type Checklist, type DatabaseItem, UiIcon } from "@ci/data-types";
 import type { BaseChecklistService } from "../../../core/services/checklists/base-checklist.service";
 import { UiIconComponent } from "../ui-icon/ui-icon.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-checklist-toggles',
     templateUrl: './checklist-toggles.html',
     imports: [
-        UiIconComponent
+        UiIconComponent,
+        TranslatePipe
     ],
     host: {
         class: 'flex flex-col border border-2 border-[#EDE6DB] rounded-lg overflow-hidden *:flex *:justify-end *:items-stretch *:min-w-[130px] [&_span]:border-y-2 [&_span]:flex [&_span]:items-center [&_span]:border-t-[#EDE6DB] [&_span]:border-b-transparent [&_span]:h-10 [&_span]:px-2 [&_span]:grow [&>button:first-child>span]:border-t-transparent'

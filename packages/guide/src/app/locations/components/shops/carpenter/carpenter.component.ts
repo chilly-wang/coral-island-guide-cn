@@ -37,7 +37,7 @@ import { AsyncPipe } from "@angular/common";
 })
 export class CarpenterComponent extends BaseShopComponent {
 
-    override upgradeHeaderText = 'Buildings';
+    override upgradeHeaderText = 'APP.SHOP.BUILDINGS';
     protected shopName: ShopName = "carpenter";
 
     constructor() {

@@ -11,13 +11,13 @@
                 <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell mat-sort-header>Item
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
-                    {{ element.displayName | translate }}
+                    {{ element | localizedEntityName }}
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="dropRates">
-                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>Drops</th>
+                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'APP.TABLE.DROPS' | translate }}</th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                     <app-chance-per-item-table-list [chances]="element.dropRates"/>
                 </td>
@@ -25,7 +25,7 @@
 
 
             <ng-container matColumnDef="experience">
-                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell mat-sort-header>Exp</th>
+                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell mat-sort-header>{{ 'APP.TABLE.EXP' | translate }}</th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                     {{ element.experience }}
                 </td>

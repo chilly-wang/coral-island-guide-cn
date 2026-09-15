@@ -10,12 +10,22 @@ const seasonWeightForSorting: Map<SpecificDate['season'], number> = new Map<Spec
 
 export function filterNPCs<T extends NPC | {
     npc: NPC | undefined
-}>(npcs: T[], searchValue: string, sortValue: NpcSortValues): T[] {
+}>(
+    npcs: T[],
+    searchValue: string,
+    sortValue: NpcSortValues,
+    getDisplayName: (npc: NPC) => string = (npc) => npc.characterName,
+    getSearchTerms: (npc: NPC) => string[] = (npc) => [npc.characterName],
+): T[] {
+    const resolveNpc = (entry: T): NPC | undefined => 'characterName' in entry ? entry : entry.npc;
+
     switch (sortValue) {
         case "alphabetical":
             npcs = [...npcs].sort((a, b) => {
-                const aCharacterName = 'characterName' in a ? a.characterName : a.npc?.characterName ?? ''
-                const bCharacterName = 'characterName' in b ? b.characterName : b.npc?.characterName ?? ''
+                const aNpc = resolveNpc(a);
+                const bNpc = resolveNpc(b);
+                const aCharacterName = aNpc ? getDisplayName(aNpc) : '';
+                const bCharacterName = bNpc ? getDisplayName(bNpc) : '';
 
                 if (aCharacterName.toLowerCase() === 'universal') return 1;
                 if (bCharacterName.toLowerCase() === 'universal') return -1;
@@ -52,7 +62,11 @@ export function filterNPCs<T extends NPC | {
     if (!searchValue) return npcs;
 
     return npcs.filter(npc => {
-        const characterName = 'characterName' in npc ? npc.characterName : npc.npc?.characterName ?? ''
-        return characterName.toLowerCase().includes(searchValue)
+        const resolvedNpc = resolveNpc(npc);
+        if (!resolvedNpc) return false;
+        const normalizedSearch = searchValue.trim().toLocaleLowerCase();
+        return getSearchTerms(resolvedNpc).some((term) =>
+            term.toLocaleLowerCase().includes(normalizedSearch),
+        );
     })
 }

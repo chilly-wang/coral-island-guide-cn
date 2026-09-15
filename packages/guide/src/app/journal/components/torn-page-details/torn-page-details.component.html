@@ -1,6 +1,6 @@
 <app-card>
     <div cardActions class="card-actions">
-        <button (click)="listDetails.close()" matTooltip="Close">
+        <button (click)="listDetails.close()" [matTooltip]="'APP.COMMON.CLOSE' | translate">
             <app-ui-icon [uiIcon]="uiIcon.CROSS" class="!w-8 !h-8 hover:text-black focus-visible:text-black"/>
         </button>
     </div>

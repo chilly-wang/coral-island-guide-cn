@@ -11,7 +11,7 @@
 
         <mat-tab-group (selectedTabChange)="updateUrl($event)" [selectedIndex]="selectedTabIndex()">
             @for (tab of (checklistDefinition | keyvalue: null); track tab) {
-                <mat-tab [formGroup]="checklistForm" [label]="tab.key | titlecase">
+                <mat-tab [formGroup]="checklistForm" [label]="tab.key | localizedDisplay:'route'">
 
                     @if (!showTable) {
 

@@ -13,6 +13,7 @@ import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
 import { UserData } from "../../../core/types/user-data.type";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-edit-dialog',
@@ -26,7 +27,8 @@ import { UserData } from "../../../core/types/user-data.type";
         MatInput,
         MatLabel,
         UiIconComponent,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslatePipe
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './edit-dialog.component.html'

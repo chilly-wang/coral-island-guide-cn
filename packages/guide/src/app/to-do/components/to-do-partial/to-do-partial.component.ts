@@ -5,6 +5,8 @@ import { ToDo } from "../../../core/types/to-do.type";
 import { ToDoFilterOptions } from "../../types/to-do-filter-options.type";
 import { ItemEntry } from "../../../shared/types/item-entry.type";
 import { ToDoEntryBaseComponent } from "../to-do-entry-base/to-do-entry-base.component";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../../../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-to-do-partial',
@@ -14,7 +16,9 @@ import { ToDoEntryBaseComponent } from "../to-do-entry-base/to-do-entry-base.com
     },
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
-        ToDoEntryBaseComponent
+        ToDoEntryBaseComponent,
+        TranslatePipe,
+        LocalizedDisplayPipe
     ]
 })
 export class ToDoPartialComponent {

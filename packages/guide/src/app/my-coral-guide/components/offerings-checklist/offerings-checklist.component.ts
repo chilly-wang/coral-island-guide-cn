@@ -1,22 +1,24 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
-import { BaseTabbedSelectableContainerComponent } from "../../../shared/components/base-tabbed-selectable-container/base-tabbed-selectable-container.component";
-import { MinimalItem, MinimalTagBasedItem, Offering, OfferingAltar, Offerings } from "@ci/data-types";
-import { map, Observable } from "rxjs";
-import { OfferingChecklistService } from "../../../core/services/checklists/offering-checklist.service";
-import { FormControl, FormRecord, ReactiveFormsModule } from "@angular/forms";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { entityKey } from "@ci/util";
-import { SettingsService } from "../../../shared/services/settings.service";
-import { MatTab, MatTabGroup } from "@angular/material/tabs";
-import { AddSpacesToPascalCasePipe } from "../../../shared/pipes/add-spaces-to-pascal-case.pipe";
-import { ItemCardSwitchComponent } from "../../../shared/components/item-card-switch/item-card-switch.component";
-import { OfferingComponent } from "../../../shared/components/database-item-details/offering/offering.component";
-import { ListDetailContainerComponent } from "../../../shared/components/list-detail-container/list-detail-container.component";
-import { EntityKeyPipe } from "../../../shared/pipes/entity-key.pipe";
-import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
-import { MatCheckbox } from "@angular/material/checkbox";
-import { AsyncPipe, NgOptimizedImage } from "@angular/common";
-import { TranslatePipe } from "@ngx-translate/core";
+import { BaseTabbedSelectableContainerComponent } from '../../../shared/components/base-tabbed-selectable-container/base-tabbed-selectable-container.component';
+import { MinimalItem, MinimalTagBasedItem, Offering, OfferingAltar, Offerings } from '@ci/data-types';
+import { map, Observable } from 'rxjs';
+import { OfferingChecklistService } from '../../../core/services/checklists/offering-checklist.service';
+import { FormControl, FormRecord, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { entityKey } from '@ci/util';
+import { SettingsService } from '../../../shared/services/settings.service';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { AddSpacesToPascalCasePipe } from '../../../shared/pipes/add-spaces-to-pascal-case.pipe';
+import { ItemCardSwitchComponent } from '../../../shared/components/item-card-switch/item-card-switch.component';
+import { OfferingComponent } from '../../../shared/components/database-item-details/offering/offering.component';
+import { ListDetailContainerComponent } from '../../../shared/components/list-detail-container/list-detail-container.component';
+import { EntityKeyPipe } from '../../../shared/pipes/entity-key.pipe';
+import { ItemIconComponent } from '../../../shared/components/item-icon/item-icon.component';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-offerings-checklist',
@@ -24,6 +26,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        LocalizedEntityNamePipe,
         MatTab,
         AddSpacesToPascalCasePipe,
         ReactiveFormsModule,
@@ -36,12 +39,14 @@ import { TranslatePipe } from "@ngx-translate/core";
         MatCheckbox,
         NgOptimizedImage,
         AsyncPipe,
-        TranslatePipe
-    ]
+        TranslatePipe,
+    ],
 })
-export class OfferingsChecklistComponent extends BaseTabbedSelectableContainerComponent<MinimalItem | MinimalTagBasedItem> {
+export class OfferingsChecklistComponent extends BaseTabbedSelectableContainerComponent<
+    MinimalItem | MinimalTagBasedItem
+> {
     checklistService = inject(OfferingChecklistService);
-    checklistForm: FormRecord<FormControl<boolean>> = new FormRecord<FormControl<boolean>>({})
+    checklistForm: FormRecord<FormControl<boolean>> = new FormRecord<FormControl<boolean>>({});
     protected activeOffering?: Offerings;
     protected offerings$: Observable<OfferingAltar[]>;
     protected entryForToDo?: Offering | MinimalItem | MinimalTagBasedItem;
@@ -50,42 +55,40 @@ export class OfferingsChecklistComponent extends BaseTabbedSelectableContainerCo
     private _altars: OfferingAltar[] = [];
 
     constructor() {
-        super()
-        this.checklistForm.valueChanges.pipe(
-            takeUntilDestroyed()
-        ).subscribe({
-            next: value => {
+        super();
+        this.checklistForm.valueChanges.pipe(takeUntilDestroyed()).subscribe({
+            next: (value) => {
                 const checkedItems: string[] = [];
 
-                Object.keys(value).forEach(key => {
-                    if (value[key]) checkedItems.push(key)
-                })
+                Object.keys(value).forEach((key) => {
+                    if (value[key]) checkedItems.push(key);
+                });
 
                 this.checklistService.set(checkedItems);
-            }
-        })
+            },
+        });
         this.offerings$ = this._database.fetchOfferings$().pipe(
             map((record) => {
+                const records = record.filter((r) => r.offeringType !== 'Diving');
+                const altarNames = records.map((altar) => altar.urlPath);
 
-                    const records = record.filter(r => r.offeringType !== 'Diving');
-                    const altarNames = records.map(altar => altar.urlPath);
-
-                    this._altars = records;
-                    records.forEach(checklist => {
-
-                        checklist.offerings.forEach(key => {
-                            key.requiredItems.forEach(item => {
-                                const key = entityKey(item.item);
-                                this.checklistForm.addControl(key, new FormControl<boolean>(this.checklistService.isChecked(key), {nonNullable: true}), {emitEvent: false})
-                            });
-                        })
-                    })
-                    this.activateTabFromRoute(altarNames);
-                    return records;
-                }
-            )
+                this._altars = records;
+                records.forEach((checklist) => {
+                    checklist.offerings.forEach((key) => {
+                        key.requiredItems.forEach((item) => {
+                            const key = entityKey(item.item);
+                            this.checklistForm.addControl(
+                                key,
+                                new FormControl<boolean>(this.checklistService.isChecked(key), { nonNullable: true }),
+                                { emitEvent: false },
+                            );
+                        });
+                    });
+                });
+                this.activateTabFromRoute(altarNames);
+                return records;
+            }),
         );
-
     }
 
     // override registerToToDo(entry: MinimalItem | Offering | MinimalTagBasedItem) {
@@ -107,20 +110,18 @@ export class OfferingsChecklistComponent extends BaseTabbedSelectableContainerCo
         } else {
             super.showDetails(selectedEntry);
         }
-
     }
 
     override urlPathFromLabel = (label: string) => {
-
         const sanitizedLabel = label.toLowerCase().replaceAll(' ', '');
-        const offeringAltar = this._altars.find(altar => altar.offeringGroupTitle.toLowerCase().replaceAll(' ', '') === sanitizedLabel);
+        const offeringAltar = this._altars.find(
+            (altar) => altar.offeringGroupTitle.toLowerCase().replaceAll(' ', '') === sanitizedLabel,
+        );
 
         if (offeringAltar) {
-            return offeringAltar.urlPath
+            return offeringAltar.urlPath;
         }
 
-        return label.toLowerCase().replaceAll(' ', '')
-    }
-
-
+        return label.toLowerCase().replaceAll(' ', '');
+    };
 }

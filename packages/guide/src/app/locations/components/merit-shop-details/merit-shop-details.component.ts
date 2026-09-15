@@ -4,7 +4,8 @@ import { MeritPointsComponent } from "../../../shared/components/merit-points/me
 import { BaseItemCardComponent } from "../../../shared/components/base-item-card/base-item-card.component";
 import { TownrankPipe } from "../../../shared/pipes/townrank.pipe";
 import { EffectComponent } from "../../../shared/components/effect/effect.component";
-import { RequirementsComponent } from "../../../shared/components/requirements/requirements.component";
+import { RequirementsListComponent } from '../../../shared/components/requirements-list/requirements-list.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-merit-shop-details',
@@ -16,7 +17,8 @@ import { RequirementsComponent } from "../../../shared/components/requirements/r
         BaseItemCardComponent,
         TownrankPipe,
         EffectComponent,
-        RequirementsComponent
+        RequirementsListComponent,
+        TranslatePipe
     ]
 })
 export class MeritShopDetailsComponent {

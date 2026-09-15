@@ -14,6 +14,7 @@ import { DataFilterComponent } from "../../../shared/components/data-filter/data
 import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
 import { AsyncPipe } from "@angular/common";
 import { NonSpecializedTableComponent } from "../../../shared/components/non-specialized-table/non-specialized-table.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-found',
@@ -29,7 +30,8 @@ import { NonSpecializedTableComponent } from "../../../shared/components/non-spe
         DataFilterComponent,
         ItemIconComponent,
         AsyncPipe,
-        NonSpecializedTableComponent
+        NonSpecializedTableComponent,
+        TranslatePipe
     ]
 })
 export class FoundComponent extends BaseJournalPageComponent<Item> implements AfterViewInit {
@@ -52,6 +54,7 @@ export class FoundComponent extends BaseJournalPageComponent<Item> implements Af
         this.tabs = [
             {
                 title: 'Artifacts',
+                translationKey: 'APP.JOURNAL_TABS.ARTIFACTS',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-artifacts'),
                     this._database.fetchItems$(),
@@ -59,6 +62,7 @@ export class FoundComponent extends BaseJournalPageComponent<Item> implements Af
                 )
             }, {
                 title: 'Gems',
+                translationKey: 'APP.JOURNAL_TABS.GEMS',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-gems'),
                     this._database.fetchItems$(),
@@ -66,6 +70,7 @@ export class FoundComponent extends BaseJournalPageComponent<Item> implements Af
                 )
             }, {
                 title: 'Fossils',
+                translationKey: 'APP.JOURNAL_TABS.FOSSILS',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-fossils'),
                     this._database.fetchItems$(),
@@ -73,6 +78,7 @@ export class FoundComponent extends BaseJournalPageComponent<Item> implements Af
                 )
             }, {
                 title: 'Scavangables',
+                translationKey: 'APP.JOURNAL_TABS.SCAVENGABLES',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-scavangable'),
                     this._database.fetchItems$(),

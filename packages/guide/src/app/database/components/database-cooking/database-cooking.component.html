@@ -4,7 +4,7 @@
 @if (usedToCook && usedToCook.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Usage in cooking
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.USAGE_COOKING' | translate }}
             </app-database-header-button>
         </h3>
         <app-cooking-table [dataSource]="usedToCook " showUtensil/>
@@ -13,7 +13,7 @@
 @if (cookedFrom && cookedFrom.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Cooking recipe</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.COOKING_RECIPE' | translate }}</app-database-header-button>
         </h3>
         <app-cooking-table [dataSource]="cookedFrom" showUtensil/>
     </app-expandable>

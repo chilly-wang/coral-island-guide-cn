@@ -22,7 +22,7 @@ export const routes: Routes = [
             {
                 path: 'museum-checklist/:tabName',
                 loadComponent: () => import('./components/museum-checklist/museum-checklist.component').then(m => m.MuseumChecklistComponent),
-                title: 'Museum checklist - My Guide'
+                title: 'APP.ROUTE.MUSEUM_GUIDE'
             },
             {
                 path: 'cooking-recipes-checklist',
@@ -32,7 +32,7 @@ export const routes: Routes = [
             {
                 path: 'cooking-recipes-checklist/:tabName',
                 loadComponent: () => import('./components/cooking-recipes-checklist/cooking-recipes-checklist.component').then(m => m.CookingRecipesChecklistComponent),
-                title: 'Cooking recipes checklist - My Guide'
+                title: 'APP.ROUTE.COOKING_GUIDE'
             },
             {
                 path: 'offerings-checklist',
@@ -42,7 +42,7 @@ export const routes: Routes = [
             {
                 path: 'offerings-checklist/:tabName',
                 loadComponent: () => import('./components/offerings-checklist/offerings-checklist.component').then(m => m.OfferingsChecklistComponent),
-                title: 'Offerings checklist - My Guide'
+                title: 'APP.ROUTE.OFFERINGS_GUIDE'
             },
             {
                 path: 'orchestra-zones-checklist',
@@ -52,7 +52,7 @@ export const routes: Routes = [
             {
                 path: 'orchestra-zones-checklist/:tabName',
                 loadComponent: () => import('./components/orchestra-zones-checklist/orchestra-zones-checklist').then(m => m.OrchestraZonesChecklistComponent),
-                title: 'Orchestra zones checklist - My Guide'
+                title: 'APP.ROUTE.ORCHESTRA_GUIDE'
             },
             {
                 path: 'clothing-checklist',
@@ -62,12 +62,12 @@ export const routes: Routes = [
             {
                 path: 'clothing-checklist/:tabName',
                 loadComponent: () => import('./components/bought-checklist/bought-checklist').then(m => m.BoughtChecklistComponent),
-                title: 'Clothing checklist - My Guide'
+                title: 'APP.ROUTE.CLOTHING_GUIDE'
             },
             {
                 path: 'settings',
                 loadChildren: () => import('../settings/settings-routing.module').then((m) => m.routes),
-                title: 'Settings - My Guide'
+                title: 'APP.ROUTE.SETTINGS_GUIDE'
             },
 
         ]

@@ -7,6 +7,8 @@ import { BaseItemCardComponent } from "../../../shared/components/base-item-card
 import { IngameDatePipe } from "../../../shared/pipes/ingame-date.pipe";
 import { EffectComponent } from "../../../shared/components/effect/effect.component";
 import { RequirementsComponent } from "../../../shared/components/requirements/requirements.component";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../../../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-shop-item-data-details',
@@ -20,7 +22,9 @@ import { RequirementsComponent } from "../../../shared/components/requirements/r
         BaseItemCardComponent,
         IngameDatePipe,
         EffectComponent,
-        RequirementsComponent
+        RequirementsComponent,
+        TranslatePipe,
+        LocalizedDisplayPipe
     ]
 })
 export class ShopItemDataDetailsComponent {

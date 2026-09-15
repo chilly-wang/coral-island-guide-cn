@@ -5,6 +5,8 @@ import { CardComponent } from "../../../shared/components/card/card.component";
 import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
 import { MailComponent } from "../mail/mail.component";
 import { EffectComponent } from "../../../shared/components/effect/effect.component";
+import { MatTooltip } from "@angular/material/tooltip";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-mail-details',
@@ -15,7 +17,9 @@ import { EffectComponent } from "../../../shared/components/effect/effect.compon
         CardComponent,
         UiIconComponent,
         MailComponent,
-        EffectComponent
+        EffectComponent,
+        MatTooltip,
+        TranslatePipe
     ]
 })
 export class MailDetailsComponent {

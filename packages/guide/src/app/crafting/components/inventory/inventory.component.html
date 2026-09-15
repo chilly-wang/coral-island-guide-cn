@@ -3,7 +3,7 @@
         <app-inventory-details [craftingRecipe]="selectedEntity" listDetail/>
     }
     <mat-tab-group>
-        <mat-tab label="All">
+        <mat-tab [label]="'APP.COMMON.ALL' | translate">
             <app-data-filter [(showTable)]="showTable"/>
             @if ((recipes$ |async); as recipes) {
 

@@ -1,15 +1,18 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
-import { ItemMixingRecipeData } from "@ci/data-types";
-import { KeyValuePipe } from "@angular/common";
-import { ItemListComponent } from "../../item-list/item-list.component";
-import { CookingRecipeIngredientsPipe } from "../../../pipes/cooking-recipe-ingredients.pipe";
-import { ItemIconComponent } from "../../item-icon/item-icon.component";
-import { CastToMinimalItemArrayPipe } from "../../../pipes/cast-to-minimal-item-array.pipe";
-import { TranslatePipe } from "@ngx-translate/core";
+import { ItemMixingRecipeData } from '@ci/data-types';
+import { KeyValuePipe } from '@angular/common';
+import { ItemListComponent } from '../../item-list/item-list.component';
+import { CookingRecipeIngredientsPipe } from '../../../pipes/cooking-recipe-ingredients.pipe';
+import { ItemIconComponent } from '../../item-icon/item-icon.component';
+import { CastToMinimalItemArrayPipe } from '../../../pipes/cast-to-minimal-item-array.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { LocalizedEntityNamePipe } from '../../../pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-mixing-recipe',
     imports: [
+        LocalizedEntityNamePipe,
         KeyValuePipe,
         ItemListComponent,
         CookingRecipeIngredientsPipe,
@@ -18,8 +21,8 @@ import { TranslatePipe } from "@ngx-translate/core";
         TranslatePipe,
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
-    templateUrl: './mixing-recipe.component.html'
+    templateUrl: './mixing-recipe.component.html',
 })
 export class MixingRecipeComponent {
-    mixingRecipe = input.required<ItemMixingRecipeData>()
+    mixingRecipe = input.required<ItemMixingRecipeData>();
 }

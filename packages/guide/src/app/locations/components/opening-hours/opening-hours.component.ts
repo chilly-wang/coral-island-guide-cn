@@ -2,6 +2,8 @@ import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { OpeningHours } from "@ci/data-types";
 import { KeyValuePipe } from "@angular/common";
 import { IngameTimePipe } from "../../../shared/pipes/ingame-time.pipe";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../../../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-opening-hours',
@@ -11,7 +13,9 @@ import { IngameTimePipe } from "../../../shared/pipes/ingame-time.pipe";
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         KeyValuePipe,
-        IngameTimePipe
+        IngameTimePipe,
+        TranslatePipe,
+        LocalizedDisplayPipe
     ]
 })
 export class OpeningHoursComponent {

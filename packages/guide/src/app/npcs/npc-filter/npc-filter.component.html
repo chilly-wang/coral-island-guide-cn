@@ -1,14 +1,14 @@
 <div class="mb-5 flex gap-x-3 gap-y-4 flex-wrap">
     <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
-        <mat-label>Search term</mat-label>
+        <mat-label>{{ 'APP.COMMON.SEARCH' | translate }}</mat-label>
         <input [formControl]="searchControl" matInput/>
     </mat-form-field>
 
     <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
-        <mat-label>Sorting</mat-label>
+        <mat-label>{{ 'APP.COMMON.SORTING' | translate }}</mat-label>
         <mat-select [formControl]="sortControl" disableOptionCentering>
             @for (seasonOption of npcSortOptions; track seasonOption) {
-                <mat-option [value]="seasonOption.value">{{ seasonOption.displayName }}</mat-option>
+                <mat-option [value]="seasonOption.value">{{ seasonOption.displayName | translate }}</mat-option>
             }
         </mat-select>
     </mat-form-field>

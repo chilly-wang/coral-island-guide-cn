@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { PetShopAdoptions, ShopItemData, UiIcon } from "@ci/data-types";
 import { combineLatest, map, Observable } from "rxjs";
 import { BaseSelectableContainerComponent } from "../../../shared/components/base-selectable-container/base-selectable-container.component";
@@ -11,6 +11,7 @@ import { AsyncPipe } from "@angular/common";
 import { DataFilterComponent } from "../../../shared/components/data-filter/data-filter.component";
 import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
 import { ShopItemDataTableComponent } from "../tables/shop-item-data-table/shop-item-data-table.component";
+import { DisplayTranslationService } from "../../../shared/pipes/localized-display.pipe";
 
 
 @Component({
@@ -36,6 +37,7 @@ export class PetShopComponent extends BaseSelectableContainerComponent<ShopItemD
     protected uiIcon = UiIcon;
     protected petShopAdoptions$: Observable<PetShopAdoptions[]>;
     protected selectedAdoption?: PetShopAdoptions
+    protected readonly display = inject(DisplayTranslationService);
 
 
     constructor() {

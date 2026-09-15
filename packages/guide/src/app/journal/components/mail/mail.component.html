@@ -1,6 +1,6 @@
 <div class="font-semibold font-coral">
     @if (parsedMail().title) {
-        <div [innerHTML]="parsedMail().title | translate" class="text-2xl mb-4 text-black"></div>
+        <div [innerHTML]="parsedMail() | localizedEntityName" class="text-2xl mb-4 text-black"></div>
     }
     <div [innerHTML]="parsedMail().content | translate" class="mb-4 whitespace-break-spaces"></div>
     <div class="mt-4 flex flex-col items-end">
@@ -8,7 +8,7 @@
             <span [innerHTML]="parsedMail().greetCloseMessage | translate" class="text-accent"></span>
         }
         @if (parsedMail().sender) {
-            <span [innerHTML]="parsedMail().sender  | translate" class="text-black"></span>
+            <span class="text-black">{{ parsedMail().sender | localizedEntityName }}</span>
         }
     </div>
 </div>

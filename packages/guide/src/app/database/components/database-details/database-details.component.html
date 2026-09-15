@@ -5,7 +5,7 @@
             <header class="flex items-center flex-wrap mb-5">
                 <app-item-icon [itemName]="databaseItem.item.iconName" class="mr-3 w-14"/>
                 <div class="flex flex-col gap-0.5">
-                    <h2 class="!my-0 font-semibold text-xl text-black">{{ databaseItem.item.displayName | translate }}</h2>
+                    <h2 class="!my-0 font-semibold text-xl text-black">{{ databaseItem.item | localizedEntityName }}</h2>
                     <span>{{ databaseItem.item.id }}</span>
                 </div>
                 <div class="card-actions ml-4">
@@ -21,7 +21,7 @@
 
             <p class="text-lg">{{ databaseItem.item.description | translate: databaseItem.item.translateParams }}</p>
 
-            <div class="empty-details text-black my-5 text-lg">There's currently no data for this item. :(</div>
+            <div class="empty-details text-black my-5 text-lg">{{ 'APP.DATABASE.EMPTY_DATA' | translate }}</div>
 
             <app-database-shop-item-process [databaseItem]="databaseItem"/>
             <app-database-shop-data [databaseItem]="databaseItem"/>

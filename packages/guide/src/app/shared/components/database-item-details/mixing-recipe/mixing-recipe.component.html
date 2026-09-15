@@ -1,7 +1,7 @@
 <app-item-list [itemList]="mixingRecipe() | cookingRecipeIngredients" class="mb-3"/>
 @if (mixingRecipe().eitherOrIngredients.length) {
 
-    <span class="text-black"> Either of the following</span>
+    <span class="text-black">{{ 'APP.DATABASE.EITHER_FOLLOWING' | translate }}</span>
 
     @for (ingredients of mixingRecipe().eitherOrIngredients; track ingredients; let last = $last) {
 
@@ -16,7 +16,7 @@
 }
 @if (mixingRecipe().additionsToGenerics) {
 
-    <span class="text-black"> The following counting as</span>
+    <span class="text-black">{{ 'APP.DATABASE.FOLLOWING_COUNTS_AS' | translate }}</span>
 
     @for (itemListItem of (mixingRecipe().additionsToGenerics | keyvalue); track itemListItem) {
         <div class="mb-3">
@@ -27,12 +27,12 @@
                     @if (item) {
                         <div class="flex gap-x-3 items-center">
                             <app-item-icon class="w-10" [itemName]="item.iconName"/>
-                            <span>{{ item.displayName | translate }}</span>
+                            <span>{{ item | localizedEntityName }}</span>
                         </div>
                     }
 
 
-                    <div class="flex items-center">as {{ itemListItem.key }}</div>
+                    <div class="flex items-center">{{ 'APP.DATABASE.AS' | translate }} {{ itemListItem.key }}</div>
 
                 </div>
                 <hr>

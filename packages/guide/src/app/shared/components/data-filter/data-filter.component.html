@@ -1,48 +1,63 @@
-@let parentFG = parentFormGroup();
-
-<button (click)="setShowTable(!showTable())" class="btn"
-        type="button">{{ showTable() ? 'Show grid' : 'Show table' }}
+@let parentFG = parentFormGroup(); @if (showMap()) {
+<button (click)="setShowTable(false)" class="btn" type="button">
+    {{ 'APP.COMMON.SHOW_JOURNAL' | translate }}
 </button>
-@if (parentFG) {
-    <ng-container [formGroup]="parentFG">
-        @if (parentFG.contains('season')) {
-            <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
-                <mat-label>Season</mat-label>
-                <mat-select disableOptionCentering formControlName="season" multiple>
-                    <mat-select-trigger>
-                        <app-multi-select-trigger [values]="parentFG.value.season ?? []"/>
-                    </mat-select-trigger>
-                    @for (seasonOption of Seasons; track seasonOption) {
-                        <mat-option [value]="seasonOption">{{ seasonOption }}</mat-option>
-                    }
-
-                </mat-select>
-            </mat-form-field>
-        }
-
-        @if (parentFG.contains('weather')) {
-            <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
-                <mat-label>Weather</mat-label>
-                <mat-select disableOptionCentering formControlName="weather" multiple>
-                    <mat-select-trigger>
-                        <app-multi-select-trigger [values]="parentFG.value.weather ?? []"/>
-                    </mat-select-trigger>
-                    @for (weatherOption of Weathers; track weatherOption) {
-                        <mat-option [value]="weatherOption">{{ weatherOption }}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-        }
-        @if (parentFG.contains('location') && locations().length) {
-            <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
-                <mat-label>Location</mat-label>
-                <mat-select disableOptionCentering formControlName="location">
-                    <mat-option [value]="null">No filter</mat-option>
-                    @for (location of locations(); track location) {
-                        <mat-option [value]="location">{{ location }}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-        }
-    </ng-container>
+<button (click)="setShowTable(true)" class="btn" type="button">
+    {{ 'APP.COMMON.SHOW_TABLE' | translate }}
+</button>
+} @else {
+<button (click)="setShowTable(!showTable())" class="btn" type="button">
+    {{
+        (showTable() && enableMapView()
+            ? 'APP.COMMON.SHOW_JOURNAL'
+            : showTable()
+            ? 'APP.COMMON.SHOW_GRID'
+            : 'APP.COMMON.SHOW_TABLE'
+        ) | translate
+    }}
+</button>
+@if (enableMapView()) {
+<button (click)="setShowMap()" class="btn" type="button">
+    {{ 'APP.COMMON.SHOW_MAP' | translate }}
+</button>
+} } @if (parentFG && !showMap()) {
+<ng-container [formGroup]="parentFG">
+    @if (parentFG.contains('season')) {
+    <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
+        <mat-label>{{ 'APP.FILTER.SEASON' | translate }}</mat-label>
+        <mat-select disableOptionCentering formControlName="season" multiple>
+            <mat-select-trigger>
+                <app-multi-select-trigger [values]="parentFG.value.season ?? []" translationPrefix="APP.SEASON" />
+            </mat-select-trigger>
+            @for (seasonOption of Seasons; track seasonOption) {
+            <mat-option [value]="seasonOption">{{ 'APP.SEASON.' + seasonOption.toUpperCase() | translate }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    } @if (parentFG.contains('weather')) {
+    <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
+        <mat-label>{{ 'APP.FILTER.WEATHER' | translate }}</mat-label>
+        <mat-select disableOptionCentering formControlName="weather" multiple>
+            <mat-select-trigger>
+                <app-multi-select-trigger [values]="parentFG.value.weather ?? []" translationPrefix="APP.WEATHER" />
+            </mat-select-trigger>
+            @for (weatherOption of Weathers; track weatherOption) {
+            <mat-option [value]="weatherOption">{{
+                'APP.WEATHER.' + weatherOption.toUpperCase() | translate
+            }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    } @if (parentFG.contains('location') && locations().length) {
+    <mat-form-field class="semi-transparent-form-field grow lg:grow-0 shrink-0 basis-auto">
+        <mat-label>{{ 'APP.FILTER.LOCATION' | translate }}</mat-label>
+        <mat-select disableOptionCentering formControlName="location">
+            <mat-option [value]="null">{{ 'APP.COMMON.NO_FILTER' | translate }}</mat-option>
+            @for (location of locations(); track location) {
+            <mat-option [value]="location">{{ location | localizedDisplay : 'location' }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    }
+</ng-container>
 }

@@ -43,6 +43,7 @@ import { MapKeyed } from '../types/map-keyed.type';
 import { flatObjectMap } from "@ci/util";
 import { BaseDbService } from "./base-db.service";
 import { httpResource, HttpResourceOptions, HttpResourceRef, HttpResourceRequest } from "@angular/common/http";
+import { applyCarpenterBuildingUpgradeSupplements } from '../../locations/data/carpenter-building-upgrade-supplements';
 
 @Injectable({
     providedIn: 'root'
@@ -510,6 +511,7 @@ export class DatabaseService extends BaseDbService {
         if (!this._ITEM_UPGRADE.has(shopName)) {
             return this.http.get<ItemUpgradeData[]>(`${this.BASE_PATH_WITH_LANG}/${shopName}-item-upgrade.json`)
                 .pipe(
+                    map(items => shopName === 'carpenter' ? applyCarpenterBuildingUpgradeSupplements(items) : items),
                     tap(items => this._ITEM_UPGRADE.set(shopName, items)),
                     shareReplay(1)
                 );

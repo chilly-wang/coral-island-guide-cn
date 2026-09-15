@@ -1,40 +1,40 @@
 import { inject, Injectable } from '@angular/core';
-import { MinimalItem, MinimalTagBasedItem } from "@ci/data-types";
-import { LegacyToDo } from "../interfaces/legacy-todo.interface";
-import { SelectionModel } from "@angular/cdk/collections";
-import { SettingsService } from "../../shared/services/settings.service";
-import { Observable, Subject } from "rxjs";
-import { entityKey } from "@ci/util";
-import { ToDo } from "../types/to-do.type";
-import { UserDataService } from "./user-data.service";
-import { ToDoContext } from "../types/to-do-context.type";
-import { ItemEntry } from "../../shared/types/item-entry.type";
-import { LocalStorageService } from "../local-storage/local-storage.service";
+import { MinimalItem, MinimalTagBasedItem } from '@ci/data-types';
+import { LegacyToDo } from '../interfaces/legacy-todo.interface';
+import { SelectionModel } from '@angular/cdk/collections';
+import { SettingsService } from '../../shared/services/settings.service';
+import { Observable, Subject } from 'rxjs';
+import { entityKey } from '@ci/util';
+import { ToDo } from '../types/to-do.type';
+import { UserDataService } from './user-data.service';
+import { ToDoContext } from '../types/to-do-context.type';
+import { ItemEntry } from '../../shared/types/item-entry.type';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
-type MarkedSelection = { category: ToDoContext | undefined, item: MinimalItem | MinimalTagBasedItem };
+type MarkedSelection = { category: ToDoContext | undefined; item: MinimalItem | MinimalTagBasedItem };
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ToDoService {
-    private static _CURRENT_TO_DO_VERSION = 1
+    private static _CURRENT_TO_DO_VERSION = 1;
     // TODO migrate
-    private static _LEGACY_TO_DO_STORE_KEY = 'checklist'
+    private static _LEGACY_TO_DO_STORE_KEY = 'checklist';
     clearTimer?: number;
     clearTimeout = 3000;
-    userDataService = inject(UserDataService)
+    userDataService = inject(UserDataService);
     localStorage = inject(LocalStorageService);
     readonly #settings = inject(SettingsService);
     #completedCategory$: Subject<ToDoContext | undefined> = new Subject<ToDoContext | undefined>();
-    #markedAsCompleted: SelectionModel<MarkedSelection> = new SelectionModel<MarkedSelection>(true, [])
+    #markedAsCompleted: SelectionModel<MarkedSelection> = new SelectionModel<MarkedSelection>(true, []);
     readonly #versionSuffix: string;
 
     constructor() {
         this.#versionSuffix = this.#settings.getSettings().useBeta ? '_beta' : '_live';
         this.read();
         this.#markedAsCompleted.compareWith = (o1, o2) => {
-            return o1.category === o2.category && entityKey(o1.item) === entityKey(o2.item)
-        }
+            return o1.category === o2.category && entityKey(o1.item) === entityKey(o2.item);
+        };
     }
 
     get currentToDoAmount(): number {
@@ -50,73 +50,69 @@ export class ToDoService {
         this.getCurrentToDo().push(toDo);
 
         this.save();
-
     }
 
     getCurrentToDo(): ToDo[] {
-        return this.userDataService.currentData().todos
+        return this.userDataService.currentData().todos;
     }
 
     save(): void {
-        this.userDataService.save()
+        this.userDataService.save();
     }
 
     read(): void {
         const toDos = this.localStorage.getItem(ToDoService._LEGACY_TO_DO_STORE_KEY + this.#versionSuffix);
         if (toDos) {
             this.#migrate(JSON.parse(toDos));
-
         }
     }
 
-    updateStatus(category: ToDoContext | undefined, item: MinimalItem | MinimalTagBasedItem, checked: boolean, skipTimer = false) {
-        const selection: MarkedSelection = {category, item}
+    updateStatus(
+        category: ToDoContext | undefined,
+        item: MinimalItem | MinimalTagBasedItem,
+        checked: boolean,
+        skipTimer = false,
+    ) {
+        const selection: MarkedSelection = { category, item };
         if (checked) {
-            this.#markedAsCompleted.select(selection)
+            this.#markedAsCompleted.select(selection);
         } else {
-            this.#markedAsCompleted.deselect(selection)
+            this.#markedAsCompleted.deselect(selection);
         }
 
         if (skipTimer) {
-            this.#completeEntries()
+            this.#completeEntries();
         } else {
             this.#resetClearTimer();
         }
-
-
     }
 
     resetLiveToDo(): void {
-        // TODO migrate
-        this.localStorage.setItem(ToDoService._LEGACY_TO_DO_STORE_KEY + '_live', JSON.stringify([this.#createEmptyToDo()]));
-        this.read();
-    }
-
-    resetBetaToDo(): void {
-        // TODO migrate
-        this.localStorage.setItem(ToDoService._LEGACY_TO_DO_STORE_KEY + '_beta', JSON.stringify([this.#createEmptyToDo()]));
-        this.read()
+        this.userDataService.userData().data.forEach((userData) => {
+            userData.todos = [];
+            userData.todoText = '';
+        });
+        this.#markedAsCompleted.clear();
+        this.localStorage.removeItem(ToDoService._LEGACY_TO_DO_STORE_KEY + '_live');
+        this.userDataService.save();
     }
 
     alreadyInList(type: ToDoContext | undefined, data: ItemEntry): boolean {
-
         const list = this.getCategoryList(type);
 
         if (list.length === 0) return false;
 
-        const dataId = entityKey(data)
+        const dataId = entityKey(data);
 
-        return !!(list).find(entry => {
-            return entityKey(entry.itemEntry) === dataId
-        })
-
-
+        return !!list.find((entry) => {
+            return entityKey(entry.itemEntry) === dataId;
+        });
     }
 
     getCategoryList(type?: ToDoContext): ToDo[] {
         const currentToDo = this.getCurrentToDo();
 
-        return currentToDo.filter(t => t.context === type || (type === 'uncategorized' && !t.context))
+        return currentToDo.filter((t) => t.context === type || (type === 'uncategorized' && !t.context));
     }
 
     categoryCompleted$(): Observable<ToDoContext | undefined> {
@@ -130,7 +126,7 @@ export class ToDoService {
     #resetClearTimer() {
         clearTimeout(this.clearTimer);
         this.clearTimer = setTimeout(() => {
-            this.#completeEntries()
+            this.#completeEntries();
         }, this.clearTimeout) as unknown as number;
     }
 
@@ -147,91 +143,109 @@ export class ToDoService {
                 fossils: [],
                 insects: [],
             },
-            uncategorized: []
-        } satisfies LegacyToDo
+            uncategorized: [],
+        } satisfies LegacyToDo;
     }
 
     #completeEntries() {
         const completedEntries = this.#markedAsCompleted.selected;
         this.#markedAsCompleted.clear();
 
-        let foundIndex = -1
+        let foundIndex = -1;
 
-        completedEntries.forEach(completedEntry => {
+        completedEntries.forEach((completedEntry) => {
             const entryId = entityKey(completedEntry.item);
 
-            foundIndex = this.getCurrentToDo().findIndex(currentTodoEntry => {
+            foundIndex = this.getCurrentToDo().findIndex((currentTodoEntry) => {
                 const offeringKey = entityKey(currentTodoEntry.itemEntry);
-                return offeringKey === entryId && currentTodoEntry.context === completedEntry.category || (completedEntry.category === 'uncategorized' && !currentTodoEntry.context)
-            })
+                return (
+                    (offeringKey === entryId && currentTodoEntry.context === completedEntry.category) ||
+                    (completedEntry.category === 'uncategorized' && !currentTodoEntry.context)
+                );
+            });
             if (foundIndex >= 0) {
                 this.getCurrentToDo().splice(foundIndex, 1);
             }
         });
 
-        this.save()
+        this.save();
     }
 
     #migrate(parsedSettings: LegacyToDo[] | ToDo[]): ToDo[] {
         if (!parsedSettings.length) return [];
         if ('version' in parsedSettings[0]) {
-
             (parsedSettings as LegacyToDo[]).forEach((legacyTodo, index) => {
                 const toDos: ToDo[] = [];
-                legacyTodo.cookingRecipes.forEach(cr => toDos.push({
-                    context: "cooking_recipes",
-                    itemEntry: cr.item,
-                }))
+                legacyTodo.cookingRecipes.forEach((cr) =>
+                    toDos.push({
+                        context: 'cooking_recipes',
+                        itemEntry: cr.item,
+                    }),
+                );
 
-                legacyTodo.offerings.forEach(cr => toDos.push({
-                    context: "offerings",
-                    itemEntry: cr.item,
-                    amount: cr.amount,
-                    quality: cr.quality
-                }))
+                legacyTodo.offerings.forEach((cr) =>
+                    toDos.push({
+                        context: 'offerings',
+                        itemEntry: cr.item,
+                        amount: cr.amount,
+                        quality: cr.quality,
+                    }),
+                );
 
-                legacyTodo.uncategorized.forEach(cr => toDos.push({
-                    itemEntry: cr
-                }))
+                legacyTodo.uncategorized.forEach((cr) =>
+                    toDos.push({
+                        itemEntry: cr,
+                    }),
+                );
 
-                legacyTodo.journal.artifacts.forEach(cr => toDos.push({
-                    context: "journal_artifacts",
-                    itemEntry: cr
-                }))
+                legacyTodo.journal.artifacts.forEach((cr) =>
+                    toDos.push({
+                        context: 'journal_artifacts',
+                        itemEntry: cr,
+                    }),
+                );
 
-                legacyTodo.journal.gems.forEach(cr => toDos.push({
-                    context: "journal_gems",
-                    itemEntry: cr
-                }))
+                legacyTodo.journal.gems.forEach((cr) =>
+                    toDos.push({
+                        context: 'journal_gems',
+                        itemEntry: cr,
+                    }),
+                );
 
-                legacyTodo.journal.fossils.forEach(cr => toDos.push({
-                    context: "journal_fossils",
-                    itemEntry: cr
-                }))
+                legacyTodo.journal.fossils.forEach((cr) =>
+                    toDos.push({
+                        context: 'journal_fossils',
+                        itemEntry: cr,
+                    }),
+                );
 
-                legacyTodo.journal.critter.forEach(cr => toDos.push({
-                    context: "journal_critter",
-                    itemEntry: cr.item
-                }))
+                legacyTodo.journal.critter.forEach((cr) =>
+                    toDos.push({
+                        context: 'journal_critter',
+                        itemEntry: cr.item,
+                    }),
+                );
 
-                legacyTodo.journal.fish.forEach(cr => toDos.push({
-                    context: "journal_fish",
-                    itemEntry: cr.item
-                }))
+                legacyTodo.journal.fish.forEach((cr) =>
+                    toDos.push({
+                        context: 'journal_fish',
+                        itemEntry: cr.item,
+                    }),
+                );
 
-                legacyTodo.journal.insects.forEach(cr => toDos.push({
-                    context: "journal_insects",
-                    itemEntry: cr.item
-                }))
+                legacyTodo.journal.insects.forEach((cr) =>
+                    toDos.push({
+                        context: 'journal_insects',
+                        itemEntry: cr.item,
+                    }),
+                );
 
                 const userData = this.userDataService.userData().data[index];
-                if (userData)
-                    userData.todos = toDos
-
-            })
+                if (userData) userData.todos = toDos;
+            });
 
             this.localStorage.removeItem(ToDoService._LEGACY_TO_DO_STORE_KEY + this.#versionSuffix);
-            this.userDataService.save()
+            this.userDataService.save();
         }
         return parsedSettings as ToDo[];
     }

@@ -8,6 +8,7 @@ import { DashboardFilter } from "../../types/dashboard-filter.type";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatInput } from "@angular/material/input";
 import { addDays } from "@ci/util";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-dashboard-filter',
@@ -20,6 +21,7 @@ import { addDays } from "@ci/util";
         ReactiveFormsModule,
         MatCheckbox,
         MatInput,
+        TranslatePipe,
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './dashboard-filter.component.html'

@@ -4,34 +4,33 @@
 
     <div class="flex items-center mb-2">
         <app-item-icon [itemName]="crop.item.iconName" class="h-10 w-10 mr-1"/>
-        <span class="text-black mr-3">{{ crop.readableName }}</span>
+        <span class="text-black mr-3">{{ crop.item | localizedEntityName }}</span>
         <app-money [amount]="crop.item.price"/>
     </div>
 
-    <div>Season: <span class="text-black">{{ (crop.growableSeason.join(', ')) }}</span></div>
-    <div>Time to mature: <span class="text-black">{{ crop.growTime }} days</span></div>
+    <div>{{ 'APP.DETAIL.SEASON' | translate }}: <span class="text-black">{{ crop.growableSeason | localizedDisplay:'season' }}</span></div>
+    <div>{{ 'APP.DETAIL.TIME_TO_MATURE' | translate }}: <span class="text-black">{{ crop.growTime }} {{ 'APP.DETAIL.DAYS' | translate }}</span></div>
     @if ('firstYield' in crop) {
-        <div>First yield: <span class="text-black">{{ crop.firstYield }} days</span></div>
+        <div>{{ 'APP.DETAIL.FIRST_YIELD' | translate }}: <span class="text-black">{{ crop.firstYield }} {{ 'APP.DETAIL.DAYS' | translate }}</span></div>
     }
     @if (crop.isRegrowable) {
-        <div>Regrows: <span class="text-black">{{ [1, crop.regrowableLength] | max }}
-            days</span></div>
+        <div>{{ 'APP.DETAIL.REGROWS' | translate }}: <span class="text-black">{{ [1, crop.regrowableLength] | max }}
+            {{ 'APP.DETAIL.DAYS' | translate }}</span></div>
     }
     @if (crop |isCrop) {
 
         @if (crop.canCombine) {
-            <div>Can combine: <span class="text-black">{{ crop.chanceToCombine.chance }}%</span>
+            <div>{{ 'APP.DETAIL.CAN_COMBINE' | translate }}: <span class="text-black">{{ crop.chanceToCombine.chance }}%</span>
             </div>
         }
         @if (crop.isScytheRequired) {
-            <div class="text-black">Scythe required</div>
+            <div class="text-black">{{ 'APP.DETAIL.SCYTHE_REQUIRED' | translate }}</div>
         }
         @if (crop.isTrellisCrop) {
-            <div class="text-black">Is trellis crop</div>
+            <div class="text-black">{{ 'APP.DETAIL.TRELLIS_CROP' | translate }}</div>
         }
 
     }
-    <div>Size (WxL): <span class="text-black">{{ crop.size.width }}x{{ crop.size.length }}</span></div>
+    <div>{{ 'APP.DETAIL.SIZE_WXL' | translate }}: <span class="text-black">{{ crop.size.width }}×{{ crop.size.length }}</span></div>
 
 }
-

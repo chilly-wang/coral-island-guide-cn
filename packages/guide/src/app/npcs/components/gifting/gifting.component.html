@@ -23,11 +23,11 @@
                                 <app-item-icon class="h-16 mr-3"
                                                [itemName]="giftingPreferences.preferences.npc.iconName"/>
                                 <div class="flex flex-col">
-                                    <div class="flex gap-2 items-center"> {{ giftingPreferences.npc?.characterName }}
+                                    <div class="flex gap-2 items-center"> {{ giftingPreferences.npc | localizedEntityName }}
                                         @if (giftingPreferences.npc?.isDateable) {
                                             <app-ui-icon
                                                     [uiIcon]="uiIcon.LOVE" class="!text-gifting !h-6 !w-6"
-                                                    matTooltip="{{giftingPreferences.npc?.characterName}} is dateable"/>
+                                                    [matTooltip]="'APP.NPC_DETAIL.DATEABLE' | translate: {name: (giftingPreferences.npc | localizedEntityName)}"/>
                                         }
                                     </div>
                                     @if (giftingPreferences.npc && giftingPreferences.npc.birthday) {
@@ -41,7 +41,7 @@
 
                             }
                             @if (giftingPreferences.preferences.mapKey === 'ci_universal') {
-                                Universal
+                                {{ 'APP.NPC_DETAIL.UNIVERSAL' | translate }}
                             }
 
                         </div>

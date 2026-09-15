@@ -6,7 +6,7 @@
             @if (itemListItem.item) {
                 <div class="flex gap-x-3 items-center">
                     <app-item-icon class="size-10" [itemName]="itemListItem.item.iconName"/>
-                    <span>{{ itemListItem.item.displayName | translate }}</span>
+                    <span>{{ itemListItem.item | localizedEntityName }}</span>
                 </div>
             }
 
@@ -16,9 +16,9 @@
             @if (itemListItem.genericItem) {
                 <div class="flex gap-x-3 items-center">
                     <app-item-icon class="w-10" [itemName]="itemListItem.genericItem.iconName"/>
-                    <span>{{ itemListItem.genericItem.displayName | translate }}
+                    <span>{{ itemListItem.genericItem | localizedEntityName }}
                         @if (itemListItem.shouldBeSameItem) {
-                            (all the same)
+                            {{ 'APP.DATABASE.ALL_THE_SAME' | translate }}
                         }
                 </span>
                 </div>

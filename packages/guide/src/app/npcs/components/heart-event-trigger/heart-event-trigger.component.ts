@@ -7,6 +7,7 @@ import { KeyValuePipe } from "@angular/common";
 import { IngameTimePipe } from "../../../shared/pipes/ingame-time.pipe";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../../../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-heart-event-trigger',
@@ -17,7 +18,8 @@ import { TranslatePipe } from "@ngx-translate/core";
         KeyValuePipe,
         IngameTimePipe,
         MatCheckbox,
-        TranslatePipe
+        TranslatePipe,
+        LocalizedDisplayPipe
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
     host: {

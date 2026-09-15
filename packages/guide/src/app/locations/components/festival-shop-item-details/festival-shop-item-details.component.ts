@@ -7,6 +7,8 @@ import { DecimalPipe, PercentPipe } from "@angular/common";
 import { TownrankPipe } from "../../../shared/pipes/townrank.pipe";
 import { MoneyComponent } from "../../../shared/components/money/money.component";
 import { BaseItemCardComponent } from "../../../shared/components/base-item-card/base-item-card.component";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../../../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-festival-shop-item-details',
@@ -21,7 +23,9 @@ import { BaseItemCardComponent } from "../../../shared/components/base-item-card
         TownrankPipe,
         PercentPipe,
         MoneyComponent,
-        BaseItemCardComponent
+        BaseItemCardComponent,
+        TranslatePipe,
+        LocalizedDisplayPipe
     ]
 })
 export class FestivalShopItemDetailsComponent {

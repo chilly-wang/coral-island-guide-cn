@@ -1,13 +1,15 @@
 import { Component, inject, input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import { Enemy, UiIcon } from "@ci/data-types";
-import { ListDetailService } from "../../../shared/components/list-detail-container/list-detail.service";
-import { FullSizeImageComponent } from "../../../shared/components/full-size-image/full-size-image.component";
-import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
-import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
-import { CardComponent } from "../../../shared/components/card/card.component";
-import { ChancePerItemListComponent } from "../../../shared/components/chance-per-item-list/chance-per-item-list.component";
-import { MatTooltip } from "@angular/material/tooltip";
+import { Enemy, UiIcon } from '@ci/data-types';
+import { ListDetailService } from '../../../shared/components/list-detail-container/list-detail.service';
+import { FullSizeImageComponent } from '../../../shared/components/full-size-image/full-size-image.component';
+import { ItemIconComponent } from '../../../shared/components/item-icon/item-icon.component';
+import { UiIconComponent } from '../../../shared/components/ui-icon/ui-icon.component';
+import { CardComponent } from '../../../shared/components/card/card.component';
+import { ChancePerItemListComponent } from '../../../shared/components/chance-per-item-list/chance-per-item-list.component';
+import { MatTooltip } from '@angular/material/tooltip';
 import { TranslatePipe } from '@ngx-translate/core';
+
+import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-bestiary-details',
@@ -16,17 +18,18 @@ import { TranslatePipe } from '@ngx-translate/core';
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        LocalizedEntityNamePipe,
         FullSizeImageComponent,
         ItemIconComponent,
         UiIconComponent,
         CardComponent,
         ChancePerItemListComponent,
         MatTooltip,
-        TranslatePipe
-    ]
+        TranslatePipe,
+    ],
 })
 export class BestiaryDetailsComponent {
-    enemy = input.required<Enemy>()
-    listDetails = inject(ListDetailService)
+    enemy = input.required<Enemy>();
+    listDetails = inject(ListDetailService);
     protected readonly uiIcon = UiIcon;
 }

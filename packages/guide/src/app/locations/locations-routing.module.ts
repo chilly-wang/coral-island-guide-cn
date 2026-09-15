@@ -20,7 +20,7 @@ export const routes: Routes = [
             {
                 path: 'lake-temple/:tabName',
                 loadComponent: () => import('./components/lake-temple/lake-temple.component').then(c => c.LakeTempleComponent),
-                title: 'Lake temple - Locations'
+                title: 'APP.ROUTE.LAKE_TEMPLE_LOCATIONS'
             },
 
             ...shopRouteConfig.map(config => {

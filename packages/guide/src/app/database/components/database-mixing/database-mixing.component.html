@@ -13,7 +13,7 @@
 @if (mixedFrom && mixedFrom.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Mixing recipe</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.MIXING_RECIPE' | translate }}</app-database-header-button>
         </h3>
         <app-mixing-table [dataSource]="mixedFrom"/>
     </app-expandable>

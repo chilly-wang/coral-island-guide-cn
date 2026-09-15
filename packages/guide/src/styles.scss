@@ -1,15 +1,15 @@
-@use "styles/m3-theme";
+@use 'styles/m3-theme';
 
-@use "styles/dialogs";
-@use "styles/tabs";
-@use "styles/grid";
-@use "styles/mixins";
-@use "styles/form-fields";
-@use "styles/buttons";
-@use "styles/mat-select";
-@use "styles/mat-menu";
-@use "styles/scrollbars";
-@use "@angular/cdk/overlay-prebuilt.css";
+@use 'styles/dialogs';
+@use 'styles/tabs';
+@use 'styles/grid';
+@use 'styles/mixins';
+@use 'styles/form-fields';
+@use 'styles/buttons';
+@use 'styles/mat-select';
+@use 'styles/mat-menu';
+@use 'styles/scrollbars';
+@use '@angular/cdk/overlay-prebuilt.css';
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +18,7 @@
 @font-face {
   font-family: 'QTVagaRound';
   src: url('assets/fonts/QTVagaRound-Bold.woff2') format('woff2'),
-  url('assets/fonts/QTVagaRound-Bold.woff') format('woff');
+    url('assets/fonts/QTVagaRound-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -26,8 +26,7 @@
 
 @font-face {
   font-family: 'QTVagaRound';
-  src: url('assets/fonts/QTVagaRound.woff2') format('woff2'),
-  url('assets/fonts/QTVagaRound.woff') format('woff');
+  src: url('assets/fonts/QTVagaRound.woff2') format('woff2'), url('assets/fonts/QTVagaRound.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -56,9 +55,14 @@ body {
   color: #5a4627;
   font-family: 'QTVagaRound', sans-serif;
   @apply min-h-full;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) fixed,
-  url('assets/bg.jpg') center no-repeat fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) fixed, url('assets/bg.jpg') center no-repeat fixed;
   background-size: cover, cover;
+}
+
+.app-header .brand-name {
+  font-family: 'Yuanti SC', '圆体-简', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .mdc-line-ripple {
@@ -79,9 +83,8 @@ hr {
   border: none;
   height: 4px;
   border-radius: 2px;
-  background: rgba(127, 127, 127, .1);
+  background: rgba(127, 127, 127, 0.1);
 }
-
 
 .drawer-close-button {
   position: absolute;
@@ -91,7 +94,7 @@ hr {
 }
 
 .mat-sidenav.mat-drawer {
-  box-shadow: none
+  box-shadow: none;
 }
 
 .p-main-content.remove-placeholder-padding {
@@ -99,11 +102,12 @@ hr {
 }
 
 @layer components {
-  .btn-amber, .btn-danger, .btn-success {
+  .btn-amber,
+  .btn-danger,
+  .btn-success {
     @apply disabled:pointer-events-none disabled:opacity-40  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm
     font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
-
 
   .btn-amber {
     @apply text-white bg-amber-700 hover:bg-amber-900  focus:ring-amber-700;
@@ -117,7 +121,6 @@ hr {
     @apply bg-green-700 hover:bg-green-900  focus:ring-green-500;
   }
 }
-
 
 @screen md {
   :root {
@@ -142,9 +145,7 @@ hr {
   .drawer-close-button {
     right: 45px;
     top: 75px;
-
   }
-
 }
 
 td.mdc-data-table__cell {
@@ -179,14 +180,13 @@ td.mdc-data-table__cell {
   flex-grow: 1;
 }
 
-
 .mat-mdc-form-field.btn {
   &.mat-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
     transform: none;
   }
 
   .mdc-text-field--filled .mdc-floating-label--float-above {
-    transform: translateY(-50%)
+    transform: translateY(-50%);
   }
 }
 
@@ -198,7 +198,7 @@ td.mdc-data-table__cell {
   overflow: hidden;
 
   &.image-only {
-    margin-bottom: calc(0px - var(--cg-card-padding));;
+    margin-bottom: calc(0px - var(--cg-card-padding));
     border-bottom-left-radius: var(--cg-card-radius);
     border-bottom-right-radius: var(--cg-card-radius);
   }
@@ -208,19 +208,18 @@ td.mdc-data-table__cell {
   @apply flex gap-6 h-8 justify-end;
 
   &:has(+ .full-size-card-image) {
-
-    --blur-color: rgb(255 255 255 / .5);
+    --blur-color: rgb(255 255 255 / 0.5);
     --blur-distance: 1px;
 
-
-    filter: drop-shadow(var(--blur-distance) var(--blur-distance) 0 var(--blur-color)) drop-shadow(calc(0px - var(--blur-distance)) calc(0px - var(--blur-distance)) 0 var(--blur-color)) drop-shadow(calc(0px - var(--blur-distance)) var(--blur-distance) 0 var(--blur-color)) drop-shadow(var(--blur-distance) calc(0px - var(--blur-distance)) 0 var(--blur-color));
+    filter: drop-shadow(var(--blur-distance) var(--blur-distance) 0 var(--blur-color))
+      drop-shadow(calc(0px - var(--blur-distance)) calc(0px - var(--blur-distance)) 0 var(--blur-color))
+      drop-shadow(calc(0px - var(--blur-distance)) var(--blur-distance) 0 var(--blur-color))
+      drop-shadow(var(--blur-distance) calc(0px - var(--blur-distance)) 0 var(--blur-color));
     margin-bottom: calc(0px - var(--cg-card-padding));
   }
 }
 
-
 // FIXME this causes an empty row at the bottom, but display none may cause unwanted side-effect -> check
 .cdk-describedby-message-container.cdk-visually-hidden {
   display: none;
-
 }

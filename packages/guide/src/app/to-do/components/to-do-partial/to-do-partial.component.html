@@ -1,8 +1,8 @@
 @if (data.length && (toDoId()?.includes(context()))) {
 
     <header class="flex justify-between items-center mt-5 mb-2">
-        <h2 class="font-semibold text-xl text-black">{{ context() === 'uncategorized' || context() === undefined ? 'Uncategorized' : ToDoContextDisplayNames[context()] }}</h2>
-        <button (click)="completeList()" class="btn-amber">complete list</button>
+        <h2 class="font-semibold text-xl text-black">{{ (context() === 'uncategorized' || context() === undefined ? 'Uncategorized' : ToDoContextDisplayNames[context()]) | localizedDisplay:'todo' }}</h2>
+        <button (click)="completeList()" class="btn-amber">{{ 'APP.TODO.COMPLETE_LIST' | translate }}</button>
     </header>
     <div>
         @for (entry of data; track entry) {
@@ -17,4 +17,3 @@
     </div>
 
 }
-

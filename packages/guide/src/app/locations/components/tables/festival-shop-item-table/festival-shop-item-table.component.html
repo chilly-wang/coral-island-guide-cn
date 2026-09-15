@@ -8,25 +8,24 @@
             </ng-container>
 
             <ng-container matColumnDef="displayName">
-                <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell mat-sort-header>Item
+                <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell mat-sort-header>{{ 'APP.ITEM.NAME' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
-                    {{ element.item.displayName | translate }}
+                    {{ element.item | localizedEntityName }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="shop">
-                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell mat-sort-header>Shop
+                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell mat-sort-header>{{ 'APP.TABLE.SHOP' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                     <a [routerLink]="['/locations', element.festival.url]"
-                       class="underline">{{ element.festival.displayName | translate }}</a>
+                       class="underline">{{ element.festival.displayName | localizedDisplay:'festival' }}</a>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="townRank">
-                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>Town
-                    Rank
+                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.SHOP_DETAIL.TOWN_RANK' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col w-[1%]" mat-cell>
                     {{ element.townRank | townrank }}
@@ -34,15 +33,14 @@
             </ng-container>
 
             <ng-container matColumnDef="limit">
-                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>Amount
-                    limit
+                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.DYNAMIC.MERIT.AMOUNT_LIMIT' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     @if (element.festivalSetting.isLimitedItem) {
                         <span>{{ element.festivalSetting.itemLimit }}</span>
                     }
                     @if (element.festivalSetting.hasYearlyLimit) {
-                        <span>{{ element.festivalSetting.itemLimitPerYear }} per year</span>
+                        <span>{{ element.festivalSetting.itemLimitPerYear }} {{ 'APP.FESTIVAL.PER_YEAR' | translate }}</span>
                     }
                     @if (!element.festivalSetting.isLimitedItem && !element.festivalSetting.hasYearlyLimit) {
                         <span>-</span>
@@ -52,7 +50,7 @@
             </ng-container>
             <ng-container matColumnDef="discount">
                 <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>
-                    Discount
+                    {{ 'APP.FESTIVAL.DISCOUNT' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     @if (element.festivalSetting.hasDiscount) {
@@ -65,7 +63,7 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="price">
-                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>Price
+                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.FILTER.PRICE' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     @if (element.festivalSetting.hasDiscount) {
@@ -78,8 +76,7 @@
             </ng-container>
 
             <ng-container matColumnDef="sellPrice">
-                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>Sell
-                    price
+                <th *matHeaderCellDef class="backdrop-blur-xl whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.FILTER.SELL_PRICE' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     <app-money [amount]="element.item.sellPrice"/>

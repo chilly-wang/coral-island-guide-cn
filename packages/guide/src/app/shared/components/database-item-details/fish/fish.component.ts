@@ -1,11 +1,12 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { getTruthyValues } from "@ci/util";
-import { Fish, FishSpawnSettings } from '@ci/data-types';
-import { AddSpacesToPascalCasePipe } from "../../../pipes/add-spaces-to-pascal-case.pipe";
+import { Fish } from '@ci/data-types';
+import { LocalizedDisplayPipe } from "../../../pipes/localized-display.pipe";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-fish',
-    imports: [AddSpacesToPascalCasePipe],
+    imports: [LocalizedDisplayPipe, TranslatePipe],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './fish.component.html'
 })
@@ -14,9 +15,4 @@ export class FishComponent {
 
     protected readonly getTruthyValues = getTruthyValues;
 
-    dateRangesToString(dateRanges: FishSpawnSettings['dateRangeList']): string {
-        return dateRanges.map(range => {
-            return `From ${(range.startsFrom.season)} ${range.startsFrom.day} to ${(range.lastsTill.season)} ${range.lastsTill.day}`;
-        }).join(', ');
-    }
 }

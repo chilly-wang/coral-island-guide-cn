@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { TranslatePipe } from "@ngx-translate/core";
 import { BaseDatabaseDetailPartComponent } from "../base-database-detail-part.component";
 import { Fish } from "@ci/data-types";
 import { CaughtTableComponent } from "../../../journal/components/tables/caught-table/caught-table.component";
@@ -12,6 +13,7 @@ import { ExpandableComponent } from "../../../shared/components/expandable/expan
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        TranslatePipe,
         CaughtTableComponent,
         DatabaseHeaderButtonComponent,
         ExpandableComponent

@@ -1,9 +1,17 @@
+@if (transferOnly()) {
+    <button class="btn-amber" type="button" (click)="export()">
+        {{ 'APP.SAVE_DATA.EXPORT' | translate }}
+    </button>
+    <button class="btn-amber" type="button" (click)="fileInput.click()">
+        {{ 'APP.SAVE_DATA.IMPORT' | translate }}
+    </button>
+} @else {
 <mat-form-field class="semi-transparent-form-field">
-    <mat-label>Selected data</mat-label>
+    <mat-label>{{ 'APP.SAVE_DATA.SELECTED' | translate }}</mat-label>
     <mat-select [(ngModel)]="selectedIndex" [disabled]="options().length <= 1">
 
         @for (saveData of options(); track saveData) {
-            <mat-option [value]="$index">{{ saveData.name }}</mat-option>
+            <mat-option [value]="$index">{{ saveData.name }}</mat-option><!-- i18n-audit-ignore: user-defined name -->
         }
     </mat-select>
 </mat-form-field>
@@ -15,27 +23,28 @@
 <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="openAddDialog()">
         <app-ui-icon class="!size-6 inline-block" [uiIcon]="UiIcon.PLUS"/>
-        <span>Add save game</span>
+        <span>{{ 'APP.SAVE_DATA.ADD' | translate }}</span>
     </button>
     <button mat-menu-item (click)="openEditDialog()">
         <span class="inline-flex gap-2">
         <app-ui-icon class="!size-6 inline-block" [uiIcon]="UiIcon.SETTINGS"/>
-        <span>Edit name</span>
+        <span>{{ 'APP.SAVE_DATA.EDIT_NAME' | translate }}</span>
             </span>
     </button>
     <button mat-menu-item (click)="openDeleteDialog()" [disabled]="options().length <= 1">
         <app-ui-icon class="!size-6 inline-block" [uiIcon]="UiIcon.TRASH_CAN"/>
-        <span>Delete</span>
+        <span>{{ 'APP.SAVE_DATA.DELETE' | translate }}</span>
     </button>
 
     <button mat-menu-item (click)="export()">
         <app-ui-icon class="!size-6 inline-block" [uiIcon]="UiIcon.MAP"/>
-        <span>Export data</span>
+        <span>{{ 'APP.SAVE_DATA.EXPORT' | translate }}</span>
     </button>
     <button mat-menu-item (click)="fileInput.click()">
         <app-ui-icon class="!size-6 inline-block" [uiIcon]="UiIcon.CRAFTING"/>
-        <span>Import data</span>
+        <span>{{ 'APP.SAVE_DATA.IMPORT' | translate }}</span>
     </button>
 </mat-menu>
+}
 
 <input type="file" #fileInput (change)="import($event)" accept=".json" class="hidden">

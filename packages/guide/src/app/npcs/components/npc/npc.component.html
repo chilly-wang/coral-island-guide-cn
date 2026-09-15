@@ -14,11 +14,11 @@
                 <app-item-icon class="h-16 mr-3"
                                [itemName]="npc.iconName"/>
                 <div class="flex flex-col">
-                    <div class="flex gap-2 items-center"> {{ npc.characterName | translate | addSpacesToPascalCase }}
+                    <div class="flex gap-2 items-center"> {{ npc | localizedEntityName }}
                         @if (npc.isDateable) {
                             <app-ui-icon
                                     [uiIcon]="uiIcon.LOVE" class="!text-gifting !h-6 !w-6"
-                                    matTooltip="{{npc.characterName | translate | addSpacesToPascalCase }} is dateable"/>
+                                    [matTooltip]="'APP.NPC_DETAIL.DATEABLE' | translate: {name: (npc | localizedEntityName)}"/>
                         }
                     </div>
                     @if (npc.birthday) {
@@ -40,42 +40,42 @@
 
         <app-card class="mt-6">
             <h2 class="mb-4 font-semibold text-2xl text-black">
-                Gifting
+                {{ 'APP.NPC_DETAIL.GIFTING' | translate }}
             </h2>
             @if (giftingPreferences) {
                 <app-gifting-grid [preferences]="giftingPreferences" (itemClicked)="showDetails($event)"/>
             }
             @if (!giftingPreferences) {
                 <p class="text-black text-lg">
-                    {{ npc.characterName | translate | addSpacesToPascalCase }} has no specialized preferences.
+                    {{ 'APP.NPC_DETAIL.NO_PREFERENCES' | translate: {name: (npc | localizedEntityName)} }}
                 </p>
             }
         </app-card>
 
         <app-card class="mt-6">
             <h2 class="mb-4 font-semibold text-2xl text-black">
-                Heart events
+                {{ 'APP.NPC_DETAIL.HEART_EVENTS' | translate }}
             </h2>
             @if (heartEvents.length) {
                 <app-heart-events [heartEvents]="heartEvents"/>
             }
             @if (!heartEvents.length) {
                 <p class="text-black text-lg">
-                    {{ npc.characterName | translate | addSpacesToPascalCase }} has no heart events.
+                    {{ 'APP.NPC_DETAIL.NO_HEART_EVENTS' | translate: {name: (npc | localizedEntityName)} }}
                 </p>
             }
         </app-card>
 
         <app-card class="mt-6">
             <h2 class="mb-4 font-semibold text-2xl text-black">
-                Appearances
+                {{ 'APP.NPC_DETAIL.APPEARANCES' | translate }}
             </h2>
 
             @for (appearances of npc.appearances; track appearances) {
 
                 @if (appearances.appearanceCategory) {
                     <h3 class="mb-4 font-semibold text-xl text-black">
-                        {{ appearances.appearanceCategory }}
+                        {{ appearances.appearanceCategory | localizedDisplay:'appearance' }}
                     </h3>
                 }
 
@@ -85,7 +85,7 @@
 
                         @for (appearancePair of appearancePairs; track appearancePair) {
                             <div class="font-semibold text-black mb-6">
-                                <h4 class="text-lg">{{ appearancePair.key }}</h4>
+                                <h4 class="text-lg">{{ appearancePair.key | localizedDisplay:'appearance' }}</h4>
                                 <div class="grid portrait-grid gap-4">
                                     @for (emotionPair of (appearancePair.value | keyvalue); track emotionPair) {
                                         <div class="flex flex-col shadow-lg p-2 relative group">
@@ -96,7 +96,7 @@
                                             </a>
                                             <app-npc-portrait [npcKey]="npc.key" [portraitName]="emotionPair.value"
                                                               class="h-[400px] flex items-end justify-center"/>
-                                            <span class="">{{ emotionPair.key }}</span>
+                                            <span class="">{{ emotionPair.key | localizedDisplay:'appearance' }}</span>
                                         </div>
                                     }
                                 </div>
@@ -107,7 +107,7 @@
 
                     @if (!appearancePairs.length) {
                         <p class="text-black text-lg">
-                            {{ npc.characterName | translate }} has no appearances.
+                            {{ 'APP.NPC_DETAIL.NO_APPEARANCES' | translate: {name: (npc | localizedEntityName)} }}
                         </p>
                     }
 
@@ -122,7 +122,7 @@
 
         <app-card>
             <h1 class="mb-4 font-semibold text-3xl text-black flex items-center gap-x-4 ">
-                NPC not found.
+                {{ 'APP.NPC_DETAIL.NOT_FOUND' | translate }}
             </h1>
         </app-card>
 

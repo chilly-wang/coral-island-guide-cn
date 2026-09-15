@@ -4,7 +4,7 @@
 @if (comesFromSeed && comesFromSeed.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Seed for</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.SEED_FOR' | translate }}</app-database-header-button>
         </h3>
         <app-crop-table [dataSource]="comesFromSeed"/>
     </app-expandable>
@@ -12,7 +12,7 @@
 @if (isSeedFor && isSeedFor.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">From seed</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.FROM_SEED' | translate }}</app-database-header-button>
         </h3>
         <app-crop-table [dataSource]="isSeedFor"/>
     </app-expandable>

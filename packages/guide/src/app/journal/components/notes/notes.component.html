@@ -10,7 +10,7 @@
         @if (selectedTreasureHunt) {
             <app-card class="text-lg font-semibold relative">
                 <div cardActions class="card-actions">
-                    <button (click)="listDetail.close()" matTooltip="Close">
+                    <button (click)="listDetail.close()" [matTooltip]="'APP.COMMON.CLOSE' | translate">
                         <app-ui-icon [uiIcon]="uiIcon.CROSS"
                                      class="!w-8 !h-8 hover:text-black focus-visible:text-black"/>
                     </button>
@@ -24,8 +24,8 @@
 
     </ng-container>
     @if (data$ | async) {
-        <mat-tab-group (selectedTabChange)="updateUrl($event)" [selectedIndex]="selectedTabIndex()">
-            <mat-tab [label]="tabNames[0]">
+        <mat-tab-group (selectedTabChange)="updateUrl(tabNames[$event.index])" [selectedIndex]="selectedTabIndex()">
+            <mat-tab [label]="tabNames[0] | localizedDisplay:'route'">
                 <app-data-filter [(showTable)]="showTable"/>
                 @if (!showTable) {
                     <div class="icon-grid mt-3">
@@ -43,7 +43,7 @@
                 }
 
             </mat-tab>
-            <mat-tab [label]="tabNames[1]">
+            <mat-tab [label]="tabNames[1] | localizedDisplay:'route'">
                 <app-data-filter [(showTable)]="showTornPagesTable"/>
                 @if (!showTornPagesTable) {
                     <div class="icon-grid mt-3">
@@ -61,7 +61,7 @@
                 }
 
             </mat-tab>
-            <mat-tab [label]="tabNames[2]">
+            <mat-tab [label]="tabNames[2] | localizedDisplay:'route'">
 
                 <div class="icon-grid mt-3">
                     @for (tornPage of treasureMaps; track tornPage) {

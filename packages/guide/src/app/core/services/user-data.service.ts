@@ -9,7 +9,7 @@ import { LocalStorageService } from "../local-storage/local-storage.service";
 export class UserDataService {
     private static readonly _CURRENT_USER_DATA_VERSION = 3;
     private static readonly _USER_DATA_STORE_KEY = 'user-data'
-    private static readonly _SAVE_GAME_NAME_PREFIX = 'Save game '
+    private static readonly _SAVE_GAME_NAME_PREFIX = '存档'
     userData = signal<{ version: number, currentIndex: number; data: UserData[] }>({
         version: UserDataService._CURRENT_USER_DATA_VERSION,
         currentIndex: -1,

@@ -8,7 +8,7 @@
     }
     <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-12">
         <h1 class="font-semibold text-3xl text-white flex items-center gap-x-4">
-            My Coral Guide
+            {{ 'APP.MY_GUIDE.TITLE' | translate }}
         </h1>
         <app-user-data-actions/>
     </div>
@@ -17,19 +17,19 @@
 
         <section class="my-2">
             <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">
-                Birthdays
+                {{ 'APP.MY_GUIDE.BIRTHDAYS' | translate }}
             </h2>
             <app-card class="@container">
                 <div class="@3xl:grid-cols-2 grid gap-x-3 gap-y-5">
                     <div>
                         <h2 class="mb-4 font-semibold text-2xl text-black">
-                            Today
+                            {{ 'APP.MY_GUIDE.TODAY' | translate }}
                         </h2>
                         <app-birthday-dashboard [birthdays]=" birthdaysToday()" (itemClicked)="showDetails($event)"/>
                     </div>
                     <div>
                         <h2 class="mb-4 font-semibold text-2xl text-black">
-                            Tomorrow
+                            {{ 'APP.MY_GUIDE.TOMORROW' | translate }}
                         </h2>
                         <app-birthday-dashboard [birthdays]=" birthdaysTomorrow()" (itemClicked)="showDetails($event)"/>
                     </div>
@@ -38,7 +38,7 @@
         </section>
         <section class="my-2">
             <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">
-                Fish
+                {{ 'APP.PAGES.FISH' | translate }}
             </h2>
 
             <div class="icon-grid">
@@ -57,13 +57,13 @@
                         </label>
                     </div>
                 } @empty {
-                    <p class="col-span-full text-white">No more fish to catch :)</p>
+                    <p class="col-span-full text-white">{{ 'APP.MY_GUIDE.NO_MORE_FISH' | translate }}</p>
                 }
             </div>
         </section>
         <section class="my-2">
             <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">
-                Insects
+                {{ 'APP.PAGES.INSECTS' | translate }}
             </h2>
 
             <div class="icon-grid">
@@ -82,13 +82,13 @@
                         </label>
                     </div>
                 } @empty {
-                    <p class="col-span-full text-white">No more bugs to catch :)</p>
+                    <p class="col-span-full text-white">{{ 'APP.MY_GUIDE.NO_MORE_INSECTS' | translate }}</p>
                 }
             </div>
         </section>
         <section class="my-2">
             <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">
-                Ocean critters
+                {{ 'APP.PAGES.OCEAN_CRITTERS' | translate }}
             </h2>
 
             <div class="icon-grid">
@@ -107,7 +107,7 @@
                         </label>
                     </div>
                 } @empty {
-                    <p class="col-span-full text-white">No more ocean critters to catch :)</p>
+                    <p class="col-span-full text-white">{{ 'APP.MY_GUIDE.NO_MORE_CRITTERS' | translate }}</p>
                 }
             </div>
         </section>

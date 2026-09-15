@@ -8,13 +8,13 @@
     <app-card>
         <h1 class="mb-4 font-semibold text-3xl text-black flex items-center gap-x-4 ">
             <app-ui-icon [uiIcon]="uiIcon.STORE"/>
-            Merit Exchange
+            {{ 'APP.LOCATIONS.MERIT_EXCHANGE' | translate }}
         </h1>
     </app-card>
 
     @if (shopItemData$) {
 
-        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">Stock list</h2>
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ 'APP.SHOP.STOCK_LIST' | translate }}</h2>
         @if ((shopItemData$ |async); as shopItemData) {
 
             @if (!showTable) {

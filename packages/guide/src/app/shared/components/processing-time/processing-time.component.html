@@ -1,19 +1,16 @@
 @if (processingTime()) {
 
     @if (processingTime().day) {
-        {{ processingTime().day }}
-        day{{ processingTime().day > 1 ? 's' : '' }}
+        {{ 'APP.DURATION.DAYS' | translate: {count: processingTime().day} }}
     }
     @if (processingTime().time.hours) {
-        {{ processingTime().time.hours }}
-        hour{{ processingTime().time.hours > 1 ? 's' : '' }}
+        {{ 'APP.DURATION.HOURS' | translate: {count: processingTime().time.hours} }}
     }
     @if (processingTime().time.minutes) {
-        {{ processingTime().time.minutes }}
-        minute{{ processingTime().time.minutes > 1 ? 's' : '' }}
+        {{ 'APP.DURATION.MINUTES' | translate: {count: processingTime().time.minutes} }}
     }
     @if (processingTime().day === 0 && processingTime().time.hours === 0 && processingTime().time.minutes === 0) {
-        instant
+        {{ 'APP.DURATION.INSTANT' | translate }}
     }
 
 }

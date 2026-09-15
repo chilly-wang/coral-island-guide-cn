@@ -1,9 +1,10 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
-import { BaseSelectableContainerComponent } from "../base-selectable-container/base-selectable-container.component";
-import { MatTabChangeEvent } from "@angular/material/tabs";
-import { Router } from "@angular/router";
-import { Title } from "@angular/platform-browser";
-import { take, tap } from "rxjs";
+import { BaseSelectableContainerComponent } from '../base-selectable-container/base-selectable-container.component';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { take, tap } from 'rxjs';
+import { DisplayTranslationService } from '../../pipes/localized-display.pipe';
 
 export interface BaseTabbedSelectableContainerComponent<T> {
     urlPathFromLabel?: (label: string) => string;
@@ -12,50 +13,48 @@ export interface BaseTabbedSelectableContainerComponent<T> {
 @Component({
     changeDetection: ChangeDetectionStrategy.Eager,
     template: '',
-
 })
 export class BaseTabbedSelectableContainerComponent<T> extends BaseSelectableContainerComponent<T> {
-
-
     reusedImages: string[] = [];
     selectedTabIndex = signal(-1);
 
     protected readonly _router: Router = inject(Router);
     protected readonly _title: Title = inject(Title);
+    private readonly display = inject(DisplayTranslationService);
 
     updateUrl($event: MatTabChangeEvent | string) {
-
         if (typeof $event !== 'string') {
-            this.selectedTabIndex.set($event.index)
+            this.selectedTabIndex.set($event.index);
         }
 
-        const tabName = typeof $event === "string" ? $event : $event.tab.textLabel;
+        const tabName = typeof $event === 'string' ? $event : $event.tab.textLabel;
 
         const formattedTabName = this.urlPathFromLabel?.(tabName) ?? tabName.toLowerCase().replaceAll(' ', '');
 
-        this._router.navigate(['..', formattedTabName], {relativeTo: this._route}).then(() => {
+        this._router.navigate(['..', formattedTabName], { relativeTo: this._route }).then(() => {
             this.updateTitle(tabName);
         });
     }
 
     protected activateTabFromRoute(tabNames: string[]): void {
-        this._route.paramMap.pipe(
-            take(1),
-            tap(params => {
+        this._route.paramMap
+            .pipe(
+                take(1),
+                tap((params) => {
+                    const tabName = params.get('tabName');
 
-                const tabName = params.get('tabName');
-
-                if (tabName) {
-                    const selectedTabIndex = tabNames
-                        .map(s => s.toLowerCase().replaceAll(' ', ''))
-                        .indexOf(tabName);
-                    this.selectedTabIndex.set(selectedTabIndex);
-                    this.updateTitle(tabNames[selectedTabIndex])
-                } else if (tabNames[0]) {
-                    this.updateUrl(tabNames[0])
-                }
-            })
-        ).subscribe();
+                    if (tabName) {
+                        const selectedTabIndex = tabNames
+                            .map((s) => s.toLowerCase().replaceAll(' ', ''))
+                            .indexOf(tabName.toLowerCase());
+                        this.selectedTabIndex.set(selectedTabIndex);
+                        if (selectedTabIndex >= 0) this.updateTitle(tabNames[selectedTabIndex]);
+                    } else if (tabNames[0]) {
+                        this.updateUrl(tabNames[0]);
+                    }
+                }),
+            )
+            .subscribe();
     }
 
     protected getMultipleIconNames(iconNames: string[]): string[] {
@@ -66,8 +65,19 @@ export class BaseTabbedSelectableContainerComponent<T> extends BaseSelectableCon
     protected updateTitle(tabName: string) {
         const title = this._title.getTitle();
         if (title) {
-            this._title.setTitle(`${tabName} - ${title}`)
+            const localizedTabName = this.display.translate(tabName, 'route');
+            const titleParts = title.split(' - ');
+            const normalize = (value: string) => value.toLowerCase().replaceAll(' ', '');
+            const hasCurrentTabPrefix =
+                normalize(titleParts[0]) === normalize(tabName) ||
+                normalize(titleParts[0]) === normalize(localizedTabName);
+
+            if (hasCurrentTabPrefix) {
+                titleParts[0] = localizedTabName;
+                this._title.setTitle(titleParts.join(' - '));
+            } else {
+                this._title.setTitle(`${localizedTabName} - ${title}`);
+            }
         }
     }
-
 }

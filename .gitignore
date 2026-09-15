@@ -10,6 +10,15 @@ tmp
 # dependencies
 node_modules
 
+# local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
 # IDEs and editors
 /.idea
 .project
@@ -35,6 +44,18 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# local user data / exported save data
+/user-data/
+/user-exports/
+/save-exports/
+*.local.json
+*.user.json
 
 # System Files
 .DS_Store

@@ -8,41 +8,41 @@
             </ng-container>
 
             <ng-container matColumnDef="key">
-                <th *matHeaderCellDef [attr.colspan]="2" mat-header-cell mat-sort-header> Name</th>
-                <td mat-cell *matCellDef="let element">{{ element.item.displayName  | translate }}</td>
+                <th *matHeaderCellDef [attr.colspan]="2" mat-header-cell mat-sort-header>{{ 'APP.ITEM.NAME' | translate }}</th>
+                <td mat-cell *matCellDef="let element">{{ element.item | localizedEntityName }}</td>
             </ng-container>
 
             <ng-container matColumnDef="rarity">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Rarity</th>
-                <td mat-cell *matCellDef="let element">{{ addSpacesToPascalCase(element.rarity) }}</td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.FILTER.RARITY' | translate }}</th>
+                <td mat-cell *matCellDef="let element">{{ element.rarity | localizedDisplay:'rarity' }}</td>
             </ng-container>
             <ng-container matColumnDef="location">
-                <th mat-header-cell *matHeaderCellDef> Location</th>
+                <th mat-header-cell *matHeaderCellDef>{{ 'APP.FILTER.LOCATION' | translate }}</th>
                 <td mat-cell
-                    *matCellDef="let element">{{ ((element | isFish) ? element.spawnSettings[0] : element).spawnLocation.join(', ') }}
+                    *matCellDef="let element">{{ ((element | isFish) ? element.spawnSettings[0] : element).spawnLocation | localizedDisplay:'location' }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="weather">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Weather</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.FILTER.WEATHER' | translate }}</th>
                 <td mat-cell
-                    *matCellDef="let element">{{ getTruthyValues(((element | isFish) ? element.spawnSettings[0] : element).spawnWeather) }}
+                    *matCellDef="let element">{{ getTruthyValues(((element | isFish) ? element.spawnSettings[0] : element).spawnWeather) | localizedDisplay:'weather' }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="season">
-                <th mat-header-cell *matHeaderCellDef> Season</th>
+                <th mat-header-cell *matHeaderCellDef>{{ 'APP.FILTER.SEASON' | translate }}</th>
                 <td mat-cell *matCellDef="let element">
                     @if (!((element | isFish) ? element.spawnSettings[0] : element).isUsingSpecificDate) {
-                        {{ getTruthyValues(((element | isFish) ? element.spawnSettings[0] : element).spawnSeason) }}
+                        {{ getTruthyValues(((element | isFish) ? element.spawnSettings[0] : element).spawnSeason) | localizedDisplay:'season' }}
                     }
                     @if (((element | isFish) ? element.spawnSettings[0] : element).isUsingSpecificDate) {
 
-                        @for (
-                                rage of dateRangesToString(((element | isFish) ? element.spawnSettings[0] : element).dateRangeList); track rage; let
-                                last = $last) {
-                            <div class="whitespace-nowrap"
-                            >{{ rage }}{{ !last ? ', ' : '' }}
+                        @for (range of ((element | isFish) ? element.spawnSettings[0] : element).dateRangeList; track range; let last = $last) {
+                            <div class="whitespace-nowrap">{{ 'APP.DETAIL.DATE_RANGE' | translate: {
+                                fromSeason: (range.startsFrom.season | localizedDisplay:'season'), fromDay: range.startsFrom.day,
+                                toSeason: (range.lastsTill.season | localizedDisplay:'season'), toDay: range.lastsTill.day
+                            } }}{{ !last ? ', ' : '' }}
                             </div>
                         }
 
@@ -52,25 +52,25 @@
             </ng-container>
 
             <ng-container matColumnDef="time">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Time</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.FILTER.TIME' | translate }}</th>
                 <td mat-cell
-                    *matCellDef="let element">{{ getTruthyValues(((element | isFish) ? element.spawnSettings[0] : element).spawnTime) }}
+                    *matCellDef="let element">{{ getTruthyValues(((element | isFish) ? element.spawnSettings[0] : element).spawnTime) | localizedDisplay:'time' }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="fishSize">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Size</th>
-                <td mat-cell *matCellDef="let element">{{ element.fishSize }}</td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.ITEM.SIZE' | translate }}</th>
+                <td mat-cell *matCellDef="let element">{{ element.fishSize | localizedDisplay:'size' }}</td>
             </ng-container>
 
             <ng-container matColumnDef="pattern">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Pattern</th>
-                <td mat-cell *matCellDef="let element">{{ element.pattern }}</td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.ITEM.PATTERN' | translate }}</th>
+                <td mat-cell *matCellDef="let element">{{ element.pattern | localizedDisplay:'pattern' }}</td>
             </ng-container>
 
             <ng-container matColumnDef="difficulty">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Difficulty</th>
-                <td mat-cell *matCellDef="let element">{{ element.difficulty | addSpacesToPascalCase }}</td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.ITEM.DIFFICULTY' | translate }}</th>
+                <td mat-cell *matCellDef="let element">{{ element.difficulty | localizedDisplay:'difficulty' }}</td>
             </ng-container>
 
             <tr *matHeaderRowDef="displayHeaderColumns; sticky: true" mat-header-row></tr>

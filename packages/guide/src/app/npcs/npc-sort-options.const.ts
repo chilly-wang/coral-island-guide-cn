@@ -1,14 +1,14 @@
 export const sortOptions = [
     {
-        displayName: 'Default',
+        displayName: 'APP.NPC_SORT.DEFAULT',
         value: 'default'
     },
     {
-        displayName: 'Alphabetical',
+        displayName: 'APP.NPC_SORT.ALPHABETICAL',
         value: 'alphabetical'
     },
     {
-        displayName: 'Birthdate',
+        displayName: 'APP.NPC_SORT.BIRTHDATE',
         value: 'birthdate'
     }
 ] as const;

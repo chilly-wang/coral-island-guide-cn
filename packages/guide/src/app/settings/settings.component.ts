@@ -1,116 +1,88 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { SettingsService } from '../shared/services/settings.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ToDoService } from '../core/services/to-do.service';
-import { BETA_CODE } from '../core/injection-tokens/beta-code.injection-token';
-import { AvailableLanguage, AvailableLanguageDisplayName, AvailableLanguages, UiIcon } from '@ci/data-types';
-import { OfferingChecklistService } from '../core/services/checklists/offering-checklist.service';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BoughtChecklistService } from '../core/services/checklists/bought-checklist.service';
 import { CookingRecipesChecklistService } from '../core/services/checklists/cooking-recipes-checklist.service';
-import { MuseumChecklistService } from '../core/services/checklists/museum-checklist.service';
+import { CraftedChecklistService } from '../core/services/checklists/crafted-checklist.service';
+import { DefeatedChecklistService } from '../core/services/checklists/defeated-checklist.service';
 import { HeartEventsChecklistService } from '../core/services/checklists/heart-events-checklist.service';
-import { CardComponent } from "../shared/components/card/card.component";
-import { MatFormField } from "@angular/material/form-field";
-import { MatOption, MatSelect } from "@angular/material/select";
-import { UiIconComponent } from "../shared/components/ui-icon/ui-icon.component";
-
-type SettingsFormGroup = {
-    useBeta: FormControl<boolean>;
-    resetLiveToDo: FormControl<boolean>;
-    resetBetaToDo: FormControl<boolean>;
-    resetLiveChecklists: FormControl<boolean>;
-    resetBetaChecklists: FormControl<boolean>;
-    language: FormControl<AvailableLanguage>;
-    disableChangelogs: FormControl<boolean>;
-};
+import { MuseumChecklistService } from '../core/services/checklists/museum-checklist.service';
+import { OfferingChecklistService } from '../core/services/checklists/offering-checklist.service';
+import { OrchestraZonesChecklistService } from '../core/services/checklists/orchestra-zones-checklist.service';
+import { ShippedChecklistService } from '../core/services/checklists/shipped-checklist.service';
+import { LocalDataResetService } from '../core/services/local-data-reset.service';
+import { ToDoService } from '../core/services/to-do.service';
+import { CardComponent } from '../shared/components/card/card.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { UserDataActionsComponent } from '../my-coral-guide/user-data-actions/user-data-actions.component';
+import {
+    ResetConfirmationDialogComponent,
+    ResetConfirmationDialogData,
+} from './reset-confirmation-dialog/reset-confirmation-dialog.component';
 
 @Component({
     selector: 'app-settings',
     templateUrl: './settings.component.html',
-
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [
-        CardComponent,
-        ReactiveFormsModule,
-        MatFormField,
-        MatSelect,
-        UiIconComponent,
-        MatOption
-    ]
+    imports: [CardComponent, TranslatePipe, UserDataActionsComponent],
 })
 export class SettingsComponent {
-    settingsForm: FormGroup<SettingsFormGroup>;
-    protected reloadRequired = false;
-    protected uiIcon = UiIcon;
-    protected availableLanguages = AvailableLanguages;
-    protected availableLanguageDisplayName = AvailableLanguageDisplayName;
-    protected readonly BETA_CODE = inject(BETA_CODE, {optional: true});
-    private readonly _settingsService = inject(SettingsService);
-    private readonly _toDo = inject(ToDoService);
-    private readonly _checklistOfferings = inject(OfferingChecklistService);
-    private readonly _checklistCooking = inject(CookingRecipesChecklistService);
-    private readonly _checklistMuseum = inject(MuseumChecklistService);
-    private readonly _checklistHeartEvents = inject(HeartEventsChecklistService);
+    readonly #dialog = inject(MatDialog);
+    readonly #toDo = inject(ToDoService);
+    readonly #localDataReset = inject(LocalDataResetService);
+    readonly #checklists = [
+        inject(BoughtChecklistService),
+        inject(CookingRecipesChecklistService),
+        inject(CraftedChecklistService),
+        inject(DefeatedChecklistService),
+        inject(HeartEventsChecklistService),
+        inject(MuseumChecklistService),
+        inject(OfferingChecklistService),
+        inject(OrchestraZonesChecklistService),
+        inject(ShippedChecklistService),
+    ];
 
-    constructor() {
-        this.settingsForm = new FormGroup<SettingsFormGroup>({
-            useBeta: new FormControl<boolean>(false, {nonNullable: true}),
-            resetLiveToDo: new FormControl<boolean>(false, {nonNullable: true}),
-            resetBetaToDo: new FormControl<boolean>(false, {nonNullable: true}),
-            resetLiveChecklists: new FormControl<boolean>(false, {nonNullable: true}),
-            resetBetaChecklists: new FormControl<boolean>(false, {nonNullable: true}),
-            language: new FormControl<AvailableLanguage>('en', {nonNullable: true}),
-            disableChangelogs: new FormControl<boolean>(false, {nonNullable: true}),
-        });
-
-        if (!this.BETA_CODE) {
-            this.settingsForm.get('useBeta')?.disable();
-        }
-
-        const settings = this._settingsService.getSettings();
-        this.settingsForm.patchValue(settings);
-
-        this.settingsForm.valueChanges.subscribe({
-            next: (formValues) => {
-                this.reloadRequired =
-                    settings.useBeta !== formValues.useBeta || settings.language !== formValues.language;
+    protected confirmToDoReset(): void {
+        this.#confirmReset(
+            {
+                titleKey: 'APP.SETTINGS.TODO.CONFIRM_TITLE',
+                textKey: 'APP.SETTINGS.TODO.CONFIRM_TEXT',
             },
-        });
+            () => this.#toDo.resetLiveToDo(),
+        );
     }
 
-    saveSettings(): void {
-        const settings = {...this.settingsForm.value};
+    protected confirmChecklistReset(): void {
+        this.#confirmReset(
+            {
+                titleKey: 'APP.SETTINGS.CHECKLIST.CONFIRM_TITLE',
+                textKey: 'APP.SETTINGS.CHECKLIST.CONFIRM_TEXT',
+            },
+            () => this.#checklists.forEach((checklist) => checklist.resetLiveChecklist()),
+        );
+    }
 
-        if (settings.resetLiveChecklists) {
-            this._checklistMuseum.resetLiveChecklist();
-            this._checklistOfferings.resetLiveChecklist();
-            this._checklistCooking.resetLiveChecklist();
-            this._checklistHeartEvents.resetLiveChecklist();
-        }
+    protected confirmLocalDataReset(): void {
+        this.#confirmReset(
+            {
+                titleKey: 'APP.SETTINGS.LOCAL_DATA.CONFIRM_TITLE',
+                textKey: 'APP.SETTINGS.LOCAL_DATA.CONFIRM_TEXT',
+            },
+            () => {
+                this.#localDataReset.resetAll();
+                location.reload();
+            },
+        );
+    }
 
-        if (settings.resetBetaChecklists) {
-            this._checklistMuseum.resetBetaChecklist();
-            this._checklistOfferings.resetBetaChecklist();
-            this._checklistCooking.resetBetaChecklist();
-            this._checklistHeartEvents.resetBetaChecklist();
-        }
+    #confirmReset(data: ResetConfirmationDialogData, reset: () => void): void {
+        const dialogRef = this.#dialog.open(ResetConfirmationDialogComponent, {
+            data,
+            hasBackdrop: true,
+            width: '500px',
+        });
 
-        if (settings.resetLiveToDo) {
-            this._toDo.resetLiveToDo();
-        }
-
-        if (settings.resetBetaToDo) {
-            this._toDo.resetBetaToDo();
-        }
-
-        delete settings.resetBetaToDo;
-        delete settings.resetLiveToDo;
-        delete settings.resetBetaChecklists;
-        delete settings.resetLiveChecklists;
-
-        this._settingsService.saveSettings(settings);
-
-        if (this.reloadRequired) {
-            location.reload();
-        }
+        dialogRef.afterClosed().subscribe((confirmed) => {
+            if (confirmed) reset();
+        });
     }
 }

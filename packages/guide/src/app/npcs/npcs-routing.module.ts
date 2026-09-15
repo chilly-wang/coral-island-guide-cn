@@ -15,12 +15,12 @@ export const routes: Routes = [
             {
                 path: 'gifting',
                 loadComponent: () => import('./components/gifting/gifting.component').then(m => m.GiftingComponent),
-                title: 'Gifting - NPCs'
+                title: 'APP.ROUTE.GIFTING_NPCS'
             },
             {
                 path: 'overview',
                 loadComponent: () => import('./components/npc-list/npc-list.component').then(m => m.NpcListComponent),
-                title: 'Overview - NPCs'
+                title: 'APP.ROUTE.OVERVIEW_NPCS'
             },
             {
                 path: 'unlinked-images',

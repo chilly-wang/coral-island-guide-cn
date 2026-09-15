@@ -1,11 +1,10 @@
 <div class="container block mx-auto my-10">
     <app-card>
         <div class="prose lg:prose-xl">
-            <h1>Beta only feature!</h1>
+            <h1>{{ 'APP.AVAILABILITY.BETA_TITLE' | translate }}</h1>
             <p>
-                This feature is only available in beta! If you would like to check it out, go to <a
-                    routerLink="/my/settings">settings</a>
-                and turn on beta data.
+                {{ 'APP.AVAILABILITY.BETA_TEXT' | translate }}
+                <a routerLink="/my/settings">{{ 'APP.AVAILABILITY.SETTINGS' | translate }}</a>
             </p>
         </div>
     </app-card>

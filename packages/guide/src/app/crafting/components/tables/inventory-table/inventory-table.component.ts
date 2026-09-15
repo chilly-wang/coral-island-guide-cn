@@ -1,14 +1,17 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { BaseTableComponent } from "../../../../shared/components/base-table/base-table.component";
-import { CraftingRecipe } from "@ci/data-types";
-import { TableItemListComponent } from "../../../../shared/components/table-item-list/table-item-list.component";
-import { CraftingRecipeIngredientsPipe } from "../../../../shared/pipes/crafting-recipe-ingredients.pipe";
-import { MatTableModule } from "@angular/material/table";
-import { MoneyComponent } from "../../../../shared/components/money/money.component";
-import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { ItemIconComponent } from "../../../../shared/components/item-icon/item-icon.component";
-import { ResponsiveTableComponent } from "../../../../shared/components/responsive-table/responsive-table.component";
-import { TranslatePipe } from "@ngx-translate/core";
+import { BaseTableComponent } from '../../../../shared/components/base-table/base-table.component';
+import { CraftingRecipe } from '@ci/data-types';
+import { TableItemListComponent } from '../../../../shared/components/table-item-list/table-item-list.component';
+import { CraftingRecipeIngredientsPipe } from '../../../../shared/pipes/crafting-recipe-ingredients.pipe';
+import { MatTableModule } from '@angular/material/table';
+import { MoneyComponent } from '../../../../shared/components/money/money.component';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { ItemIconComponent } from '../../../../shared/components/item-icon/item-icon.component';
+import { ResponsiveTableComponent } from '../../../../shared/components/responsive-table/responsive-table.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LocalizedDisplayPipe } from '../../../../shared/pipes/localized-display.pipe';
+
+import { LocalizedEntityNamePipe } from '../../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-inventory-table',
@@ -16,6 +19,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        LocalizedEntityNamePipe,
         TableItemListComponent,
         CraftingRecipeIngredientsPipe,
         MoneyComponent,
@@ -24,27 +28,18 @@ import { TranslatePipe } from "@ngx-translate/core";
         MatSort,
         ResponsiveTableComponent,
         MatTableModule,
-        TranslatePipe
-    ]
+        TranslatePipe,
+        LocalizedDisplayPipe,
+    ],
 })
 export class InventoryTableComponent extends BaseTableComponent<CraftingRecipe> {
-    protected readonly BASE_DISPLAY_COLUMNS: string[] = [
-        'icon',
-        'outputName',
-        'ingredients',
-        'sellPrice',
-        'unlock'
-    ];
-
+    protected readonly BASE_DISPLAY_COLUMNS: string[] = ['icon', 'outputName', 'ingredients', 'sellPrice', 'unlock'];
 
     override sortingDataAccessor = (item: CraftingRecipe, property: string) => {
-
-        const sortHelperValue = this.sortHelper(item.item, property)
+        const sortHelperValue = this.sortHelper(item.item, property);
 
         if (sortHelperValue !== null) return sortHelperValue;
 
         return 0;
-
     };
-
 }

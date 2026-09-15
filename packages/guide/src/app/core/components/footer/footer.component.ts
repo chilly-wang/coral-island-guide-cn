@@ -1,31 +1,26 @@
 import { Component, inject, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import { UiIcon } from "@ci/data-types";
-import { GameVersionService } from "../../injection-tokens/version.injection-token";
-import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
-import { RouterLink } from "@angular/router";
-import { NgOptimizedImage } from "@angular/common";
+import { GameVersionService } from '../../injection-tokens/version.injection-token';
+import { NgOptimizedImage } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
-    styles: [`
-        .app-footer footer {
-            background-color: rgba(0, 0, 0, .75);
-            min-height: var(--cg-min-footer-height);
-        }
-    `],
+    styles: [
+        `
+            .app-footer footer {
+                background-color: rgba(0, 0, 0, 0.75);
+                min-height: var(--cg-min-footer-height);
+            }
+        `,
+    ],
     host: {
-        'class': 'app-footer'
+        class: 'app-footer',
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [
-        UiIconComponent,
-        RouterLink,
-        NgOptimizedImage
-    ]
+    imports: [NgOptimizedImage, TranslatePipe],
 })
 export class FooterComponent {
-    protected uiIcon = UiIcon;
     protected version = inject(GameVersionService).value();
 }

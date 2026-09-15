@@ -1,13 +1,16 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { BaseTableComponent } from "../../../../shared/components/base-table/base-table.component";
-import { BaseCrop } from "@ci/data-types";
-import { MatTableModule } from "@angular/material/table";
-import { ResponsiveTableComponent } from "../../../../shared/components/responsive-table/responsive-table.component";
-import { ItemIconComponent } from "../../../../shared/components/item-icon/item-icon.component";
-import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { MaxPipe } from "../../../../shared/pipes/max.pipe";
-import { MoneyComponent } from "../../../../shared/components/money/money.component";
-import { TranslatePipe } from "@ngx-translate/core";
+import { BaseTableComponent } from '../../../../shared/components/base-table/base-table.component';
+import { BaseCrop } from '@ci/data-types';
+import { MatTableModule } from '@angular/material/table';
+import { ResponsiveTableComponent } from '../../../../shared/components/responsive-table/responsive-table.component';
+import { ItemIconComponent } from '../../../../shared/components/item-icon/item-icon.component';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { MaxPipe } from '../../../../shared/pipes/max.pipe';
+import { MoneyComponent } from '../../../../shared/components/money/money.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LocalizedDisplayPipe } from '../../../../shared/pipes/localized-display.pipe';
+
+import { LocalizedEntityNamePipe } from '../../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-crop-table',
@@ -15,6 +18,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        LocalizedEntityNamePipe,
         ResponsiveTableComponent,
         ItemIconComponent,
         MatSort,
@@ -23,10 +27,10 @@ import { TranslatePipe } from "@ngx-translate/core";
         MoneyComponent,
         MatTableModule,
         TranslatePipe,
-    ]
+        LocalizedDisplayPipe,
+    ],
 })
 export class CropTableComponent extends BaseTableComponent<BaseCrop> {
-
     protected readonly BASE_DISPLAY_COLUMNS: string[] = [
         'icon',
         'displayName',
@@ -37,15 +41,13 @@ export class CropTableComponent extends BaseTableComponent<BaseCrop> {
         'seed',
         'seedPrice',
 
-        'sellPrice'
+        'sellPrice',
     ];
 
     override sortingDataAccessor = (item: ReturnType<CropTableComponent['dataSource']>[0], property: string) => {
-
-        const sortHelperValue = this.sortHelper(item.dropData[0].item, property)
+        const sortHelperValue = this.sortHelper(item.dropData[0].item, property);
 
         if (sortHelperValue !== null) return sortHelperValue;
-
 
         switch (property) {
             case 'key':
@@ -63,13 +65,8 @@ export class CropTableComponent extends BaseTableComponent<BaseCrop> {
                 return this.sortHelper(item.growableSeason) ?? 5;
             case 'size':
                 return item.size.length * item.size.width;
-
-
         }
 
         return 0;
-
     };
-
-
 }

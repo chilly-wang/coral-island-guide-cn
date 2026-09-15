@@ -6,7 +6,7 @@
             </a>
             <div class="flex flex-col">
                 <a [routerLink]="['/npcs', birthday.npcKey]" class="flex gap-2 items-center">
-                    {{ birthday.characterName | translate }}
+                    {{ birthday | localizedEntityName }}
                 </a>
             </div>
 
@@ -17,7 +17,7 @@
         <div class="flex gap-2">
             <div class="font-semibold flex items-center flex-col shrink-0  basis-12 text-black">
                 <app-ui-icon [uiIcon]="UiIcon.LOVE" class="!text-gifting !h-6 !w-6"/>
-                Loved
+                {{ 'APP.MY_GUIDE.LOVED_GIFTS' | translate }}
             </div>
             <div class="flex items-center gap-2.5 flex-wrap">
                 @for (loved of birthday.lovedGifts; track loved) {
@@ -29,11 +29,11 @@
                                 <!--                                                 [minimalItem]="loved.item"/>-->
                     }
                     @if (loved.type === 'category') {
-                        <span>All {{ loved.categoryName | addSpacesToPascalCase }}</span>
+                        <span>{{ 'APP.MY_GUIDE.ALL_CATEGORY' | translate: {category: (loved.categoryName | localizedDisplay:'category')} }}</span>
                     }
 
                 } @empty {
-                    No individual loved gifts.
+                    {{ 'APP.MY_GUIDE.NO_INDIVIDUAL_LOVED_GIFTS' | translate }}
                 }
 
             </div>
@@ -41,5 +41,5 @@
     </div>
 
 } @empty {
-    <p>No birthdays.</p>
+    <p>{{ 'APP.MY_GUIDE.NO_BIRTHDAYS' | translate }}</p>
 }

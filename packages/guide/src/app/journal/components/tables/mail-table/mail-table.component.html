@@ -4,26 +4,26 @@
                multiTemplateDataRows>
 
             <ng-container matColumnDef="title">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header> Title</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.TABLE.TITLE' | translate }}</th>
                 <td *matCellDef="let element" class="text-col" mat-cell>{{ element.title  | translate | removeTags }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="sender">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header> Sender</th>
-                <td *matCellDef="let element" class="text-col" mat-cell>{{ element.sender | translate | removeTags }}
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.TABLE.SENDER' | translate }}</th>
+                <td *matCellDef="let element" class="text-col" mat-cell>{{ element.sender | localizedEntityName | removeTags }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="mailType">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header>Type</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.TABLE.TYPE' | translate }}</th>
                 <td *matCellDef="let element" class="w-fit text-col"
                     mat-cell>{{ element.mailType | addSpacesToPascalCase }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="effects">
-                <th *matHeaderCellDef mat-header-cell>Effects</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.TABLE.EFFECTS' | translate }}</th>
                 <td *matCellDef="let element" mat-cell>
                     @if (element.effects?.length) {
                         <div class="flex flex-col py-3 gap-1">

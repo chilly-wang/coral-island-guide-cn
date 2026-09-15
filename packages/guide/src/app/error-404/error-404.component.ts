@@ -1,19 +1,15 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import { RouterLink } from "@angular/router";
-import { CardComponent } from "../shared/components/card/card.component";
+import { CardComponent } from '../shared/components/card/card.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-error-404',
-    imports: [
-        RouterLink,
-        CardComponent
-    ],
+    imports: [CardComponent, TranslatePipe],
     templateUrl: './error-404.component.html',
     host: {
-        'class': 'app-error container mx-auto my-10 block'
+        class: 'app-error container mx-auto my-10 block',
     },
     changeDetection: ChangeDetectionStrategy.Eager,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
-export class Error404Component {
-}
+export class Error404Component {}

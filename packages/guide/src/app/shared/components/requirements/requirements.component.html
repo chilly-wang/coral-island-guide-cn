@@ -2,156 +2,51 @@
 
 @if (req.type === 'IsAchievementCompleted') {
     <div>
-        Achievement
+        {{ 'APP.DYNAMIC.REQUIREMENT.ACHIEVEMENT_PREFIX' | translate }}
         <app-item-icon [itemName]="req.meta.achievement.iconName"
-                       class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-        {{ req.meta.achievement.title | translate }} unlocked
+                       class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5 !inline-block"/>
+        {{ 'APP.DYNAMIC.REQUIREMENT.ACHIEVEMENT_UNLOCKED' | translate: {achievement: (req.meta.achievement | localizedEntityName)} }}
     </div>
-}
-@if (req.type === 'MountAcquired') {
-
-    Mount {{ req.meta.inverted ? 'not ' : '' }} acquired
-
-}
-@if (req.type === 'EditorOnly') {
-
-    Game in developer editor
-
-}
-@if (req.type === 'IsMultiplayer') {
-
-    Game is in multiplayer mode
-
-}
-@if (req.type === 'CountNPCHeartLevel') {
-
-    Reached {{ req.meta.expectedHeartLevel }} hearts with any NPC
-
-}
-@if (req.type === 'IsCutsceneTriggered') {
-
-    Viewed {{ req.meta.cutsceneTopic }} cutscene
-
-}
-@if (req.type === 'MarriageHasProposed') {
-
-    Marriage {{ req.meta.inverted ? "hasn't been " : '' }}proposed
-
-}
-@if (req.type === 'IsGiantUnlocked') {
-
-    Unlocked {{ req.meta.types }} giants
-
-}
-@if (req.type === 'QuestFact') {
-
-    Quest fact {{ req.meta.factName }} set
-
-}
-@if (req.type === 'SpecialItem') {
+} @else if (req.type === 'SpecialItem') {
     <div>
-        Acquired special item
+        {{ 'APP.DYNAMIC.REQUIREMENT.SPECIAL_ITEM' | translate }}
         <app-item-icon [itemName]="req.meta.item.iconName"
-                       class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-        {{ req.meta.item.displayName  | translate }}
+                       class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5 !inline-block"/>
+        {{ req.meta.item | localizedEntityName }}
     </div>
-}
-@if (req.type === 'DateSeasonRange') {
-
-    Date is {{ req.meta.inverted ? 'not ' : '' }}between {{ req.meta.from | ingameDate }}
-    and  {{ req.meta.to | ingameDate }}
-
-}
-@if (req.type === 'ItemInInventory') {
+} @else if (req.type === 'DateSeasonRange') {
+    {{ (req.meta.inverted ? 'APP.DYNAMIC.REQUIREMENT.DATE_NOT_BETWEEN' : 'APP.DYNAMIC.REQUIREMENT.DATE_BETWEEN') | translate: {
+        from: (req.meta.from | ingameDate), to: (req.meta.to | ingameDate)
+    } }}
+} @else if (req.type === 'ItemInInventory') {
     <div>
-        Has {{ req.meta.amount }}x
+        {{ 'APP.DYNAMIC.REQUIREMENT.HAS_AMOUNT' | translate: {amount: req.meta.amount} }}
         <app-item-icon [itemName]="req.meta.item.iconName"
-                       class="!w-7 ml-1 -my-1 translate-y-1 mr-0.5  !inline-block"/>
-        {{ req.meta.item.displayName  | translate }}{{ req.meta.requiredQuality ? ' of ' + req.meta.requiredQuality + ' quality' : '' }}
-        in inventory
+                       class="!w-7 ml-1 -my-1 translate-y-1 mr-0.5 !inline-block"/>
+        {{ req.meta.item | localizedEntityName }}
+        @if (req.meta.requiredQuality) {
+            {{ 'APP.DYNAMIC.REQUIREMENT.QUALITY_SUFFIX' | translate: {quality: dynamicText.localizeGameDisplayValue(req.meta.requiredQuality, 'quality')} }}
+        }
+        {{ 'APP.DYNAMIC.REQUIREMENT.IN_INVENTORY' | translate }}
     </div>
-}
-@if (req.type === 'ItemWithCategoryInInventory') {
-
-    Has {{ req.meta.amount }}x items of category {{ req.meta.categoryName | translate }} in inventory
-
-}
-@if (req.type === 'ObjectState') {
-
-    State of '{{ req.meta.customName ?? req.meta.id }}' is '{{ req.meta.state }}'
-
-}
-@if (req.type === 'QuestActive') {
-
-    Quest '{{ req.meta.questId }}' is active
-
-}
-@if (req.type === 'TempleLevel') {
-
-    Temple has reached level {{ req.meta.level }}
-
-}
-@if (req.type === 'CompleteMining') {
-
-    Has reached level {{ req.meta.level }} in {{ req.meta.mine }} mine
-
-}
-@if (req.type === 'FarmHouse') {
-
-    Has upgraded farm house to level {{ req.meta.level }}
-
-}
-@if (req.type === 'HasCookingUtensil') {
-
-    Has@if (req.meta.inverted) {
-        <span class="font-bold"> not</span>
-    } unlocked cooking
-            utensil {{ req.meta.utensil }}
-
-}
-@if (req.type === 'MasteryLevel') {
-
-    Has reached level {{ req.meta.level }} in {{ req.meta.mastery }} mastery
-
-}
-@if (req.type === 'NPCHeartLevel') {
-
-    Has reached {{ req.meta.expectedHeartLevel }} hearts with {{ req.meta.npcKey  | translate }}
-
-}
-@if (req.type === 'QuestFactCompare') {
-
-    Quest fact '{{ req.meta.factName }}' has
-    @if (req.meta.comparator === 'MoreEqual') {
-        at least
-    }
-    a value of {{ req.meta.value }}
-
-}
-@if (req.type === 'IsMailRead') {
-
-    Player has read '<a [queryParams]="{selectedId: req.meta.mailId}"
-                        [routerLink]="['/journal', 'notes', 'letters']"
-                        class="underline">{{ req.meta.title  | translate }}</a>'
-
-}
-@if (req.type === 'DinoHologramItemRewardClaimed') {
-
-    Player received dinosaur hologram reward for {{ req.meta.dinosaursName  | translate }}
-
-}
-@if (req.type === 'ShipToUnlock') {
-    Player shipped the following item(s) 50x{{ req.meta.includeAllQualities ? ' (any quality)' : '' }}:
+} @else if (req.type === 'IsMailRead') {
+    {{ 'APP.DYNAMIC.REQUIREMENT.MAIL_READ_PREFIX' | translate }}
+    <a [queryParams]="{selectedId: req.meta.mailId}"
+       [routerLink]="['/journal', 'notes', 'letters']"
+       class="underline">{{ req.meta | localizedEntityName }}</a>
+} @else if (req.type === 'ShipToUnlock') {
+    {{ 'APP.DYNAMIC.REQUIREMENT.SHIP_ITEMS' | translate: {quality: ((req.meta.includeAllQualities ? 'APP.DYNAMIC.REQUIREMENT.ANY_QUALITY' : 'APP.DYNAMIC.REQUIREMENT.EXACT_QUALITY') | translate)} }}
     @for (item of req.meta.itemsToShip; track item.id) {
         <app-inline-minimal-item [minimalItem]="item"/>{{ !$last ? ', ' : '' }}
     }
-
-
-}
-@if (req.type === 'TimeDate') {
-    Date is {{ req.meta.inverted ? 'not ' : '' }}between {{ req.meta.dateRange.startsFrom | ingameDate }}
-    and  {{ req.meta.dateRange.lastsTill | ingameDate }}
-}
-@if (req.type === 'DateSeason') {
-    Date is {{ req.meta.day }} {{ req.meta.season }}
+} @else if (req.type === 'TimeDate') {
+    {{ (req.meta.inverted ? 'APP.DYNAMIC.REQUIREMENT.DATE_NOT_BETWEEN' : 'APP.DYNAMIC.REQUIREMENT.DATE_BETWEEN') | translate: {
+        from: (req.meta.dateRange.startsFrom | ingameDate), to: (req.meta.dateRange.lastsTill | ingameDate)
+    } }}
+} @else if (req.type === 'DateSeason') {
+    {{ 'APP.DYNAMIC.REQUIREMENT.DATE_IS' | translate: {
+        day: req.meta.day, season: dynamicText.localizeGameDisplayValue(req.meta.season, 'season')
+    } }}
+} @else {
+    {{ dynamicText.formatRequirementText(req) }}
 }

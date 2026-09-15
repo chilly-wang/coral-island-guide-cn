@@ -1,16 +1,16 @@
 @let spawnAmountModifiers = critter().spawnAmountModifiers;
 
-<div>Rarity: <span class="text-black">{{ critter().rarity | addSpacesToPascalCase }}</span></div>
-<div>Time: <span class="text-black">{{ getTruthyValues(critter().spawnTime) }}</span></div>
-<div> Season: <span class="text-black">{{ getTruthyValues(critter().spawnSeason) }}</span></div>
+<div>{{ 'APP.DETAIL.RARITY' | translate }}: <span class="text-black">{{ critter().rarity | localizedDisplay:'rarity' }}</span></div>
+<div>{{ 'APP.DETAIL.TIME' | translate }}: <span class="text-black">{{ getTruthyValues(critter().spawnTime) | localizedDisplay:'time' }}</span></div>
+<div>{{ 'APP.DETAIL.SEASON' | translate }}: <span class="text-black">{{ getTruthyValues(critter().spawnSeason) | localizedDisplay:'season' }}</span></div>
 
 @if (getTruthyValues(critter().spawnWeather); as weather) {
-    <div>Weather: <span class="text-black">{{ weather }}</span></div>
+    <div>{{ 'APP.DETAIL.WEATHER' | translate }}: <span class="text-black">{{ weather | localizedDisplay:'weather' }}</span></div>
 }
-<div> Location: <span class="text-black">{{ critter().spawnLocation.join(', ') }}</span></div>
+<div>{{ 'APP.DETAIL.LOCATION' | translate }}: <span class="text-black">{{ critter().spawnLocation | localizedDisplay:'location' }}</span></div>
 
 @if (spawnAmountModifiers && spawnAmountModifiers.length) {
-    <div>Spawn amount modifiers
+    <div>{{ 'APP.DETAIL.SPAWN_MODIFIERS' | translate }}
         @for (modifier of spawnAmountModifiers; track modifier) {
             <div class="flex justify-between">
                 <span>{{ modifier[0] }}</span>
@@ -20,4 +20,3 @@
         <hr>
     </div>
 }
-

@@ -1,20 +1,19 @@
 import { inject, Injectable } from '@angular/core';
-import { SettingsService } from "../../../shared/services/settings.service";
-import { Checklist } from "../../interfaces/checklist.interface";
-import { UserDataService } from "../user-data.service";
-import { LocalStorageService } from "../../local-storage/local-storage.service";
+import { SettingsService } from '../../../shared/services/settings.service';
+import { Checklist } from '../../interfaces/checklist.interface';
+import { UserDataService } from '../user-data.service';
+import { LocalStorageService } from '../../local-storage/local-storage.service';
 
 @Injectable()
 export abstract class BaseChecklistService {
-
-    protected static _TO_DO_STORE_KEY = 'checklist_'
+    protected static _TO_DO_STORE_KEY = 'checklist_';
     protected readonly versionSuffix = inject(SettingsService).getSettings().useBeta ? '_beta' : '_live';
     protected readonly userData = inject(UserDataService);
     readonly #localStorage = inject(LocalStorageService);
 
     // eslint-disable-next-line @angular-eslint/prefer-inject
     protected constructor(protected checklistName: string) {
-        if (checklistName.trim() === '') throw new Error(`checklistName can't be empty!`)
+        if (checklistName.trim() === '') throw new Error(`checklistName can't be empty!`);
         this.read();
     }
 
@@ -25,77 +24,69 @@ export abstract class BaseChecklistService {
     read(): void {
         const toDos = this.#localStorage.getItem(this.getChecklistStorageKey());
         if (toDos && !this.userData.currentData().checklists[this.checklistName]) {
-
             const checklists: Checklist[] = JSON.parse(toDos);
 
             this.userData.currentData().checklists[this.checklistName] = checklists[0] ?? [];
             this.userData.save();
-            this.#localStorage.removeItem(this.getChecklistStorageKey())
+            this.#localStorage.removeItem(this.getChecklistStorageKey());
         }
     }
 
     save(): void {
-        this.userData.save()
+        this.userData.save();
     }
 
     getCurrentChecklist(): Checklist {
-        let checklist = this.userData.currentData().checklists[this.checklistName]
+        let checklist = this.userData.currentData().checklists[this.checklistName];
 
         if (!checklist) {
             this.userData.currentData().checklists[this.checklistName] = this._createEmptyChecklist();
-            checklist = this.userData.currentData().checklists[this.checklistName]
-
+            checklist = this.userData.currentData().checklists[this.checklistName];
         }
         return checklist;
     }
 
     set(entry: string | string[]): void {
-        this.getCurrentChecklist().entries = [...new Set([
-            ...(Array.isArray(entry) ? entry : [entry])
-        ])]
+        this.getCurrentChecklist().entries = [...new Set([...(Array.isArray(entry) ? entry : [entry])])];
         this.save();
     }
 
     add(entry: string | string[]): void {
-        this.getCurrentChecklist().entries = [...new Set([
-            ...this.getCurrentChecklist().entries,
-            ...(Array.isArray(entry) ? entry : [entry])
-        ])]
+        this.getCurrentChecklist().entries = [
+            ...new Set([...this.getCurrentChecklist().entries, ...(Array.isArray(entry) ? entry : [entry])]),
+        ];
         this.save();
     }
 
     remove(entry: string | string[]): void {
-
         if (!Array.isArray(entry)) {
-            entry = [entry]
+            entry = [entry];
         }
 
-        this.getCurrentChecklist().entries = this.getCurrentChecklist().entries.filter(e => !entry.includes(e))
+        this.getCurrentChecklist().entries = this.getCurrentChecklist().entries.filter((e) => !entry.includes(e));
         this.save();
     }
 
     isChecked(value: string): boolean {
-        return this.getCurrentChecklist().entries.includes(value)
+        return this.getCurrentChecklist().entries.includes(value);
     }
 
     getChecklistStorageKey(): string {
-        return BaseChecklistService._TO_DO_STORE_KEY + this.checklistName + this.versionSuffix
+        return BaseChecklistService._TO_DO_STORE_KEY + this.checklistName + this.versionSuffix;
     }
 
     resetLiveChecklist(): void {
-        this.#localStorage.setItem(BaseChecklistService._TO_DO_STORE_KEY + this.checklistName + '_live', JSON.stringify([this._createEmptyChecklist()]));
-        this.read();
-    }
-
-    resetBetaChecklist(): void {
-        this.#localStorage.setItem(BaseChecklistService._TO_DO_STORE_KEY + this.checklistName + '_beta', JSON.stringify([this._createEmptyChecklist()]));
-        this.read()
+        this.userData.userData().data.forEach((userData) => {
+            userData.checklists[this.checklistName] = this._createEmptyChecklist();
+        });
+        this.#localStorage.removeItem(BaseChecklistService._TO_DO_STORE_KEY + this.checklistName + '_live');
+        this.userData.save();
     }
 
     protected _createEmptyChecklist(): Checklist {
         return {
             version: 1,
-            entries: []
-        } satisfies Checklist
+            entries: [],
+        } satisfies Checklist;
     }
 }

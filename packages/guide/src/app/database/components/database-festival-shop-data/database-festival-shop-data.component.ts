@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { TranslatePipe } from "@ngx-translate/core";
 import { BaseDatabaseDetailPartComponent } from "../base-database-detail-part.component";
 import { ExpandableComponent } from "../../../shared/components/expandable/expandable.component";
 import { DatabaseHeaderButtonComponent } from "../database-header-button/database-header-button.component";
@@ -10,6 +11,7 @@ import { FestivalShopItemTableComponent } from "../../../locations/components/ta
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        TranslatePipe,
         ExpandableComponent,
         DatabaseHeaderButtonComponent,
         FestivalShopItemTableComponent

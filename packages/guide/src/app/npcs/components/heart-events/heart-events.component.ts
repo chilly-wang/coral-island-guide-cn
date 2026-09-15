@@ -2,6 +2,7 @@ import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { HeartEvent } from "@ci/data-types";
 import { HeartEventTriggerComponent } from "../heart-event-trigger/heart-event-trigger.component";
 import { ExpandableComponent } from "../../../shared/components/expandable/expandable.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-heart-events',
@@ -10,7 +11,8 @@ import { ExpandableComponent } from "../../../shared/components/expandable/expan
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         HeartEventTriggerComponent,
-        ExpandableComponent
+        ExpandableComponent,
+        TranslatePipe
     ]
 })
 export class HeartEventsComponent {

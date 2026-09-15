@@ -9,6 +9,7 @@ import {
 } from "@angular/material/dialog";
 import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
 import { UiIcon } from "@ci/data-types";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-delete-dialog',
@@ -17,7 +18,8 @@ import { UiIcon } from "@ci/data-types";
         MatDialogClose,
         MatDialogContent,
         MatDialogTitle,
-        UiIconComponent
+        UiIconComponent,
+        TranslatePipe
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './delete-dialog.component.html'

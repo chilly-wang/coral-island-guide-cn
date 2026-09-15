@@ -2,43 +2,43 @@
 
 
 @if (!hideAnimal()) {
-    <div>Animal:
+    <div>{{ 'APP.ANIMAL_DETAIL.ANIMAL' | translate }}:
         <span class="text-black">
                <app-item-icon [itemName]="animal().variants[0].icons.adult"
                               class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-            {{ animal().displayName | translate }}
+            {{ animal() | localizedEntityName }}
             </span>
     </div>
 }
 @if (animal().animalProduceType !== 'None') {
 
     @if (animal().produceDropLocation !== 'None') {
-        <div>Drop location:
+        <div>{{ 'APP.ANIMAL_DETAIL.DROP_LOCATION' | translate }}:
             <span class="text-black">
-              {{ animal().produceDropLocation  | addSpacesToPascalCase }}
+              {{ animal().produceDropLocation | localizedDisplay:'animal_drop_location' }}
             </span>
         </div>
     }
-    <div>Type of producing:
+    <div>{{ 'APP.ANIMAL_DETAIL.PRODUCTION_TYPE' | translate }}:
         <span class="text-black">
-                {{ animal().animalProduceType | addSpacesToPascalCase }}
+                {{ animal().animalProduceType | localizedDisplay:'animal_produce_type' }}
             </span>
     </div>
     @if (harvestTool) {
-        <div>Tool for harvesting:
+        <div>{{ 'APP.ANIMAL_DETAIL.HARVEST_TOOL' | translate }}:
             <span class="text-black">
                <app-item-icon [itemName]="harvestTool.iconName"
                               class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-                {{ harvestTool.displayName | translate }}
+                {{ harvestTool | localizedEntityName }}
             </span>
         </div>
     }
-    <div>Harvest cooldown:
+    <div>{{ 'APP.ANIMAL_DETAIL.HARVEST_COOLDOWN' | translate }}:
         <span class="text-black">
-                    {{ animal().harvestCooldown }} day{{ animal().harvestCooldown > 1 ? 's' : '' }}
+                    {{ 'APP.ANIMAL_DETAIL.DAY_COUNT' | translate: {count: animal().harvestCooldown} }}
             </span>
     </div>
-    <div class="my-3">Produces:
+    <div class="my-3">{{ 'APP.ANIMAL_DETAIL.PRODUCES' | translate }}:
         @for (produce of animal().produces; track produce) {
 
             @for (keValuePair of produce | keyvalue: null; track keValuePair) {
@@ -47,10 +47,10 @@
                     @if (!shownItemId() || shownItemId() === keValuePair.value.id) {
                         <div
                                 class="text-black">
-                            {{ keValuePair.key | addSpacesToPascalCase | titlecase }}:
+                            {{ keValuePair.key | localizedDisplay:'animal_product_size' }}:
                             <app-item-icon [itemName]="keValuePair.value.iconName"
                                            class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-                            {{ keValuePair.value.displayName | translate }}
+                            {{ keValuePair.value | localizedEntityName }}
                         </div>
                     }
                 }

@@ -4,7 +4,7 @@
         <h3 (click)="expandable.toggle()"
             class="text-xl text-black flex items-center justify-between cursor-pointer py-4 font-semibold"
             expandableHeader>
-            {{ heartEvent.heartLevel }} hearts event
+            {{ 'APP.NPC_DETAIL.HEART_EVENT' | translate: {count: heartEvent.heartLevel} }}
             <i [class.down]="!expandable.isOpen()" [class.up]="expandable.isOpen()" class="arrow"></i>
         </h3>
         @for (trigger of heartEvent.trigger; track trigger; let last = $last) {

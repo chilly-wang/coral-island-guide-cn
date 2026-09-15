@@ -3,7 +3,7 @@
 @if (asGift && asGift.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Gifting</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.NPC_DETAIL.GIFTING' | translate }}</app-database-header-button>
         </h3>
 
         <app-responsive-table>
@@ -17,15 +17,15 @@
                 </ng-container>
 
                 <ng-container matColumnDef="preference">
-                    <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell>Preference</th>
+                    <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell>{{ 'APP.FILTER.TYPE' | translate }}</th>
                     <td *matCellDef="let element" class="text-col !pl-0 whitespace-nowrap" mat-cell>
-                        {{ element.pref.label }}
+                        {{ element.pref.label | localizedDisplay:'preference' }}
                     </td>
                 </ng-container>
 
 
                 <ng-container matColumnDef="npcs">
-                    <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>NPCs</th>
+                    <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'APP.NAV.NPCS' | translate }}</th>
                     <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                         <div class="whitespace-nowrap">
                             @for (npc of element.npcs; track npc; let last = $last) {
@@ -33,7 +33,7 @@
                                      class="inline-flex shrink-0 items-center">
                                     <app-item-icon [itemName]="npc.iconName"
                                                    class="h-12 mr-2 !flex items-center shrink-0"/>
-                                    {{ npc.characterName }}
+                                    {{ npc | localizedEntityName }}
                                 </div>
                             }
                         </div>
@@ -49,4 +49,3 @@
 
     </app-expandable>
 }
-

@@ -4,7 +4,7 @@
 
         <div class="font-semibold flex items-center sm:flex-col sm:pr-10 mb-1 text-black">
             <app-ui-icon [uiIcon]="prefMap.icon" class="!text-gifting mr-1 sm:mr-0 !h-6 !w-6"/>
-            {{ prefMap.label }}
+            {{ prefMap.label | localizedDisplay:'preference' }}
         </div>
         <div class="gifting-gifts-grid ">
             @for (loved of preferences()[prefMap.preferenceField]; track loved) {
@@ -14,7 +14,7 @@
                                              [minimalItem]="loved.item"/>
                 }
                 @if (loved.type === 'category') {
-                    <span>All {{ loved.categoryName | addSpacesToPascalCase }}</span>
+                    <span>{{ 'APP.NPC_DETAIL.ALL_CATEGORY' | translate: {category: (loved.categoryName | localizedDisplay:'category')} }}</span>
                 }
 
             }

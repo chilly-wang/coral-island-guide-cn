@@ -16,6 +16,7 @@ import { ItemIconComponent } from "../../../shared/components/item-icon/item-ico
 import { IsMinimalItemPipe } from "../../../shared/pipes/is-minimal-item.pipe";
 import { NonSpecializedTableComponent } from "../../../shared/components/non-specialized-table/non-specialized-table.component";
 import { CropTableComponent } from "../tables/crop-table/crop-table.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-produce',
@@ -32,7 +33,8 @@ import { CropTableComponent } from "../tables/crop-table/crop-table.component";
         ItemIconComponent,
         IsMinimalItemPipe,
         NonSpecializedTableComponent,
-        CropTableComponent
+        CropTableComponent,
+        TranslatePipe
     ]
 })
 export class ProduceComponent extends BaseJournalPageComponent<MinimalItem | Crop | FruitPlant | FruitTree> {
@@ -60,6 +62,7 @@ export class ProduceComponent extends BaseJournalPageComponent<MinimalItem | Cro
         this.tabs = [
             {
                 title: 'Crops',
+                translationKey: 'APP.JOURNAL_TABS.CROPS',
                 data: combineLatest([
                     this._database.fetchCrops$(),
                     this._database.fetchFruitTrees$(),
@@ -82,6 +85,7 @@ export class ProduceComponent extends BaseJournalPageComponent<MinimalItem | Cro
                 )
             }, {
                 title: 'Animal Products',
+                translationKey: 'APP.JOURNAL_TABS.ANIMAL_PRODUCTS',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-animal-products'),
                     this._database.fetchItems$(),
@@ -89,6 +93,7 @@ export class ProduceComponent extends BaseJournalPageComponent<MinimalItem | Cro
                 )
             }, {
                 title: 'Artisan Products',
+                translationKey: 'APP.JOURNAL_TABS.ARTISAN_PRODUCTS',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-artisan-products'),
                     this._database.fetchItems$(),
@@ -97,6 +102,7 @@ export class ProduceComponent extends BaseJournalPageComponent<MinimalItem | Cro
             },
             {
                 title: 'Ocean',
+                translationKey: 'APP.JOURNAL_TABS.OCEAN',
                 data: this.getFilteredJournalData(
                     this._database.fetchJournalOrder$('journal-ocean-products'),
                     this._database.fetchItems$(),

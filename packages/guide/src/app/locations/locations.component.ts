@@ -15,6 +15,8 @@ import { SidebarContainerComponent } from "../shared/components/sidebar-containe
 import { ModuleSidebarItemComponent } from "../shared/components/module-sidebar-item/module-sidebar-item.component";
 import { RouterOutlet } from "@angular/router";
 import { ModuleSidebarComponent } from "../shared/components/module-sidebar/module-sidebar.component";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-locations',
@@ -25,7 +27,9 @@ import { ModuleSidebarComponent } from "../shared/components/module-sidebar/modu
         SidebarContainerComponent,
         ModuleSidebarComponent,
         ModuleSidebarItemComponent,
-        RouterOutlet
+        RouterOutlet,
+        TranslatePipe,
+        LocalizedDisplayPipe
     ]
 })
 export class LocationsComponent {

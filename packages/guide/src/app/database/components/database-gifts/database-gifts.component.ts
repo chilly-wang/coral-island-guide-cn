@@ -1,42 +1,50 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import { BaseDatabaseDetailPartComponent } from "../base-database-detail-part.component";
-import { MinimalNPC, preferencesMap } from "@ci/data-types";
-import { ExpandableComponent } from "../../../shared/components/expandable/expandable.component";
-import { ResponsiveTableComponent } from "../../../shared/components/responsive-table/responsive-table.component";
-import { MatTableModule } from "@angular/material/table";
-import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
-import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
-import { DatabaseHeaderButtonComponent } from "../database-header-button/database-header-button.component";
+import { BaseDatabaseDetailPartComponent } from '../base-database-detail-part.component';
+import { MinimalNPC, preferencesMap } from '@ci/data-types';
+import { ExpandableComponent } from '../../../shared/components/expandable/expandable.component';
+import { ResponsiveTableComponent } from '../../../shared/components/responsive-table/responsive-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { UiIconComponent } from '../../../shared/components/ui-icon/ui-icon.component';
+import { ItemIconComponent } from '../../../shared/components/item-icon/item-icon.component';
+import { DatabaseHeaderButtonComponent } from '../database-header-button/database-header-button.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LocalizedDisplayPipe } from '../../../shared/pipes/localized-display.pipe';
+
+import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-database-gifts',
     templateUrl: './database-gifts.component.html',
-    styles: [`
-        .database-gifts .app-responsive-table .app-item-icon {
-            & > img {
-                aspect-ratio: unset;
-                width: auto;
-                max-height: 3rem;
+    styles: [
+        `
+            .database-gifts .app-responsive-table .app-item-icon {
+                & > img {
+                    aspect-ratio: unset;
+                    width: auto;
+                    max-height: 3rem;
+                }
             }
-        }
-    `],
+        `,
+    ],
     encapsulation: ViewEncapsulation.None,
     imports: [
+        LocalizedEntityNamePipe,
         ExpandableComponent,
         ResponsiveTableComponent,
         MatTableModule,
         UiIconComponent,
         ItemIconComponent,
-        DatabaseHeaderButtonComponent
+        DatabaseHeaderButtonComponent,
+        TranslatePipe,
+        LocalizedDisplayPipe,
     ],
 
     changeDetection: ChangeDetectionStrategy.Eager,
     host: {
-        'class': 'database-gifts'
-    }
+        class: 'database-gifts',
+    },
 })
 export class DatabaseGiftsComponent extends BaseDatabaseDetailPartComponent implements OnInit {
-
     displayedHeaderColumns = ['preference', 'npcs'];
     displayedColumns = ['icon', ...this.displayedHeaderColumns];
 
@@ -47,42 +55,39 @@ export class DatabaseGiftsComponent extends BaseDatabaseDetailPartComponent impl
     dislikePreferences: MinimalNPC[] = [];
     hatePreferences: MinimalNPC[] = [];
 
-    dataSource: { pref: typeof preferencesMap[0], npcs: MinimalNPC[] }[] = []
+    dataSource: { pref: (typeof preferencesMap)[0]; npcs: MinimalNPC[] }[] = [];
     private keys = [
         'favoritePreferences',
         'lovePreferences',
         'likePreferences',
         'neutralPreferences',
         'dislikePreferences',
-        'hatePreferences'
-    ] as const
+        'hatePreferences',
+    ] as const;
 
     ngOnInit(): void {
-        const item = this.databaseItem().item
+        const item = this.databaseItem().item;
 
         if (!item) return;
 
         const preferences = this.database.getGiftingPreferences();
 
-        preferences.forEach(prefs => {
-            this.keys.forEach(key => {
-                const preferenceIndex = prefs[key].findIndex(pref => pref.type === "item" && item.id === pref.item.id);
+        preferences.forEach((prefs) => {
+            this.keys.forEach((key) => {
+                const preferenceIndex = prefs[key].findIndex(
+                    (pref) => pref.type === 'item' && item.id === pref.item.id,
+                );
                 if (preferenceIndex !== -1 && prefs.npc) {
                     this[key].push(prefs.npc);
                 }
-            })
+            });
+        });
 
-        })
-
-        this.keys.forEach(key => {
+        this.keys.forEach((key) => {
             const npcs = this[key];
             if (npcs.length) {
-                this.dataSource.push({pref: preferencesMap.find(p => p.preferenceField === key)!, npcs})
+                this.dataSource.push({ pref: preferencesMap.find((p) => p.preferenceField === key)!, npcs });
             }
-
-        })
-
+        });
     }
-
-
 }

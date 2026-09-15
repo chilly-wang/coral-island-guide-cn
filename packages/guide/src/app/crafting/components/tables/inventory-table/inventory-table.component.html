@@ -9,36 +9,38 @@
 
             <ng-container matColumnDef="outputName">
                 <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell mat-sort-header>
-                    Output
+                    {{ 'APP.ITEM.OUTPUT' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap"
-                    mat-cell>{{ $safeNavigationMigration(element.item?.displayName) | translate }}
+                    mat-cell>{{ $safeNavigationMigration(element.item) | localizedEntityName }}
                     ({{ element.amount }})
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="ingredients">
-                <th *matHeaderCellDef mat-header-cell> Ingredients</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.ITEM.INGREDIENTS' | translate }}</th>
                 <td *matCellDef="let element" class="list-col" mat-cell>
                     <app-table-item-list [itemList]="element | craftingRecipeIngredients"/>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="unlock">
-                <th *matHeaderCellDef mat-header-cell> Unlocked by</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.ITEM.UNLOCKED_BY' | translate }}</th>
                 <td *matCellDef="let element" class="text-col" mat-cell>
                     @if (element.craftingUnlock) {
 
-                        Level {{ element.craftingUnlock.masteryLevel }}
-                        in {{ element.craftingUnlock.masteryType }}
+                        {{ 'APP.DYNAMIC.CRAFTING.LEVEL_IN_MASTERY' | translate: {
+                            level: element.craftingUnlock.masteryLevel,
+                            mastery: (element.craftingUnlock.masteryType | localizedDisplay:'mastery')
+                        } }}
 
                     }
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="sellPrice">
-                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header> Sell price</th>
+                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.FILTER.SELL_PRICE' | translate }}</th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     <app-money [amount]="element.item.sellPrice"/>
                 </td>

@@ -13,11 +13,11 @@
                     </div>
                     <div class="basis-3/5 p-2 flex flex-col">
                         <div class="inline-flex gap-2 mt-3 items-center">
-                            <span class="text-black font-semibold text-2xl">{{ npc.characterName }}</span>
+                            <span class="text-black font-semibold text-2xl">{{ npc | localizedEntityName }}</span>
                             @if (npc.isDateable) {
                                 <app-ui-icon
                                         [uiIcon]="uiIcon.LOVE" class="!text-gifting !h-6 !w-6"
-                                        matTooltip="{{npc.characterName }} is dateable"/>
+                                        [matTooltip]="'APP.NPC_DETAIL.DATEABLE' | translate: {name: (npc | localizedEntityName)}"/>
                             }
                         </div>
                         @if (npc.birthday) {
@@ -29,7 +29,7 @@
                         <div [ngClass]="{'line-clamp-2': !npc.customHead, 'line-clamp-1': npc.customHead}">{{ npc.description | translate }}</div>
 
                         @if (npc.customHead) {
-                            <div clasS="mt-auto">unofficial head portrait</div>
+                            <div clasS="mt-auto">{{ 'APP.NPC_DETAIL.UNOFFICIAL_PORTRAIT' | translate }}</div>
                         }
                     </div>
                 </a>

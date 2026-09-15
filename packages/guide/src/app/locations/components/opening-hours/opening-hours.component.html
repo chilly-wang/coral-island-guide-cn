@@ -1,10 +1,10 @@
 @for (keyValuePair of openingHours() | keyvalue; track keyValuePair) {
     <div>
-        <div class="font-semibold text-xl">{{ keyValuePair.key }}</div>
+        <div class="font-semibold text-xl">{{ keyValuePair.key | translate | localizedDisplay }}</div>
         <div class="grid grid-cols-2 gap-2">
             @if ((keyValuePair.value.isCoreOnlyWeekdays || keyValuePair.value.isCoreEveryDay) && keyValuePair.value.coreOpeningHours) {
 
-                <div> {{ keyValuePair.value.isCoreEveryDay ? 'Every day' : 'Weekdays' }}:</div>
+                <div>{{ (keyValuePair.value.isCoreEveryDay ? 'APP.OPENING_HOURS.EVERY_DAY' : 'APP.OPENING_HOURS.WEEKDAYS') | translate }}:</div>
                 <div>{{ keyValuePair.value.coreOpeningHours.from | ingameTime }}-{{
                         keyValuePair.value.coreOpeningHours.to | ingameTime
                     }}
@@ -13,7 +13,7 @@
             }
             @if (!keyValuePair.value.isCoreOnlyWeekdays && !keyValuePair.value.isCoreEveryDay && keyValuePair.value.coreOpeningHours) {
 
-                <div> {{ shortenWeekdays(keyValuePair.value.coreOpeningDays).join(', ') }}:</div>
+                <div>{{ shortenWeekdays(keyValuePair.value.coreOpeningDays) | localizedDisplay:'weekday' }}:</div>
                 <div> {{ keyValuePair.value.coreOpeningHours.from | ingameTime }}-{{
                         keyValuePair.value.coreOpeningHours.to | ingameTime
                     }}
@@ -25,7 +25,7 @@
                 @for (
                         specificKeyValuePair of keyValuePair.value.dayOfTheWeekSpecificOpeningHours | keyvalue; track specificKeyValuePair) {
 
-                    <div> {{ specificKeyValuePair.key }}:</div>
+                    <div>{{ specificKeyValuePair.key | localizedDisplay:'weekday' }}:</div>
                     <div> {{ specificKeyValuePair.value.from | ingameTime }}-{{
                             specificKeyValuePair.value.to | ingameTime
                         }}

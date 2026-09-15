@@ -1,9 +1,12 @@
 @if (details().craftedFrom?.[0]; as craftingRecipe) {
     @if (craftingRecipe.craftingUnlock) {
         <div>
-            Unlocked: <span
-                class="text-black">Level {{ craftingRecipe.craftingUnlock.masteryLevel }}
-            in {{ craftingRecipe.craftingUnlock.masteryType }}</span>
+            {{ 'APP.DYNAMIC.CRAFTING.UNLOCKED' | translate }}: <span class="text-black">
+                {{ 'APP.DYNAMIC.CRAFTING.LEVEL_IN_MASTERY' | translate: {
+                    level: craftingRecipe.craftingUnlock.masteryLevel,
+                    mastery: (craftingRecipe.craftingUnlock.masteryType | localizedDisplay:'mastery')
+                } }}
+            </span>
         </div>
     }
 

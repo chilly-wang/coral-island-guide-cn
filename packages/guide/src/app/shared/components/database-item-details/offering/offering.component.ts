@@ -7,10 +7,11 @@ import { InsectComponent } from "../insect/insect.component";
 import { ProcessingComponent } from "../processing/processing.component";
 import { ShopProcessingResultComponent } from "../shop-processing-result/shop-processing-result.component";
 import { DatabaseItem } from "@ci/data-types";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-offering',
-    imports: [AnimalProduceComponent, CookingRecipeComponent, CropComponent, FishComponent, InsectComponent, ProcessingComponent, ShopProcessingResultComponent],
+    imports: [AnimalProduceComponent, CookingRecipeComponent, CropComponent, FishComponent, InsectComponent, ProcessingComponent, ShopProcessingResultComponent, TranslatePipe],
     templateUrl: './offering.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styles: `:host {

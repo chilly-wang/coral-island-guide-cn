@@ -10,7 +10,7 @@
     <app-card>
         <h1 class="mb-4 font-semibold text-3xl text-black flex items-center gap-x-4 ">
             <app-ui-icon [uiIcon]="SHOP_ICONS[shopName]"/>
-            {{ SHOP_DISPLAY_NAMES[shopName] }}
+            {{ display.translate(SHOP_DISPLAY_NAMES[shopName], 'shop') }}
         </h1>
         @if (openingHours$) {
 
@@ -23,7 +23,7 @@
 
     @if (shopItemDataIndoor$) {
 
-        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">Stock list Indoor</h2>
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate('APP.SHOP.INDOOR_STOCK') }}</h2>
         @if ((shopItemDataIndoor$ |async); as shopItemData) {
 
             <app-data-filter [(showTable)]="showTable"/>
@@ -48,7 +48,7 @@
     }
     @if (shopItemDataOutdoor$) {
 
-        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">Stock list Outdoor</h2>
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate('APP.SHOP.OUTDOOR_STOCK') }}</h2>
         @if ((shopItemDataOutdoor$ |async); as shopItemData) {
 
             <app-data-filter [(showTable)]="showTable"/>

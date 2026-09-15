@@ -1,11 +1,12 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { getTruthyValues } from "@ci/util";
 import { Critter } from "@ci/data-types";
-import { AddSpacesToPascalCasePipe } from "../../../pipes/add-spaces-to-pascal-case.pipe";
+import { LocalizedDisplayPipe } from "../../../pipes/localized-display.pipe";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-insect',
-    imports: [AddSpacesToPascalCasePipe],
+    imports: [LocalizedDisplayPipe, TranslatePipe],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './insect.component.html'
 })

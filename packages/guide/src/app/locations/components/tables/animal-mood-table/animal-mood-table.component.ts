@@ -3,6 +3,8 @@ import { ProductSizeByMood } from "@ci/data-types";
 import { ResponsiveTableComponent } from "../../../../shared/components/responsive-table/responsive-table.component";
 import { MatTableModule } from "@angular/material/table";
 import { SlicePipe } from "@angular/common";
+import { TranslatePipe } from "@ngx-translate/core";
+import { LocalizedDisplayPipe } from "../../../../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-animal-mood-table',
@@ -12,7 +14,9 @@ import { SlicePipe } from "@angular/common";
     imports: [
         ResponsiveTableComponent,
         SlicePipe,
-        MatTableModule
+        MatTableModule,
+        TranslatePipe,
+        LocalizedDisplayPipe
     ]
 })
 export class AnimalMoodTableComponent {

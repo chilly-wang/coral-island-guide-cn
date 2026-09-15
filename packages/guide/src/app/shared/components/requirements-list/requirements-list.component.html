@@ -2,12 +2,13 @@
     <div class="my-2">
         @if (requirements().requirements.length > 1) {
 
-            Unlock requirements ({{ requirements().type === 'And' ? 'all' : 'any' }} of them):
+            {{ 'APP.DYNAMIC.REQUIREMENT.UNLOCK_REQUIREMENTS' | translate }}
+            ({{ (requirements().type === 'And' ? 'APP.DYNAMIC.REQUIREMENT.ALL' : 'APP.DYNAMIC.REQUIREMENT.ANY') | translate }}):
 
         }
         @if (requirements().requirements.length < 2) {
 
-            Unlock requirement:
+            {{ 'APP.DYNAMIC.REQUIREMENT.UNLOCK_REQUIREMENT' | translate }}:
 
         }
 

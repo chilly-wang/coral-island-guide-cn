@@ -14,7 +14,7 @@ import { DatabaseService } from '../shared/services/database.service';
 import { Item, Quality } from '@ci/data-types';
 import { getQuality } from '@ci/util';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { concat, debounceTime, map, Observable, take, tap } from 'rxjs';
+import { combineLatest, concat, debounceTime, map, Observable, take, tap } from 'rxjs';
 import { DatabaseDetailsComponent } from './components/database-details/database-details.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Title } from '@angular/platform-browser';
@@ -24,7 +24,8 @@ import { AsyncPipe } from "@angular/common";
 import { ItemIconComponent } from "../shared/components/item-icon/item-icon.component";
 import { MatInput } from "@angular/material/input";
 import { LocalStorageService } from "../core/local-storage/local-storage.service";
-import { TranslateService } from "@ngx-translate/core";
+import { TranslatePipe } from "@ngx-translate/core";
+import { EntitySearchService } from '../shared/services/entity-search.service';
 
 @Component({
     selector: 'app-database',
@@ -38,7 +39,8 @@ import { TranslateService } from "@ngx-translate/core";
         ReactiveFormsModule,
         AsyncPipe,
         ItemIconComponent,
-        MatInput
+        MatInput,
+        TranslatePipe
     ]
 })
 export class DatabaseComponent {
@@ -58,16 +60,13 @@ export class DatabaseComponent {
     private readonly _title = inject(Title);
     private _localStorageHideNoteKey = 'databaseHideImportantNote';
     private _didInitialLoad = false;
-    private readonly translate = inject(TranslateService);
+    private readonly _entitySearch = inject(EntitySearchService);
 
     constructor() {
         this.shouldHideImportantNote = coerceBooleanProperty(this.localStorage.getItem(this._localStorageHideNoteKey));
 
-        this.items = this._database.getItems().filter((item) => getQuality(item.id) === Quality.BASE).map(item => ({
-            ...item,
-            displayName: this.translate.instant(item.displayName).toLocaleLowerCase()
-        }));
-        const mapToItems = map<string, Item[]>((searchTerm) => {
+        this.items = this._database.getItems().filter((item) => getQuality(item.id) === Quality.BASE);
+        const filterItems = (searchTerm: string): Item[] => {
             const regex = /tag:(?<tag>[a-zA-Z.]+)/gm;
             const match = regex.exec(searchTerm);
 
@@ -84,24 +83,22 @@ export class DatabaseComponent {
                 if (!tagMatch) return false;
 
                 return (
-                    item.displayName.includes(searchString) ||
+                    this._entitySearch.matches(item, searchString) ||
                     (searchString.startsWith('item_') && item.id.startsWith(searchString))
                 );
             });
 
             this.filteredItems = items;
             return items;
-        });
+        };
 
-        this.filteredItems$ = concat(
+        const searchTerms$ = concat(
             this._route.queryParams.pipe(
                 map((params) => {
                     const value = params['q'] ?? '';
                     this.searchTermControl.setValue(value, {emitEvent: false});
                     return value;
                 }),
-                mapToItems,
-
                 take(1)
             ),
             this.searchTermControl.valueChanges.pipe(
@@ -110,9 +107,15 @@ export class DatabaseComponent {
                     this.updateQueryParam(searchTerm);
                     document.getElementById('database-details')?.remove();
                 }),
-                mapToItems
             )
         );
+
+        // Re-run the current search once the English game-name aliases arrive.
+        // This keeps both English and localized searches available in zh-CN mode.
+        this.filteredItems$ = combineLatest([
+            searchTerms$,
+            this._entitySearch.englishTranslations$,
+        ]).pipe(map(([searchTerm]) => filterItems(searchTerm)));
     }
 
     showDetails(item: Item, index: number, scrollIntoView = false) {
@@ -183,7 +186,10 @@ export class DatabaseComponent {
                 replaceUrl: true,
                 queryParamsHandling: 'preserve',
             })
-            .then(() => !!this.selectedItem && this.updateTitle(this.selectedItem.displayName));
+            .then(() =>
+                !!this.selectedItem &&
+                this.updateTitle(this._entitySearch.getLocalizedName(this.selectedItem)),
+            );
     }
 
     initialItemLoad(): void {

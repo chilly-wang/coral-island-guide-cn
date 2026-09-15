@@ -9,7 +9,7 @@
 
     <mat-tab-group (selectedTabChange)="updateUrl($event)" [selectedIndex]="selectedTabIndex()">
         @for (tab of tabs; track tab) {
-            <mat-tab [label]="tab.title">
+            <mat-tab [label]="tab.translationKey ? (tab.translationKey | translate) : tab.title">
                 <app-data-filter [(showTable)]="showTable" [parentFormGroup]="formControl"/>
                 @if ((tab.data |async); as syncedData) {
 

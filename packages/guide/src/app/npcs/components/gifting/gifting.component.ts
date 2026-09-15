@@ -1,29 +1,39 @@
-import { Component, computed, inject, signal, viewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component,
+    computed,
+    inject,
+    signal,
+    viewChild,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+} from '@angular/core';
 import { DatabaseService } from '../../../shared/services/database.service';
 import { forkJoin, Observable, of, switchMap } from 'rxjs';
 import { GiftPreferences, MinimalItem, NPC, UiIcon } from '@ci/data-types';
 import { MapKeyed } from '../../../shared/types/map-keyed.type';
-import { NpcFilterComponent } from "../../npc-filter/npc-filter.component";
+import { NpcFilterComponent } from '../../npc-filter/npc-filter.component';
 import { filterNPCs } from '../../filter-npcs.function';
-import { BaseSelectableContainerComponent } from "../../../shared/components/base-selectable-container/base-selectable-container.component";
-import { GiftingGridComponent } from "../gifting-grid/gifting-grid.component";
-import { CardComponent } from "../../../shared/components/card/card.component";
-import { ExpandableComponent } from "../../../shared/components/expandable/expandable.component";
-import { OfferingComponent } from "../../../shared/components/database-item-details/offering/offering.component";
-import { ListDetailContainerComponent } from "../../../shared/components/list-detail-container/list-detail-container.component";
-import { ItemCardSwitchComponent } from "../../../shared/components/item-card-switch/item-card-switch.component";
-import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
-import { IngameDatePipe } from "../../../shared/pipes/ingame-date.pipe";
-import { MatTooltip } from "@angular/material/tooltip";
-import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
-import { AsyncPipe } from "@angular/common";
-import { addSpacesToPascalCase } from "@ci/util";
-import { TranslateService } from "@ngx-translate/core";
+import { BaseSelectableContainerComponent } from '../../../shared/components/base-selectable-container/base-selectable-container.component';
+import { GiftingGridComponent } from '../gifting-grid/gifting-grid.component';
+import { CardComponent } from '../../../shared/components/card/card.component';
+import { ExpandableComponent } from '../../../shared/components/expandable/expandable.component';
+import { OfferingComponent } from '../../../shared/components/database-item-details/offering/offering.component';
+import { ListDetailContainerComponent } from '../../../shared/components/list-detail-container/list-detail-container.component';
+import { ItemCardSwitchComponent } from '../../../shared/components/item-card-switch/item-card-switch.component';
+import { UiIconComponent } from '../../../shared/components/ui-icon/ui-icon.component';
+import { IngameDatePipe } from '../../../shared/pipes/ingame-date.pipe';
+import { MatTooltip } from '@angular/material/tooltip';
+import { ItemIconComponent } from '../../../shared/components/item-icon/item-icon.component';
+import { AsyncPipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 type CombinedGiftPreference = {
-    preferences: MapKeyed<GiftPreferences>,
-    npc: NPC | undefined
-}
+    preferences: MapKeyed<GiftPreferences>;
+    npc: NPC | undefined;
+};
+
+import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
+import { EntitySearchService } from '../../../shared/services/entity-search.service';
 
 @Component({
     selector: 'app-gifting',
@@ -33,6 +43,7 @@ type CombinedGiftPreference = {
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        LocalizedEntityNamePipe,
         GiftingGridComponent,
         CardComponent,
         ExpandableComponent,
@@ -44,32 +55,35 @@ type CombinedGiftPreference = {
         MatTooltip,
         ItemIconComponent,
         AsyncPipe,
-        NpcFilterComponent
-    ]
+        NpcFilterComponent,
+        TranslatePipe,
+    ],
 })
 export class GiftingComponent extends BaseSelectableContainerComponent<MinimalItem> {
-
     npcFilter = viewChild(NpcFilterComponent);
     protected uiIcon = UiIcon;
     protected gifting$: Observable<CombinedGiftPreference[]>;
-    #searchValueChanges = computed(() => this.npcFilter()?.searchValueChanges() ?? '')
-    #sortValueChanges = computed(() => this.npcFilter()?.sortValueChanges() ?? 'default')
-    #filterNPCs = filterNPCs
+    #searchValueChanges = computed(() => this.npcFilter()?.searchValueChanges() ?? '');
+    #sortValueChanges = computed(() => this.npcFilter()?.sortValueChanges() ?? 'default');
+    #filterNPCs = filterNPCs;
 
-    readonly #translate = inject(TranslateService);
+    readonly #entitySearch = inject(EntitySearchService);
     readonly #npcList = signal<CombinedGiftPreference[] | undefined>(undefined);
     protected filteredAndSortedNpcs = computed(() => {
-
         const npcs = this.#npcList() ?? [];
         if (!this.#searchValueChanges || !this.#sortValueChanges) return npcs;
-        const searchValue = this.#searchValueChanges().toLowerCase()
-        const sortValue = this.#sortValueChanges()
+        const searchValue = this.#searchValueChanges();
+        const sortValue = this.#sortValueChanges();
 
-        return this.#filterNPCs(npcs, searchValue, sortValue);
-
-
-    })
-    #database = inject(DatabaseService)
+        return this.#filterNPCs(
+            npcs,
+            searchValue,
+            sortValue,
+            (npc) => this.#entitySearch.getLocalizedName(npc),
+            (npc) => this.#entitySearch.getSearchTerms(npc),
+        );
+    });
+    #database = inject(DatabaseService);
 
     constructor() {
         super();
@@ -77,23 +91,17 @@ export class GiftingComponent extends BaseSelectableContainerComponent<MinimalIt
             gifts: this.#database.fetchGiftingPreferences$(),
             npcs: this.#database.fetchNPCs$(),
         }).pipe(
-            switchMap(({gifts, npcs}) => {
-                npcs = npcs.map(npc => ({
-                    ...npc,
-                    characterName: addSpacesToPascalCase(this.#translate.instant(npc.characterName))
-                }));
-                const mappedGifts: CombinedGiftPreference[] = gifts.map(gift => {
+            switchMap(({ gifts, npcs }) => {
+                const mappedGifts: CombinedGiftPreference[] = gifts.map((gift) => {
                     return {
                         preferences: gift,
-                        npc: npcs.find(npc => npc.key === gift.mapKey)
-                    } satisfies CombinedGiftPreference
-                })
+                        npc: npcs.find((npc) => npc.key === gift.mapKey),
+                    } satisfies CombinedGiftPreference;
+                });
 
-                this.#npcList?.set(mappedGifts)
-                return of(mappedGifts)
-            })
-        )
+                this.#npcList?.set(mappedGifts);
+                return of(mappedGifts);
+            }),
+        );
     }
-
-
 }

@@ -4,6 +4,7 @@ import { ModuleSidebarComponent } from "../shared/components/module-sidebar/modu
 import { SidebarContainerComponent } from "../shared/components/sidebar-container/sidebar-container.component";
 import { ModuleSidebarItemComponent } from "../shared/components/module-sidebar-item/module-sidebar-item.component";
 import { RouterOutlet } from "@angular/router";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-journal',
@@ -14,7 +15,8 @@ import { RouterOutlet } from "@angular/router";
         ModuleSidebarComponent,
         SidebarContainerComponent,
         ModuleSidebarItemComponent,
-        RouterOutlet
+        RouterOutlet,
+        TranslatePipe
     ]
 })
 export class JournalComponent {

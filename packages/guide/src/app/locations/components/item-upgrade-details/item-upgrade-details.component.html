@@ -1,6 +1,6 @@
 <app-base-item-card [item]="itemUpgradeData().item">
 
-    <div class="mb-3">Town rank:
+    <div class="mb-3">{{ 'APP.SHOP_DETAIL.TOWN_RANK' | translate }}:
         <span class="text-black">
            {{ itemUpgradeData().townRank | townrank }}
         </span>
@@ -8,21 +8,29 @@
 
     @if (itemUpgradeData().unlockRequirements.length) {
 
-        <div>Unlock requirements:</div>
+        <div>{{ 'APP.SHOP_DETAIL.UNLOCK_REQUIREMENTS' | translate }}:</div>
         <app-item-list [itemList]="itemUpgradeData().unlockRequirements" class="mb-6"/>
 
     }
-    <div class="mb-3">Upgrade time:
+    <div class="mb-3">{{ 'APP.TABLE.UPGRADE_TIME' | translate }}:
         <span class="text-black">
-           {{ itemUpgradeData().daysDelay }} days
+           {{ itemUpgradeData().daysDelay }} {{ 'APP.DETAIL.DAYS' | translate }}
         </span>
     </div>
 
+    @if (animalCapacity(); as capacity) {
+        <div class="mb-3">{{ 'APP.LOCATION_DETAIL.MAX_ANIMALS' | translate }}:
+            <span class="text-black">
+                {{ 'APP.LOCATION_DETAIL.ANIMAL_CAPACITY' | translate: {count: capacity} }}
+            </span>
+        </div>
+    }
+
     @if (itemUpgradeData().requirements.length || itemUpgradeData().priceOverride || itemUpgradeData().price) {
 
-        <div>Upgrade requirements:</div>
+        <div>{{ 'APP.LOCATION_DETAIL.UPGRADE_REQUIREMENTS' | translate }}:</div>
         @if (itemUpgradeData().priceOverride || itemUpgradeData().price) {
-            <div>Cost:
+            <div>{{ 'APP.LOCATION_DETAIL.UPGRADE_COST' | translate }}:
                 <span class="text-black">
             <app-money
                     [amount]="itemUpgradeData().priceOverride !== 0 ? itemUpgradeData().priceOverride : itemUpgradeData().price"/>

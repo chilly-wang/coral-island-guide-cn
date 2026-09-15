@@ -2,70 +2,69 @@
     <table [dataSource]="productSizeByMood()" mat-table multiTemplateDataRows>
 
         <ng-container matColumnDef="hearts">
-            <th *matHeaderCellDef [attr.rowspan]="2" class="backdrop-blur-xl" mat-header-cell>Hearts /
-                size per mood
+            <th *matHeaderCellDef [attr.rowspan]="2" class="backdrop-blur-xl" mat-header-cell>{{ 'APP.SHOP.HEARTS_SIZE' | translate }}
             </th>
             <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
-                {{ element.heartLevel }} heart(s)
+                {{ 'APP.SHOP.HEART_COUNT' | translate: {count: element.heartLevel} }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="bad">
             <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl justify-center" mat-header-cell
-            >Bad
+            >{{ 'APP.SHOP.BAD_MOOD' | translate }}
             </th>
         </ng-container>
 
         <ng-container matColumnDef="neutral">
             <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl justify-center" mat-header-cell
-            >Neutral
+            >{{ 'APP.SHOP.NEUTRAL_MOOD' | translate }}
             </th>
         </ng-container>
 
         <ng-container matColumnDef="happy">
             <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl justify-center" mat-header-cell
-            >Happy
+            >{{ 'APP.SHOP.HAPPY_MOOD' | translate }}
             </th>
         </ng-container>
 
         <ng-container matColumnDef="badSmall">
 
-            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>Small</th>
+            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'Small' | localizedDisplay:'size' }}</th>
             <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                 {{ element.bad.small }} %
             </td>
         </ng-container>
 
         <ng-container matColumnDef="badLarge">
-            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>Large</th>
+            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'Large' | localizedDisplay:'size' }}</th>
             <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                 {{ element.bad.large }} %
             </td>
         </ng-container>
 
         <ng-container matColumnDef="neutralSmall">
-            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>Small</th>
+            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'Small' | localizedDisplay:'size' }}</th>
             <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                 {{ element.neutral.small }} %
             </td>
         </ng-container>
 
         <ng-container matColumnDef="neutralLarge">
-            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>Large</th>
+            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'Large' | localizedDisplay:'size' }}</th>
             <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                 {{ element.neutral.large }} %
             </td>
         </ng-container>
 
         <ng-container matColumnDef="happySmall">
-            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>Small</th>
+            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'Small' | localizedDisplay:'size' }}</th>
             <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                 {{ element.happy.small }} %
             </td>
         </ng-container>
 
         <ng-container matColumnDef="happyLarge">
-            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>Large</th>
+            <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell>{{ 'Large' | localizedDisplay:'size' }}</th>
             <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                 {{ element.happy.large }} %
             </td>

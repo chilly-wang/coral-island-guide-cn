@@ -5,25 +5,27 @@ import {
     FestivalIcons,
     FestivalName,
     FestivalShopItemData,
-    OpeningHours
-} from "@ci/data-types";
-import { ActivatedRoute } from "@angular/router";
-import { FestivalRouteData } from "../../types/festival-route-data.type";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { Observable, switchMap } from "rxjs";
-import { DatabaseService } from "../../../shared/services/database.service";
-import { ListDetailService } from "../../../shared/components/list-detail-container/list-detail.service";
-import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { FestivalShopItemTableComponent } from "../tables/festival-shop-item-table/festival-shop-item-table.component";
-import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
-import { DataFilterComponent } from "../../../shared/components/data-filter/data-filter.component";
-import { OpeningHoursComponent } from "../opening-hours/opening-hours.component";
-import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
-import { CardComponent } from "../../../shared/components/card/card.component";
-import { AsyncPipe } from "@angular/common";
-import { FestivalShopItemDetailsComponent } from "../festival-shop-item-details/festival-shop-item-details.component";
-import { ListDetailContainerComponent } from "../../../shared/components/list-detail-container/list-detail-container.component";
-import { HttpResourceRef } from "@angular/common/http";
+    OpeningHours,
+} from '@ci/data-types';
+import { ActivatedRoute } from '@angular/router';
+import { FestivalRouteData } from '../../types/festival-route-data.type';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Observable, switchMap } from 'rxjs';
+import { DatabaseService } from '../../../shared/services/database.service';
+import { ListDetailService } from '../../../shared/components/list-detail-container/list-detail.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { FestivalShopItemTableComponent } from '../tables/festival-shop-item-table/festival-shop-item-table.component';
+import { ItemIconComponent } from '../../../shared/components/item-icon/item-icon.component';
+import { DataFilterComponent } from '../../../shared/components/data-filter/data-filter.component';
+import { OpeningHoursComponent } from '../opening-hours/opening-hours.component';
+import { UiIconComponent } from '../../../shared/components/ui-icon/ui-icon.component';
+import { CardComponent } from '../../../shared/components/card/card.component';
+import { AsyncPipe } from '@angular/common';
+import { FestivalShopItemDetailsComponent } from '../festival-shop-item-details/festival-shop-item-details.component';
+import { ListDetailContainerComponent } from '../../../shared/components/list-detail-container/list-detail-container.component';
+import { HttpResourceRef } from '@angular/common/http';
+import { DisplayTranslationService } from '../../../shared/pipes/localized-display.pipe';
+import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-generic-festival',
@@ -31,6 +33,7 @@ import { HttpResourceRef } from "@angular/common/http";
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        LocalizedEntityNamePipe,
         MatProgressSpinner,
         FestivalShopItemTableComponent,
         ItemIconComponent,
@@ -40,44 +43,40 @@ import { HttpResourceRef } from "@angular/common/http";
         CardComponent,
         AsyncPipe,
         FestivalShopItemDetailsComponent,
-        ListDetailContainerComponent
-    ]
+        ListDetailContainerComponent,
+    ],
 })
 export class GenericFestivalComponent {
-
     protected selectedEntity: FestivalShopItemData | undefined;
     protected festivalName?: FestivalName;
-    protected readonly FESTIVAL_DISPLAY_NAMES = FestivalDisplayNames
-    protected readonly FESTIVAL_ICONS = FestivalIcons
+    protected readonly FESTIVAL_DISPLAY_NAMES = FestivalDisplayNames;
+    protected readonly FESTIVAL_ICONS = FestivalIcons;
     protected readonly festivalData$: Observable<FestivalData>;
     protected openingHours$?: HttpResourceRef<Record<string, OpeningHours> | undefined>;
     protected showTable = false;
     private readonly _router = inject(ActivatedRoute);
     private readonly _database = inject(DatabaseService);
     readonly #listDetailService = inject(ListDetailService);
+    protected readonly display = inject(DisplayTranslationService);
 
     constructor() {
-        this.festivalData$ = this._router.data
-            .pipe(
-                takeUntilDestroyed(),
-                switchMap(data => {
-                        const routeData = data as FestivalRouteData
-                        this.festivalName = routeData.name;
+        this.festivalData$ = this._router.data.pipe(
+            takeUntilDestroyed(),
+            switchMap((data) => {
+                const routeData = data as FestivalRouteData;
+                this.festivalName = routeData.name;
 
-                        if (!routeData.hasNoOpeningHours) {
-                            this.openingHours$ = this._database.fetchFestivalOpeningHours$(routeData.name)
-                        }
+                if (!routeData.hasNoOpeningHours) {
+                    this.openingHours$ = this._database.fetchFestivalOpeningHours$(routeData.name);
+                }
 
-                        return this._database.fetchFestivalData$(routeData.name)
-
-                    }
-                )
-            )
+                return this._database.fetchFestivalData$(routeData.name);
+            }),
+        );
     }
 
     showDetails(entity: FestivalShopItemData): void {
         this.selectedEntity = entity;
-        this.#listDetailService.open()
+        this.#listDetailService.open();
     }
-
 }

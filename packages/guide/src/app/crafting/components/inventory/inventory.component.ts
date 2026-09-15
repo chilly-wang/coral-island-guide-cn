@@ -9,6 +9,7 @@ import { DataFilterComponent } from "../../../shared/components/data-filter/data
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { InventoryDetailsComponent } from "../inventory-details/inventory-details.component";
 import { ListDetailContainerComponent } from "../../../shared/components/list-detail-container/list-detail-container.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-inventory',
@@ -23,7 +24,8 @@ import { ListDetailContainerComponent } from "../../../shared/components/list-de
         MatTab,
         MatTabGroup,
         InventoryDetailsComponent,
-        ListDetailContainerComponent
+        ListDetailContainerComponent,
+        TranslatePipe
     ]
 })
 export class InventoryComponent extends BaseSelectableContainerComponent<CraftingRecipe> {

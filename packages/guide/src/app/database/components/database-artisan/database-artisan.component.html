@@ -4,7 +4,7 @@
 @if (artisanIngredient && artisanIngredient.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Usage in processing
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.USAGE_PROCESSING' | translate }}
             </app-database-header-button>
         </h3>
         <app-processor-table [dataSource]="artisanIngredient" showProcessor/>
@@ -13,7 +13,7 @@
 @if (artisanResult && artisanResult.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Processing</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.PROCESSING' | translate }}</app-database-header-button>
         </h3>
         <app-processor-table [dataSource]="artisanResult" showProcessor/>
     </app-expandable>

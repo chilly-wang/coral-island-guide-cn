@@ -1,7 +1,7 @@
 <app-data-filter [(showTable)]="showTable"/>
 @if (offeringAltar().offeringGroupRewardText) {
     <div class="bg-merino rounded-lg mb-4 text-lg font-semibold p-4">
-        Reward: {{ offeringAltar().offeringGroupRewardText | translate }}
+        {{ 'APP.LOCATION_DETAIL.REWARDS' | translate }}: {{ offeringAltar().offeringGroupRewardText | translate }}
     </div>
 }
 @if (!showTable) {
@@ -11,10 +11,10 @@
 
                  [class.bg-merino-300]="($safeNavigationMigration(activeOffering?.title)  | translate) === (offering.title | translate)"
                  class="rounded-lg bg-merino flex flex-col items-center gap-4 px-4 py-8 hover:bg-merino-200">
-                <img alt="{{offering.title | translate}} offering icon" height="128"
+                <img alt="{{ offering | localizedEntityName }}" height="128"
                      ngSrc="{{bundleAssetPath() + offering.imageName}}.webp"
                      width="128"/>
-                <div class="text-lg font-semibold">{{ offering.title | translate }}</div>
+                <div class="text-lg font-semibold">{{ offering | localizedEntityName }}</div>
             </div>
         }
     </div>
@@ -25,7 +25,7 @@
 
 @if (activeOffering && !showTable) {
     <div class="bg-merino rounded-lg mb-4 text-lg font-semibold p-4 my-8">
-        Rewards:
+        {{ 'APP.LOCATION_DETAIL.REWARDS' | translate }}:
     </div>
 
     <div class="icon-grid  mt-8">
@@ -40,9 +40,9 @@
     </div>
 
     <div class="bg-merino rounded-lg mb-4 text-lg font-semibold p-4 my-8">
-        {{ activeOffering.numOfItemRequired === -1 ? 'All' : activeOffering.numOfItemRequired }} of the
-        following
-        items are required:
+        {{ (activeOffering.numOfItemRequired === -1
+            ? 'APP.DYNAMIC.OFFERING.ALL_REQUIRED'
+            : 'APP.DYNAMIC.OFFERING.COUNT_REQUIRED') | translate: {count: activeOffering.numOfItemRequired} }}
     </div>
     <div class="icon-grid  mt-8">
 

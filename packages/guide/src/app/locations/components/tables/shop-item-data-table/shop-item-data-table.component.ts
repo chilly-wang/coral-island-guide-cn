@@ -1,14 +1,17 @@
 import { Component, effect, ChangeDetectionStrategy } from '@angular/core';
-import { BaseTableComponent } from "../../../../shared/components/base-table/base-table.component";
-import { ShopItemData } from "@ci/data-types";
-import { ResponsiveTableComponent } from "../../../../shared/components/responsive-table/responsive-table.component";
-import { MatTableModule } from "@angular/material/table";
-import { ItemIconComponent } from "../../../../shared/components/item-icon/item-icon.component";
-import { RouterLink } from "@angular/router";
-import { TownrankPipe } from "../../../../shared/pipes/townrank.pipe";
-import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { MoneyComponent } from "../../../../shared/components/money/money.component";
-import { TranslatePipe } from "@ngx-translate/core";
+import { BaseTableComponent } from '../../../../shared/components/base-table/base-table.component';
+import { ShopItemData } from '@ci/data-types';
+import { ResponsiveTableComponent } from '../../../../shared/components/responsive-table/responsive-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { ItemIconComponent } from '../../../../shared/components/item-icon/item-icon.component';
+import { RouterLink } from '@angular/router';
+import { TownrankPipe } from '../../../../shared/pipes/townrank.pipe';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { MoneyComponent } from '../../../../shared/components/money/money.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LocalizedDisplayPipe } from '../../../../shared/pipes/localized-display.pipe';
+
+import { LocalizedEntityNamePipe } from '../../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-shop-item-data-table',
@@ -16,6 +19,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        LocalizedEntityNamePipe,
         ResponsiveTableComponent,
         MatTableModule,
         ItemIconComponent,
@@ -25,27 +29,23 @@ import { TranslatePipe } from "@ngx-translate/core";
         MoneyComponent,
         MatSort,
         TranslatePipe,
-    ]
+        LocalizedDisplayPipe,
+    ],
 })
-export class ShopItemDataTableComponent extends BaseTableComponent<ShopItemData & {
-    shop?: { url: string; displayName: string }
-}> {
-    protected readonly BASE_DISPLAY_COLUMNS: string[] = [
-        'icon',
-        'displayName',
-        'townRank',
-        'price',
-        'sellPrice'
-    ];
+export class ShopItemDataTableComponent extends BaseTableComponent<
+    ShopItemData & {
+        shop?: { url: string; displayName: string };
+    }
+> {
+    protected readonly BASE_DISPLAY_COLUMNS: string[] = ['icon', 'displayName', 'townRank', 'price', 'sellPrice'];
 
     constructor() {
         super();
         effect(() => {
             if (this._dataSource().length && this._dataSource()[0].shop) {
                 this.displayedColumns.splice(2, 0, 'shop');
-                this.displayHeaderColumns = this.displayedColumns.filter(column => column !== 'icon');
+                this.displayHeaderColumns = this.displayedColumns.filter((column) => column !== 'icon');
             }
         });
     }
-
 }

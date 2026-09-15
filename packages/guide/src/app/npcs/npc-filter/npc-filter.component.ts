@@ -6,10 +6,11 @@ import { MatOption } from "@angular/material/autocomplete";
 import { MatSelect } from "@angular/material/select";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-npc-filter',
-    imports: [MatFormField, MatInput, MatLabel, MatOption, MatSelect, ReactiveFormsModule],
+    imports: [MatFormField, MatInput, MatLabel, MatOption, MatSelect, ReactiveFormsModule, TranslatePipe],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './npc-filter.component.html'
 })

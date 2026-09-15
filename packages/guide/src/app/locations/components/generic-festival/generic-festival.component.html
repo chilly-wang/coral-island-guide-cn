@@ -12,7 +12,7 @@
             <app-card>
                 <h1 class="mb-4 font-semibold text-3xl text-black flex items-center gap-x-4 ">
                     <app-ui-icon [uiIcon]="FESTIVAL_ICONS[festivalName]"/>
-                    {{ FESTIVAL_DISPLAY_NAMES[festivalName] }}
+                    {{ display.translate(FESTIVAL_DISPLAY_NAMES[festivalName], 'festival') }}
                 </h1>
                 @if (openingHours$) {
 
@@ -27,7 +27,7 @@
 
                 @for (shop of festivalData.shops; track shop) {
 
-                    <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ shop.title }}</h2>
+                    <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ shop | localizedEntityName }}</h2>
 
                     <app-data-filter [(showTable)]="showTable"/>
                     @if (!showTable) {

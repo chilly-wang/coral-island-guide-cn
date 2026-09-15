@@ -1,22 +1,26 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { BaseTableComponent } from "../../../../shared/components/base-table/base-table.component";
-import { TornPageData } from "@ci/data-types";
-import { SelectionModel } from "@angular/cdk/collections";
-import { MailComponent } from "../../mail/mail.component";
-import { MatTableModule } from "@angular/material/table";
-import { MatButton } from "@angular/material/button";
-import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { ResponsiveTableComponent } from "../../../../shared/components/responsive-table/responsive-table.component";
+import { BaseTableComponent } from '../../../../shared/components/base-table/base-table.component';
+import { TornPageData } from '@ci/data-types';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MailComponent } from '../../mail/mail.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButton } from '@angular/material/button';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { ResponsiveTableComponent } from '../../../../shared/components/responsive-table/responsive-table.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LocalizedEntityNamePipe } from '../../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-torn-pages-table',
     templateUrl: './torn-pages-table.component.html',
-    styles: [`
-        .expand-row {
-            --mat-table-row-item-container-height: 0;
-            --mat-table-row-item-label-text-size: 16px;
-        }
-    `],
+    styles: [
+        `
+            .expand-row {
+                --mat-table-row-item-container-height: 0;
+                --mat-table-row-item-label-text-size: 16px;
+            }
+        `,
+    ],
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
@@ -25,13 +29,12 @@ import { ResponsiveTableComponent } from "../../../../shared/components/responsi
         MatButton,
         MatSort,
         MatSortHeader,
-        MatTableModule
-    ]
+        MatTableModule,
+        TranslatePipe,
+        LocalizedEntityNamePipe,
+    ],
 })
 export class TornPagesTableComponent extends BaseTableComponent<TornPageData> {
-    protected expandedRows: SelectionModel<string> = new SelectionModel<string>(true, [])
-    protected readonly BASE_DISPLAY_COLUMNS: string[] = [
-        'title',
-        'expand'
-    ];
+    protected expandedRows: SelectionModel<string> = new SelectionModel<string>(true, []);
+    protected readonly BASE_DISPLAY_COLUMNS: string[] = ['title', 'expand'];
 }

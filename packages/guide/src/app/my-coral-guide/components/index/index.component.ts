@@ -30,6 +30,7 @@ import { CardComponent } from "../../../shared/components/card/card.component";
 import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { UserDataActionsComponent } from "../../user-data-actions/user-data-actions.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-index',
@@ -48,6 +49,7 @@ import { UserDataActionsComponent } from "../../user-data-actions/user-data-acti
         MatCheckbox,
         MatProgressSpinner,
         UserDataActionsComponent,
+        TranslatePipe,
     ]
 })
 export class IndexComponent extends BaseSelectableContainerComponent<MinimalItem | MinimalTagBasedItem> {

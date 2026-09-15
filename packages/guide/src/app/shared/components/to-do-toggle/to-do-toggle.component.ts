@@ -5,12 +5,14 @@ import { ItemEntry } from "../../types/item-entry.type";
 import { Quality, UiIcon } from '@ci/data-types';
 import { MatTooltip } from "@angular/material/tooltip";
 import { UiIconComponent } from "../ui-icon/ui-icon.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-to-do-toggle',
     imports: [
         MatTooltip,
         UiIconComponent,
+        TranslatePipe,
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './to-do-toggle.component.html'

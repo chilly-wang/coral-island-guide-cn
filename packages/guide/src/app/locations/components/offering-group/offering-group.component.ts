@@ -1,30 +1,33 @@
 import { Component, inject, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
-import { NgOptimizedImage } from "@angular/common";
-import { MinimalItem, MinimalTagBasedItem, Offering, OfferingAltar, Offerings } from "@ci/data-types";
-import { SettingsService } from "../../../shared/services/settings.service";
-import { ToDo } from "../../../core/types/to-do.type";
-import { DataFilterComponent } from "../../../shared/components/data-filter/data-filter.component";
-import { OfferingsTableComponent } from "../tables/offerings-table/offerings-table.component";
-import { ItemIconComponent } from "../../../shared/components/item-icon/item-icon.component";
-import { EntityKeyPipe } from "../../../shared/pipes/entity-key.pipe";
-import { TranslatePipe } from "@ngx-translate/core";
+import { NgOptimizedImage } from '@angular/common';
+import { MinimalItem, MinimalTagBasedItem, Offering, OfferingAltar, Offerings } from '@ci/data-types';
+import { SettingsService } from '../../../shared/services/settings.service';
+import { ToDo } from '../../../core/types/to-do.type';
+import { DataFilterComponent } from '../../../shared/components/data-filter/data-filter.component';
+import { OfferingsTableComponent } from '../tables/offerings-table/offerings-table.component';
+import { ItemIconComponent } from '../../../shared/components/item-icon/item-icon.component';
+import { EntityKeyPipe } from '../../../shared/pipes/entity-key.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-offering-group',
     imports: [
+        LocalizedEntityNamePipe,
         NgOptimizedImage,
         DataFilterComponent,
         OfferingsTableComponent,
         ItemIconComponent,
         EntityKeyPipe,
-        TranslatePipe
+        TranslatePipe,
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
-    templateUrl: './offering-group.component.html'
+    templateUrl: './offering-group.component.html',
 })
 export class OfferingGroupComponent {
-    readonly offeringAltar = input.required<OfferingAltar>()
-    readonly selectedEntity = input.required<MinimalItem | MinimalTagBasedItem | undefined>()
+    readonly offeringAltar = input.required<OfferingAltar>();
+    readonly selectedEntity = input.required<MinimalItem | MinimalTagBasedItem | undefined>();
     readonly selected = output<MinimalItem | MinimalTagBasedItem | undefined>();
     showTable = false;
     protected activeOffering?: Offerings;
@@ -34,13 +37,16 @@ export class OfferingGroupComponent {
 
     showDetails(selectedEntry?: Offering | MinimalItem | MinimalTagBasedItem) {
         if (selectedEntry) {
-            this.entryForToDo = 'item' in selectedEntry ? {
-                itemEntry: selectedEntry.item,
-                amount: selectedEntry.amount,
-                quality: selectedEntry.quality
-            } : {
-                itemEntry: (selectedEntry)
-            };
+            this.entryForToDo =
+                'item' in selectedEntry
+                    ? {
+                          itemEntry: selectedEntry.item,
+                          amount: selectedEntry.amount,
+                          quality: selectedEntry.quality,
+                      }
+                    : {
+                          itemEntry: selectedEntry,
+                      };
         } else {
             this.entryForToDo = undefined;
         }
@@ -50,6 +56,5 @@ export class OfferingGroupComponent {
         } else {
             this.selected.emit(selectedEntry);
         }
-
     }
 }

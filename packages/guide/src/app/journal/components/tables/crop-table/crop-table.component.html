@@ -9,59 +9,59 @@
 
             <ng-container matColumnDef="displayName">
                 <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell mat-sort-header>
-                    Output
+                    {{ 'APP.ITEM.OUTPUT' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap"
-                    mat-cell>{{ $safeNavigationMigration(element.dropData[0]?.item.displayName) | translate }}
+                    mat-cell>{{ $safeNavigationMigration(element.dropData[0]?.item) | localizedEntityName }}
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="size">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header> Size</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.ITEM.SIZE' | translate }}</th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                     {{ element.size.width }}x{{ element.size.length }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="season">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header> Seasons</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.ITEM.SEASONS' | translate }}</th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
-                    {{ (element.growableSeason.join(', ')) }}
+                    {{ element.growableSeason | localizedDisplay:'season' }}
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="regrow">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header> Regrow</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.ITEM.REGROW' | translate }}</th>
                 <td *matCellDef="let element" class="text-col text-right whitespace-nowrap" mat-cell>
                     @if (element.isRegrowable) {
-                        {{ [1, element.regrowableLength] | max }} days
+                        {{ [1, element.regrowableLength] | max }} {{ 'APP.DETAIL.DAYS' | translate }}
                     }
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="growTime">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header> Grow time</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.ITEM.GROW_TIME' | translate }}</th>
                 <td *matCellDef="let element" class="text-col text-right whitespace-nowrap" mat-cell>
-                    {{ element.growTime }} days
+                    {{ element.growTime }} {{ 'APP.DETAIL.DAYS' | translate }}
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="seed">
-                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header> Seed</th>
+                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.ITEM.SEED' | translate }}</th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                     <div class="flex gap-x-3 items-center">
                         <app-item-icon [itemName]="$safeNavigationMigration(element.item?.iconName)" class="!w-7"/>
-                        {{ element.readableName }}
+                        {{ element.item | localizedEntityName }}
                     </div>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="seedPrice">
-                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header> Seed buy price</th>
+                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.ITEM.SEED_BUY_PRICE' | translate }}</th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     <app-money [amount]="element.item.price"/>
                 </td>
@@ -69,7 +69,7 @@
 
 
             <ng-container matColumnDef="sellPrice">
-                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header> Sell price</th>
+                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.FILTER.SELL_PRICE' | translate }}</th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     <app-money [amount]="$safeNavigationMigration(element.dropData[0]?.item?.sellPrice)"/>
                 </td>

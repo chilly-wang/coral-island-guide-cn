@@ -9,16 +9,16 @@
 
             <ng-container matColumnDef="displayName">
                 <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell mat-sort-header>
-                    Offering
+                    {{ 'APP.LOCATION_DETAIL.OFFERING' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
-                    {{ element.offerings[0].title | translate }}
+                    {{ element.offerings[0] | localizedEntityName }}
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="altar">
-                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell mat-sort-header>Altar</th>
+                <th *matHeaderCellDef class="backdrop-blur-xl" mat-header-cell mat-sort-header>{{ 'APP.LOCATION_DETAIL.ALTAR' | translate }}</th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap" mat-cell>
                     {{ element.offeringGroupTitle | translate }}
                 </td>
@@ -26,27 +26,27 @@
 
 
             <ng-container matColumnDef="numOfItemRequired">
-                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell> Number of required Items</th>
+                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell>{{ 'APP.LOCATION_DETAIL.REQUIRED_COUNT' | translate }}</th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]"
-                    mat-cell>{{ element.offerings[0].numOfItemRequired === -1 ? 'All' : element.offerings[0].numOfItemRequired }}
+                    mat-cell>{{ element.offerings[0].numOfItemRequired === -1 ? ('APP.COMMON.ALL' | translate) : element.offerings[0].numOfItemRequired }}
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="requiredItems">
-                <th *matHeaderCellDef mat-header-cell> Required Items</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.LOCATION_DETAIL.REQUIRED_ITEMS' | translate }}</th>
                 <td *matCellDef="let element" class="list-col" mat-cell>
                     <app-table-item-list [itemList]="element.offerings[0].requiredItems" class="mb-3"/>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="rewards">
-                <th *matHeaderCellDef mat-header-cell> Rewards</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.LOCATION_DETAIL.REWARDS' | translate }}</th>
                 <td *matCellDef="let element" class="list-col w-[1%]" mat-cell>
                     <app-table-item-list [itemList]="element.offerings[0].rewards.items" class="mb-3"/>
                     @if (element.offerings[0].rewards.recipes.length) {
 
-                        <span class="text-black font-semibold mt-2"> Recipes</span>
+                        <span class="text-black font-semibold mt-2">{{ 'APP.LOCATION_DETAIL.RECIPES' | translate }}</span>
                         <app-table-item-list [itemList]="element.offerings[0].rewards.recipes" class="mb-3"/>
 
                     }

@@ -12,20 +12,20 @@
                     Output
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap"
-                    mat-cell>{{ $safeNavigationMigration(element.item?.displayName) | translate }}
+                    mat-cell>{{ $safeNavigationMigration(element.item) | localizedEntityName }}
                     ({{ element.amount }})
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="ingredients">
-                <th *matHeaderCellDef mat-header-cell> Ingredients</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.ITEM.INGREDIENTS' | translate }}</th>
                 <td *matCellDef="let element" class="list-col" mat-cell>
                     <app-table-item-list [itemList]="element |cookingRecipeIngredients"
                                          class="mb-3"/>
                     @if (element.eitherOrIngredients.length) {
 
-                        <span class="text-black mt-1"> Either of the following</span>
+                        <span class="text-black mt-1">{{ 'APP.DATABASE.EITHER_FOLLOWING' | translate }}</span>
 
                         @for (ingredients of element.eitherOrIngredients; track ingredients; let last = $last) {
 
@@ -40,7 +40,7 @@
 
                     @if (element.additionsToGenerics) {
 
-                        <span class="text-black mt-1"> The following counting as</span>
+                        <span class="text-black mt-1">{{ 'APP.DATABASE.FOLLOWING_COUNTS_AS' | translate }}</span>
 
                         @for (itemListItem of (element.additionsToGenerics | keyvalue); track itemListItem) {
 
@@ -51,7 +51,7 @@
                                     @if (item) {
                                         <div class="flex gap-x-3 items-center">
                                             <app-item-icon [itemName]="item.iconName" class="!w-7"/>
-                                            <span class="whitespace-nowrap">{{ item.displayName | translate }}</span>
+                                            <span class="whitespace-nowrap">{{ item | localizedEntityName }}</span>
                                         </div>
                                     }
 
@@ -70,7 +70,7 @@
             </ng-container>
 
             <ng-container matColumnDef="sellPrice">
-                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header> Sell price</th>
+                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.FILTER.SELL_PRICE' | translate }}</th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     <app-money [amount]="element.item.sellPrice"/>
                 </td>

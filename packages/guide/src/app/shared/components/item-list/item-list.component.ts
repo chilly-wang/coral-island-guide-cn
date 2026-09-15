@@ -1,25 +1,20 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { GenericEntry, ItemEntry } from '@ci/data-types';
-import { ItemIconComponent } from "../item-icon/item-icon.component";
-import { TranslatePipe } from "@ngx-translate/core";
-
+import { ItemIconComponent } from '../item-icon/item-icon.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LocalizedEntityNamePipe } from '../../pipes/localized-display.pipe';
 
 @Component({
     selector: 'app-item-list',
     templateUrl: './item-list.component.html',
 
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [
-        ItemIconComponent,
-        TranslatePipe
-    ]
+    imports: [ItemIconComponent, TranslatePipe, LocalizedEntityNamePipe],
 })
 export class ItemListComponent {
-
     readonly itemList = input.required<(ItemEntry | GenericEntry)[]>();
 
     protected isGenericEntry(e: ItemEntry | GenericEntry): e is GenericEntry {
         return 'genericItem' in e;
     }
-
 }

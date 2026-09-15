@@ -2,7 +2,8 @@ import { Component, input, output, ViewEncapsulation, ChangeDetectionStrategy } 
 import { GiftPreferences, MinimalItem, preferencesMap } from "@ci/data-types";
 import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
 import { InlineMinimalItemComponent } from "../../../shared/components/inline-minimal-item/inline-minimal-item.component";
-import { AddSpacesToPascalCasePipe } from "../../../shared/pipes/add-spaces-to-pascal-case.pipe";
+import { LocalizedDisplayPipe } from "../../../shared/pipes/localized-display.pipe";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-gifting-grid',
@@ -17,7 +18,8 @@ import { AddSpacesToPascalCasePipe } from "../../../shared/pipes/add-spaces-to-p
     imports: [
         UiIconComponent,
         InlineMinimalItemComponent,
-        AddSpacesToPascalCasePipe
+        LocalizedDisplayPipe,
+        TranslatePipe
     ]
 })
 export class GiftingGridComponent {

@@ -4,7 +4,7 @@
 @if (usedToCraft && usedToCraft.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Used to craft</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.USED_TO_CRAFT' | translate }}</app-database-header-button>
         </h3>
         <app-inventory-table [dataSource]="usedToCraft"/>
     </app-expandable>
@@ -12,7 +12,7 @@
 @if (craftedFrom && craftedFrom.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Crafting recipe</app-database-header-button>
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.CRAFTING_RECIPE' | translate }}</app-database-header-button>
         </h3>
         <app-inventory-table [dataSource]="craftedFrom"/>
     </app-expandable>

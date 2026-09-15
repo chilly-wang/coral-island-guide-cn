@@ -1,6 +1,6 @@
 @if (isInMusuemChecklist()) {
     <button (click)="toggle('museum')" [class.text-[#D1CAC0]]="!isActive('museum')">
-        <span>Donated</span>
+        <span>{{ 'APP.STATUS.DONATED' | translate }}</span>
         <div class="flex items-center justify-center p-2 text-[#D1CAC0]"
              [class.bg-[#9ABF71]]="isActive('museum')" [class.bg-[#EDE6DB]]="!isActive('museum')"
              [class.text-[#5D7443]]="isActive('museum')" [class.text-[#D1CAC0]]="!isActive('museum')">
@@ -10,7 +10,7 @@
 }
 @if (isInBoughtChecklist()) {
     <button class="" (click)="toggle('bought')" [class.text-[#D1CAC0]]="!isActive('bought')">
-        <span>Bought</span>
+        <span>{{ 'APP.CHECKLIST.BOUGHT' | translate }}</span>
         <div class="flex items-center justify-center p-2 text-[#D1CAC0]"
              [class.bg-[#6C8ED2]]="isActive('bought')" [class.bg-[#EDE6DB]]="!isActive('bought')"
              [class.text-[#404E94]]="isActive('bought')" [class.text-[#D1CAC0]]="!isActive('bought')">
@@ -20,7 +20,7 @@
 }
 @if (isInOfferingsChecklist()) {
     <button (click)="toggle('offerings')" [class.text-[#D1CAC0]]="!isActive('offerings')">
-        <span>Offered</span>
+        <span>{{ 'APP.CHECKLIST.OFFERED' | translate }}</span>
         <div class="flex items-center justify-center p-2 text-[#D1CAC0]"
              [class.bg-[#CBA76F]]="isActive('offerings')" [class.bg-[#EDE6DB]]="!isActive('offerings')"
              [class.text-[#786240]]="isActive('offerings')" [class.text-[#D1CAC0]]="!isActive('offerings')">
@@ -31,7 +31,7 @@
 
 @if (isInCookingRecipesChecklist()) {
     <button (click)="toggle('cooking-recipes')" [class.text-[#D1CAC0]]="!isActive('cooking-recipes')">
-        <span>Cooked</span>
+        <span>{{ 'APP.CHECKLIST.COOKED' | translate }}</span>
         <div class="flex items-center justify-center p-2 text-[#D1CAC0]"
              [class.bg-[#C18CE7]]="isActive('cooking-recipes')" [class.bg-[#EDE6DB]]="!isActive('cooking-recipes')"
              [class.text-[#804D7D]]="isActive('cooking-recipes')" [class.text-[#D1CAC0]]="!isActive('cooking-recipes')">
@@ -42,7 +42,7 @@
 
 @if (isInOrchestraZonesChecklist()) {
     <button (click)="toggle('orchestra-zones')" [class.text-[#D1CAC0]]="!isActive('orchestra-zones')">
-        <span>Offered</span>
+        <span>{{ 'APP.CHECKLIST.OFFERED' | translate }}</span>
         <div class="flex items-center justify-center p-2 text-[#D1CAC0]"
              [class.bg-[#C18CE7]]="isActive('orchestra-zones')" [class.bg-[#EDE6DB]]="!isActive('orchestra-zones')"
              [class.text-[#804D7D]]="isActive('orchestra-zones')" [class.text-[#D1CAC0]]="!isActive('orchestra-zones')">
@@ -54,7 +54,7 @@
 
 @if (isInShippedZonesChecklist()) {
     <button (click)="toggle('shipped')" [class.text-[#D1CAC0]]="!isActive('shipped')">
-        <span>Shipped</span>
+        <span>{{ 'APP.CHECKLIST.SHIPPED' | translate }}</span>
         <div class="flex items-center justify-center p-2 text-[#D1CAC0]"
              [class.bg-[#71BFBC]]="isActive('shipped')" [class.bg-[#EDE6DB]]="!isActive('shipped')"
              [class.text-[#436D74]]="isActive('shipped')" [class.text-[#D1CAC0]]="!isActive('shipped')">
@@ -65,7 +65,7 @@
 
 @if (isInCraftedZonesChecklist()) {
     <button (click)="toggle('crafted')" [class.text-[#D1CAC0]]="!isActive('crafted')">
-        <span>Crafted</span>
+        <span>{{ 'APP.CHECKLIST.CRAFTED' | translate }}</span>
         <div class="flex items-center justify-center p-2 text-[#D1CAC0]"
              [class.bg-[#E2C850]]="isActive('crafted')" [class.bg-[#EDE6DB]]="!isActive('crafted')"
              [class.text-[#946F30]]="isActive('crafted')" [class.text-[#D1CAC0]]="!isActive('crafted')">

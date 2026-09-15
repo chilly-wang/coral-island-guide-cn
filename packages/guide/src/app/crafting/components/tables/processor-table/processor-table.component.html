@@ -9,17 +9,17 @@
 
             <ng-container matColumnDef="outputName">
                 <th *matHeaderCellDef [attr.colspan]="2" class="backdrop-blur-xl" mat-header-cell mat-sort-header>
-                    Output
+                    {{ 'APP.ITEM.OUTPUT' | translate }}
                 </th>
                 <td *matCellDef="let element" class="text-col whitespace-nowrap"
-                    mat-cell>{{ $safeNavigationMigration(element.output.item?.displayName) | translate }}
+                    mat-cell>{{ $safeNavigationMigration(element.output.item) | localizedEntityName }}
                     ({{ element.output.amount }})
                 </td>
             </ng-container>
 
 
             <ng-container matColumnDef="ingredients">
-                <th *matHeaderCellDef mat-header-cell> Ingredients</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.ITEM.INGREDIENTS' | translate }}</th>
                 <td *matCellDef="let element" class="list-col" mat-cell>
                     <app-table-item-list [itemList]="element | itemProcessingIngredients" class="mb-3"/>
                 </td>
@@ -27,28 +27,28 @@
 
 
             <ng-container matColumnDef="sellPrice">
-                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header> Sell price</th>
+                <th *matHeaderCellDef class="whitespace-nowrap" mat-header-cell mat-sort-header>{{ 'APP.FILTER.SELL_PRICE' | translate }}</th>
                 <td *matCellDef="let element" class="text-col !text-right w-[1%]" mat-cell>
                     <app-money [amount]="element.output.item.sellPrice"/>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="processor">
-                <th *matHeaderCellDef mat-header-cell>Processor</th>
+                <th *matHeaderCellDef mat-header-cell>{{ 'APP.ITEM.PROCESSOR' | translate }}</th>
                 <td *matCellDef="let element" class="text-col w-[1%] whitespace-nowrap" mat-cell>
                     @if (processorMapping[element.machine.toLowerCase()]; as minimalItem) {
 
                         <a [routerLink]="['crafting/artisan', element.machine.toLowerCase()]"
                            class="flex gap-2 items-center">
                             <app-item-icon [itemName]="minimalItem.iconName" class="!w-7"/>
-                            <span class="ml-1 whitespace-nowrap underline">{{ minimalItem.displayName | translate }}</span>
+                            <span class="ml-1 whitespace-nowrap underline">{{ minimalItem | localizedEntityName }}</span>
                         </a>
 
 
                     }
                     @if (!processorMapping[element.machine.toLowerCase()]) {
 
-                        {{ element.machine | addSpacesToPascalCase | titlecase }}
+                        {{ element.machine | localizedDisplay:'processor' }}
 
                     }
 
@@ -56,7 +56,7 @@
             </ng-container>
 
             <ng-container matColumnDef="processingTime">
-                <th *matHeaderCellDef mat-header-cell mat-sort-header> Time</th>
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ 'APP.FILTER.TIME' | translate }}</th>
                 <td *matCellDef="let element" class="text-col w-[1%] whitespace-nowrap" mat-cell>
                     <app-processing-time [processingTime]="element"/>
                 </td>

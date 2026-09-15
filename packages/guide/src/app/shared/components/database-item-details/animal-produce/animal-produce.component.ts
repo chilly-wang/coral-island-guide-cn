@@ -1,20 +1,20 @@
 import { booleanAttribute, Component, input, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DatabaseItem } from "@ci/data-types";
-import { AddSpacesToPascalCasePipe } from "../../../pipes/add-spaces-to-pascal-case.pipe";
-import { ItemIconComponent } from "../../item-icon/item-icon.component";
-import { IsMinimalItemPipe } from "../../../pipes/is-minimal-item.pipe";
-import { TranslatePipe } from "@ngx-translate/core";
+import { KeyValuePipe } from '@angular/common';
+import { DatabaseItem } from '@ci/data-types';
+import { ItemIconComponent } from '../../item-icon/item-icon.component';
+import { IsMinimalItemPipe } from '../../../pipes/is-minimal-item.pipe';
+import { LocalizedEntityNamePipe } from '../../../pipes/localized-display.pipe';
+import { LocalizedDisplayPipe } from '../../../pipes/localized-display.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-animal-produce',
-    imports: [CommonModule, AddSpacesToPascalCasePipe, ItemIconComponent, IsMinimalItemPipe, TranslatePipe],
+    imports: [LocalizedEntityNamePipe, LocalizedDisplayPipe, TranslatePipe, KeyValuePipe, ItemIconComponent, IsMinimalItemPipe],
     changeDetection: ChangeDetectionStrategy.Eager,
-    templateUrl: './animal-produce.component.html'
+    templateUrl: './animal-produce.component.html',
 })
 export class AnimalProduceComponent {
-    readonly animal = input.required<NonNullable<DatabaseItem['producedByAnimal']>>()
+    readonly animal = input.required<NonNullable<DatabaseItem['producedByAnimal']>>();
     readonly shownItemId = input<string>();
-    readonly hideAnimal = input(false, {transform: booleanAttribute});
-
+    readonly hideAnimal = input(false, { transform: booleanAttribute });
 }

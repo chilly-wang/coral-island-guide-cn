@@ -1,13 +1,13 @@
 <app-card>
     <div cardActions class="card-actions">
-        <button (click)="listDetails.close()" matTooltip="Close">
+        <button (click)="listDetails.close()" [matTooltip]="'APP.COMMON.CLOSE' | translate">
             <app-ui-icon [uiIcon]="uiIcon.CROSS" class="!w-8 !h-8 hover:text-black focus-visible:text-black"/>
         </button>
     </div>
     <app-mail [mail]="mail()"/>
     @if (mail().effects?.length) {
         <div class="mt-6">
-            <div class="text-lg font-semibold">Effects:</div>
+            <div class="text-lg font-semibold">{{ 'APP.TABLE.EFFECTS' | translate }}:</div>
             @for (effect of mail().effects; track effect) {
                 <app-effect [effect]="effect"/>
             }

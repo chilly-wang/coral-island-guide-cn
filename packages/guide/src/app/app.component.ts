@@ -1,72 +1,36 @@
-import { afterNextRender, Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { DatabaseService } from './shared/services/database.service';
 import { combineLatest, Observable } from 'rxjs';
-import { ChangelogService } from "./changelog/changelog.service";
-import { MatDialog } from "@angular/material/dialog";
-import { ChangelogDialogComponent } from "./changelog/changelog-dialog/changelog-dialog.component";
-import { SettingsService } from "./shared/services/settings.service";
-import { UserDataService } from "./core/services/user-data.service";
-import { HeaderComponent } from "./core/components/header/header.component";
-import { AsyncPipe } from "@angular/common";
-import { RouterOutlet } from "@angular/router";
-import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { FooterComponent } from "./core/components/footer/footer.component";
-import { TranslateService } from "@ngx-translate/core";
-import { AvailableLanguage, AvailableLanguages } from "@ci/data-types";
+import { SettingsService } from './shared/services/settings.service';
+import { UserDataService } from './core/services/user-data.service';
+import { HeaderComponent } from './core/components/header/header.component';
+import { AsyncPipe } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { FooterComponent } from './core/components/footer/footer.component';
+import { TranslateService } from '@ngx-translate/core';
+import { AvailableLanguage, AvailableLanguages } from '@ci/data-types';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [
-        HeaderComponent,
-        AsyncPipe,
-        RouterOutlet,
-        MatProgressSpinner,
-        FooterComponent
-    ]
+    imports: [HeaderComponent, AsyncPipe, RouterOutlet, MatProgressSpinner, FooterComponent],
 })
 export class AppComponent {
-
     prefetchData$: Observable<any>;
-    #databaseService = inject(DatabaseService)
-    #changelogService = inject(ChangelogService)
-    #dialog = inject(MatDialog);
+    #databaseService = inject(DatabaseService);
     #settingsService = inject(SettingsService);
-
 
     constructor() {
         const settings = this.#settingsService.getSettings();
-        const usedLang: AvailableLanguage = 'en'
+        const usedLang: AvailableLanguage = 'en';
         const translate = inject(TranslateService);
         translate.addLangs([...AvailableLanguages]);
         translate.setFallbackLang(usedLang);
         translate.use(settings.language ?? usedLang);
         inject(UserDataService).read();
-
-        if (!settings.disableChangelogs) {
-            afterNextRender(() => {
-                this.#changelogService.getLatestChangelog().subscribe({
-                    next: changelog => {
-
-                        if (changelog.version === this.#changelogService.getLatestSeen()) return;
-
-                        const dialogRef = this.#dialog.open(ChangelogDialogComponent, {
-                            data: {changelog},
-                            hasBackdrop: true,
-                            width: '800px'
-                        });
-
-                        dialogRef.afterClosed().subscribe({
-                            next: () => {
-                                this.#changelogService.setLatestSeen(changelog)
-                            }
-                        })
-                    }
-                })
-            })
-        }
 
         this.prefetchData$ = combineLatest([
             this.#databaseService.fetchItems$(),
@@ -75,5 +39,4 @@ export class AppComponent {
             this.#databaseService.fetchCookingUtensilMapping$(),
         ]);
     }
-
 }

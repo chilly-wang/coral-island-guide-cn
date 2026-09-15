@@ -2,20 +2,16 @@
     @if (!shouldHideImportantNote) {
         <app-card class="my-3">
             <div class="prose lg:prose-xl">
-                <h2>Important note</h2>
-                <p>The item list loads a lot of stuff, this may take a while.
-                    The list below shows everything, that got not filtered beforehand.
-                    Some of those items will never be obtainable as they only provide a technical purpose.
-                    The information shown per item are as complete as the rest of this website.
-                    When new features get added, the details in here will expand as well.</p>
-                <button (click)="hideImportantNote()" class="btn btn-secondary">Got it!</button>
+                <h2>{{ 'APP.DATABASE.IMPORTANT_NOTE' | translate }}</h2>
+                <p>{{ 'APP.DATABASE.IMPORTANT_NOTE_TEXT' | translate }}</p>
+                <button (click)="hideImportantNote()" class="btn btn-secondary">{{ 'APP.DATABASE.GOT_IT' | translate }}</button>
             </div>
         </app-card>
     }
 
 
     <mat-form-field class="semi-transparent-form-field my-3">
-        <mat-label>Search term</mat-label>
+        <mat-label>{{ 'APP.COMMON.SEARCH' | translate }}</mat-label>
         <input [formControl]="searchTermControl" matInput/>
     </mat-form-field>
 

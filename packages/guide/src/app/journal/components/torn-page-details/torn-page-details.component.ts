@@ -4,6 +4,8 @@ import { ListDetailService } from "../../../shared/components/list-detail-contai
 import { TornPageComponent } from "../torn-page/torn-page.component";
 import { UiIconComponent } from "../../../shared/components/ui-icon/ui-icon.component";
 import { CardComponent } from "../../../shared/components/card/card.component";
+import { MatTooltip } from "@angular/material/tooltip";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-torn-page-details',
@@ -13,7 +15,9 @@ import { CardComponent } from "../../../shared/components/card/card.component";
     imports: [
         TornPageComponent,
         UiIconComponent,
-        CardComponent
+        CardComponent,
+        MatTooltip,
+        TranslatePipe
     ]
 })
 export class TornPageDetailsComponent {

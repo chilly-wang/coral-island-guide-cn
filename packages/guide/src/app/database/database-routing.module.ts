@@ -5,7 +5,7 @@ export const routes: Routes = [
     {
         path: '',
         component: DatabaseComponent,
-        title: 'Database'
+        title: 'APP.ROUTE.DATABASE'
     },
 
 ];

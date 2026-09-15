@@ -27,7 +27,7 @@ export class BaseJournalPageComponent<D extends ({
     readonly matTabGroup = viewChild(MatTabGroup);
 
     uiIcon = UiIcon;
-    tabs: { title: string; data: Observable<D[]> }[] = [];
+    tabs: { title: string; translationKey?: string; data: Observable<D[]> }[] = [];
 
     formControl: FormGroup<FilterForm>;
     mobileQuery: MediaQueryList;

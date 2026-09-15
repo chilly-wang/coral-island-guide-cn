@@ -1,12 +1,12 @@
 <app-sidebar-container>
     <app-module-sidebar>
-        <app-module-sidebar-item [uiIcon]="UI_ICONS.FARMING" label="Produce" routerLink="produce/crops"/>
-        <app-module-sidebar-item [uiIcon]="UI_ICONS.CATCHING" label="Caught" routerLink="caught/fish"/>
-        <app-module-sidebar-item [uiIcon]="UI_ICONS.ARTISAN" label="Found" routerLink="found/artifacts"/>
-        <app-module-sidebar-item [uiIcon]="UI_ICONS.CLOTHING" label="Clothing" routerLink="clothing/back"/>
-        <app-module-sidebar-item [uiIcon]="UI_ICONS.BESTIARY" label="Bestiary" routerLink="bestiary"/>
-        <app-module-sidebar-item [uiIcon]="UI_ICONS.NOTES" label="Notes" routerLink="notes/letters"/>
-        <app-module-sidebar-item [uiIcon]="UI_ICONS.BADGES" label="Badges" routerLink="achievements"/>
+        <app-module-sidebar-item [uiIcon]="UI_ICONS.FARMING" [label]="'APP.JOURNAL.PRODUCE' | translate" routerLink="produce/crops"/>
+        <app-module-sidebar-item [uiIcon]="UI_ICONS.CATCHING" [label]="'APP.JOURNAL.CAUGHT' | translate" routerLink="caught/fish"/>
+        <app-module-sidebar-item [uiIcon]="UI_ICONS.ARTISAN" [label]="'APP.JOURNAL.FOUND' | translate" routerLink="found/artifacts"/>
+        <app-module-sidebar-item [uiIcon]="UI_ICONS.CLOTHING" [label]="'APP.JOURNAL.CLOTHING' | translate" routerLink="clothing/back"/>
+        <app-module-sidebar-item [uiIcon]="UI_ICONS.BESTIARY" [label]="'APP.JOURNAL.BESTIARY' | translate" routerLink="bestiary"/>
+        <app-module-sidebar-item [uiIcon]="UI_ICONS.NOTES" [label]="'APP.JOURNAL.NOTES' | translate" routerLink="notes/letters"/>
+        <app-module-sidebar-item [uiIcon]="UI_ICONS.BADGES" [label]="'APP.JOURNAL.BADGES' | translate" routerLink="achievements"/>
     </app-module-sidebar>
     <router-outlet class="hidden"/>
 </app-sidebar-container>

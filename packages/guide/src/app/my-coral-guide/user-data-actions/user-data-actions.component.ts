@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, linkedSignal, untracked, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, effect, inject, input, linkedSignal, untracked, ChangeDetectionStrategy } from '@angular/core';
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatOption, MatSelect } from "@angular/material/select";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
@@ -10,6 +10,7 @@ import { DeleteDialogComponent } from "./delete-dialog/delete-dialog.component";
 import { AddDialogComponent } from "./add-dialog/add-dialog.component";
 import { UiIconComponent } from "../../shared/components/ui-icon/ui-icon.component";
 import { UiIcon } from "@ci/data-types";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-user-data-actions',
@@ -22,7 +23,8 @@ import { UiIcon } from "@ci/data-types";
         UiIconComponent,
         MatMenu,
         MatMenuTrigger,
-        MatMenuItem
+        MatMenuItem,
+        TranslatePipe
     ],
     templateUrl: './user-data-actions.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
@@ -31,6 +33,7 @@ import { UiIcon } from "@ci/data-types";
     }
 })
 export class UserDataActionsComponent {
+    readonly transferOnly = input(false);
     protected readonly UiIcon = UiIcon;
     readonly #userDataService = inject(UserDataService);
     protected readonly options = computed(() => this.#userDataService.userData().data);

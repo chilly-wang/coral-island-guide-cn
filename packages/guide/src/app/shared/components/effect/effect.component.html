@@ -1,117 +1,50 @@
 @let eff = effect();
 
-@if (eff.type === 'BoostMaxStamina') {
-    Increases max stamina
-}
-@if (eff.type === 'ChangeAppearancePotion') {
-    Change appearance
-}
-@if (eff.type === 'BoostMaxHealth') {
-    Increases max health
-}
 @if (eff.type === 'AddItemToInventory') {
-
-    Adds {{ (eff.meta.quantity ?? 1) > 1 ? eff.meta.quantity + 'x ' : '' }}
-    <app-item-icon [itemName]="eff.meta.item.iconName" class="!w-7 -my-1 translate-y-1 !inline-block"/>
-    {{ eff.meta.item.displayName | translate }} to inventory
-
-}
-@if (eff.type === 'UnlockCraftingRecipe') {
     <div>
-        Unlocks
-        <app-item-icon [itemName]="eff.meta.item.iconName" class="!w-7 ml-1 -my-1 translate-y-1 !inline-block"/>
-        {{ eff.meta.item.displayName | translate }} crafting recipe
+        {{ 'APP.DYNAMIC.EFFECT.ADD_ITEM_PREFIX' | translate: {quantity: (eff.meta.quantity ?? 1)} }}
+        <app-item-icon [itemName]="eff.meta.item.iconName" class="!w-7 -my-1 translate-y-1 !inline-block"/>
+        {{ 'APP.DYNAMIC.EFFECT.ADD_ITEM_SUFFIX' | translate: {item: (eff.meta.item | localizedEntityName)} }}
     </div>
-}
-@if (eff.type === 'UnlockCookingRecipe') {
+} @else if (eff.type === 'UnlockCraftingRecipe' || eff.type === 'UnlockCookingRecipe') {
     <div>
-        Unlocks
+        {{ 'APP.DYNAMIC.EFFECT.UNLOCK_PREFIX' | translate }}
         <app-item-icon [itemName]="eff.meta.item.iconName" class="!w-7 ml-1 -my-1 translate-y-1 !inline-block"/>
-        {{ eff.meta.item.displayName | translate }} cooking recipe
+        {{ (eff.type === 'UnlockCraftingRecipe' ? 'APP.DYNAMIC.EFFECT.CRAFTING_RECIPE' : 'APP.DYNAMIC.EFFECT.COOKING_RECIPE') | translate: {item: (eff.meta.item | localizedEntityName)} }}
     </div>
-}
-@if (eff.type === 'UnlockCookingUtensil') {
-
-    Unlocks {{ eff.meta.utensil }} utensil
-
-}
-@if (eff.type === 'SetQuestFactValue') {
-
-    Sets quests fact '{{ eff.meta.factName }}'
-
-}
-@if (eff.type === 'ConsumeItemMastery') {
-
-    Unlocks 1 skill point for {{ eff.meta.mastery }} mastery
-
-}
-@if (eff.type === 'VaryMoney') {
+} @else if (eff.type === 'VaryMoney') {
     <div>
-        Adds
+        {{ 'APP.DYNAMIC.EFFECT.ADD_MONEY' | translate }}
         <app-money [amount]="eff.meta.amount" class="!w-7 -my-1 translate-y-1 ml-1 !inline-block"/>
     </div>
-}
-@if (eff.type === 'RemoveItemFromInventory') {
+} @else if (eff.type === 'RemoveItemFromInventory') {
     <div>
-        Removes {{ eff.meta.quantity }}x
+        {{ 'APP.DYNAMIC.EFFECT.REMOVE_ITEMS' | translate: {quantity: eff.meta.quantity} }}
         @if (hasMinimalItem(eff.meta)) {
-
             <app-item-icon [itemName]="eff.meta.item.iconName"
                            class="!w-7 ml-1 -my-1 translate-y-1 !inline-block"/>
-            {{ eff.meta.item.displayName | translate }}
-
+            {{ eff.meta.item | localizedEntityName }}
         } @else if ('tags' in eff.meta) {
-
-            items with tags {{ eff.meta.tags.join(', ') }}
-
+            {{ 'APP.DYNAMIC.EFFECT.WITH_TAGS' | translate: {tags: eff.meta.tags.join(', ')} }}
         } @else if ('category' in eff.meta) {
-
-            items of category {{ eff.meta.category | translate }}
-
+            {{ 'APP.DYNAMIC.EFFECT.OF_CATEGORY' | translate: {category: (eff.meta.category | localizedDisplay:'category')} }}
         }
-
     </div>
-}
-@if (eff.type === 'SendMailToPlayer') {
-
-    Sends mail '<a [queryParams]="{selectedId: eff.meta.mail.mailId}"
-                   [routerLink]="['/journal', 'notes', 'letters']"
-                   class="underline">{{ eff.meta.mail.title }}</a>'
-    {{ eff.meta.dayDelay > 0 ? ' after ' + eff.meta.dayDelay + ' day(s)' : '' }}
-
-}
-@if (eff.type === 'SetQuestActive') {
-
-    Activates quest '{{ eff.meta.questId }}'
-
-}
-@if (eff.type === 'SetQuestCompleted') {
-
-    Completes quest '{{ eff.meta.questId }}'
-
-}
-@if (eff.type === 'UpdateNPCSchedule') {
-
-    Updates schedules of NPCs: '{{ eff.meta.npcIds.join(', ') }}'
-
-}
-@if (eff.type === 'ChangeObjectState') {
-
-    Sets state of '{{ eff.meta.customName ?? eff.meta.id }}' to '{{ eff.meta.state }}'
-
-}
-@if (eff.type === 'UnlockSpecialItem') {
-
+} @else if (eff.type === 'SendMailToPlayer') {
+    {{ 'APP.DYNAMIC.EFFECT.SEND_MAIL_PREFIX' | translate }}
+    <a [queryParams]="{selectedId: eff.meta.mail.mailId}"
+       [routerLink]="['/journal', 'notes', 'letters']"
+       class="underline">{{ eff.meta.mail | localizedEntityName }}</a>
+    @if (eff.meta.dayDelay > 0) {
+        {{ 'APP.DYNAMIC.EFFECT.AFTER_DAYS' | translate: {days: eff.meta.dayDelay} }}
+    }
+} @else if (eff.type === 'UnlockSpecialItem') {
     <div>
-        Unlocks special item
+        {{ 'APP.DYNAMIC.EFFECT.UNLOCK_SPECIAL_ITEM' | translate }}
         <app-item-icon [itemName]="eff.meta.item.iconName"
-                       class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5  !inline-block"/>
-        {{ eff.meta.item.displayName }}
+                       class="!w-7 -my-1 translate-y-1 ml-1 mr-0.5 !inline-block"/>
+        {{ eff.meta.item | localizedEntityName }}
     </div>
-
-
-}
-
-@if (eff.type === 'MarkDinoHologramRewardClaimed') {
-    Marks dino hologram '{{ eff.meta.dinoName }}' as claimed
+} @else {
+    {{ dynamicText.formatEffectText(eff) }}
 }

@@ -1,7 +1,7 @@
 <header class="bg-merino-200 px-[--cg-card-padding] py-3 rounded-t-[--cg-card-radius] relative mt-2 font-semibold">
     <div class="flex flex-col">
-        <span class="text-2xl text-merino-950">{{ attraction().contractors.contractor | translate }}</span>
-        <span class="text-lg opacity-70 leading-none">Contractor</span>
+        <span class="text-2xl text-merino-950">{{ attraction().contractors.contractor | localizedEntityName }}</span>
+        <span class="text-lg opacity-70 leading-none">{{ 'APP.LOCATION_DETAIL.CONTRACTOR' | translate }}</span>
     </div>
 
     <div class="flex flex-row xl:-space-x-10 -space-x-8 absolute bottom-0 right-0">
@@ -19,29 +19,29 @@
         <span class="text-2xl text-black">  {{ attraction().name | translate }}</span>
 
 
-        <span class="mt-auto text-lg ">{{ attraction().daysToComplete }} days</span>
+        <span class="mt-auto text-lg ">{{ attraction().daysToComplete }} {{ 'APP.DETAIL.DAYS' | translate }}</span>
     </div>
     <hr class="my-3">
-    <span class="text-lg">Rewards</span>
+    <span class="text-lg">{{ 'APP.LOCATION_DETAIL.REWARDS' | translate }}</span>
     <div class="bg-[#ede6db] rounded-lg p-1 mb-2">
         <div class="flex gap-2 items-center text-merino-900 text-lg">
             <app-ui-icon [uiIcon]="UiIcon.HEART" class="!size-8 text-merino-900"/>
-            Friendship increase
+            {{ 'APP.DYNAMIC.ATTRACTION.FRIENDSHIP_INCREASE' | translate }}
         </div>
         <div class="text-merino-800 opacity-80">
             @for (npc of attraction().rewards.heartPoints; track npc.key) {
-                {{ npc.characterName | translate }}{{ $last ? '' : ',' }}
+                {{ npc | localizedEntityName }}{{ $last ? '' : ',' }}
             }
         </div>
 
     </div>
 
-    <span class="text-lg">Requirements</span>
+    <span class="text-lg">{{ 'APP.LOCATION_DETAIL.REQUIREMENTS' | translate }}</span>
     <app-item-list [itemList]="attraction().requirements" class="mb-3"/>
 
     @if (attraction().perkData.length > 0) {
         <div class="my-3">
-            <span class="text-lg">Project Perk(s)</span>
+            <span class="text-lg">{{ 'APP.LOCATION_DETAIL.PROJECT_PERKS' | translate }}</span>
             <div class="space-y-2">
                 @for (perk of attraction().perkData; track perk.description) {
                     <div class=" flex items-center gap-2">

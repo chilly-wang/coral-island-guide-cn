@@ -8,6 +8,7 @@ import { ModuleSidebarItemComponent } from "../shared/components/module-sidebar-
 import { RouterOutlet } from "@angular/router";
 import { AsyncPipe } from "@angular/common";
 import { ModuleSidebarComponent } from "../shared/components/module-sidebar/module-sidebar.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-crafting',
@@ -19,7 +20,8 @@ import { ModuleSidebarComponent } from "../shared/components/module-sidebar/modu
         ModuleSidebarItemComponent,
         ModuleSidebarComponent,
         RouterOutlet,
-        AsyncPipe
+        AsyncPipe,
+        TranslatePipe
     ]
 })
 export class CraftingComponent {

@@ -1,0 +1,10 @@
+<h1 class="font-xl font-bold" mat-dialog-title>{{ dialogData.titleKey | translate }}</h1>
+<mat-dialog-content class="prose max-w-full">
+    <p>{{ dialogData.textKey | translate }}</p>
+</mat-dialog-content>
+<mat-dialog-actions class="!justify-between">
+    <button class="btn-amber" type="button" [matDialogClose]="false">{{ 'APP.COMMON.CANCEL' | translate }}</button>
+    <button class="btn-danger" type="button" [matDialogClose]="true">
+        {{ 'APP.COMMON.CONFIRM_RESET' | translate }}
+    </button>
+</mat-dialog-actions>
