@@ -52,6 +52,22 @@
       },
       "configurations": {
         "production": {
+          "assets": [
+            "packages/guide/src/favicon.ico",
+            "packages/guide/src/favicon-16x16.png",
+            "packages/guide/src/favicon-32x32.png",
+            "packages/guide/src/apple-touch-icon.png",
+            {
+              "glob": "**/*",
+              "input": "packages/guide/src/assets",
+              "output": "assets",
+              "ignore": ["beta/**/*"]
+            },
+            "packages/guide/src/manifest.webmanifest",
+            "packages/guide/src/CNAME",
+            "packages/guide/src/CHANGELOG.md",
+            "packages/guide/src/assets/latest-changelog.md"
+          ],
           "budgets": [
             {
               "type": "initial",
