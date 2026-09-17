@@ -33,9 +33,9 @@ export class PageTitleService extends TitleStrategy {
                 .split(' - ')
                 .map(part => part.startsWith('APP.') ? this.translate.instant(part) : this.display.translate(part, 'route'))
                 .join(' - ');
-            this.title.setTitle(`${translatedTitle} - Coral Guide`);
+            this.title.setTitle(`${translatedTitle} - 珊瑚岛手册`);
         } else {
-            this.title.setTitle(`Coral Guide`);
+            this.title.setTitle(`珊瑚岛手册`);
         }
     }
 }

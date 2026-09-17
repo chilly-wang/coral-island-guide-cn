@@ -1,4 +1,5 @@
-import { Component, computed, inject, viewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, computed, inject, viewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { NpcFavoritesService } from '../../../core/services/npc-favorites.service';
 import { DatabaseService } from '../../../shared/services/database.service';
 import { UiIcon } from '@ci/data-types';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -38,6 +39,8 @@ import { EntitySearchService } from '../../../shared/services/entity-search.serv
     ],
 })
 export class NpcListComponent {
+    readonly favorites = inject(NpcFavoritesService);
+    readonly romanceOnly = signal(false);
     npcFilter = viewChild(NpcFilterComponent);
     protected readonly uiIcon = UiIcon;
     readonly #entitySearch = inject(EntitySearchService);
@@ -56,12 +59,14 @@ export class NpcListComponent {
         const searchValue = this.#searchValueChanges();
         const sortValue = this.#sortValueChanges();
 
-        return this.#filterNPCs(
+        const filtered = this.#filterNPCs(
             npcs,
             searchValue,
             sortValue,
             (npc) => this.#entitySearch.getLocalizedName(npc),
             (npc) => this.#entitySearch.getSearchTerms(npc),
-        );
+        ).filter(npc => !this.romanceOnly() || npc.isDateable);
+        const pinned = new Set(this.favorites.keys());
+        return [...filtered.filter(npc => pinned.has(npc.key)), ...filtered.filter(npc => !pinned.has(npc.key))];
     });
 }

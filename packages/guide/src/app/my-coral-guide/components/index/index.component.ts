@@ -1,4 +1,5 @@
 import { Component, computed, effect, inject, Signal, signal, untracked, ChangeDetectionStrategy } from '@angular/core';
+import { CaptureToggleComponent } from '../../../shared/components/capture-toggle/capture-toggle.component';
 import { DashboardService } from "../../services/dashboard.service";
 import { forkJoin, map, Observable, tap } from "rxjs";
 import {
@@ -38,6 +39,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        CaptureToggleComponent,
         BirthdayDashboardComponent,
         ListDetailContainerComponent,
         ItemCardSwitchComponent,

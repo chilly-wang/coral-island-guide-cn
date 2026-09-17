@@ -1,5 +1,6 @@
 {
   "APP": {
+    "COLLECTION": {"ALL": "全部", "UNCAPTURED": "未捕获", "CAPTURED": "已捕获", "TOGGLE": "切换捕获状态", "ROMANCEABLE": "可恋爱", "PIN": "置顶", "PINNED": "已置顶", "CHECKLIST": "捕获清单"},
     "BRAND": {
       "NAME": "珊瑚岛手册",
       "LOGO_ALT": "珊瑚岛手册 Logo"
@@ -70,7 +71,8 @@
       "AUTHOR": "作者：南溟北榠",
       "ORIGINAL_AUTHOR": "原 Coral Guide 作者：Koenig",
       "GAME_VERSION": "游戏数据版本（Steam）：{version}",
-      "SOURCE_CODE": "在 GitHub 查看源码"
+      "CN_SOURCE": "珊瑚岛手册 GitHub 地址",
+      "SOURCE_CODE": "原项目 GitHub 地址"
     },
     "FILTER": {
       "SEASON": "季节",

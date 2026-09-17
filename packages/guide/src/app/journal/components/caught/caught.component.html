@@ -15,6 +15,15 @@
                 [parentFormGroup]="formControl"
                 [locations]="getLocations(syncedData)"
             />
+            @let visibleData = filterCaptures(syncedData);
+            @if (!showMap) {
+                <div class="flex flex-wrap gap-2 mb-5">
+                    @for (status of captureFilters; track status) {
+                        <button type="button" class="btn whitespace-nowrap" [class.btn-secondary]="captureFilter() === status"
+                            [attr.aria-pressed]="captureFilter() === status" (click)="captureFilter.set(status)">{{ 'APP.COLLECTION.' + status | translate }}</button>
+                    }
+                </div>
+            }
             @if (showMap) {
 
             <div class="spawn-zone-map-wrapper">
@@ -30,19 +39,22 @@
             } @else if (!showTable) {
 
             <div class="icon-grid">
-                @for (entry of syncedData; track entry) {
+                @for (entry of visibleData; track entry.item.id) {
+                <div class="icon-grid-item flex flex-col items-center gap-1" [class.selected-icon]="selectedEntity?.item?.id === entry.item.id">
                 <app-item-icon
                     [itemName]="entry.item.iconName"
                     (click)="showDetails(entry)"
                     [class.selected-icon]="selectedEntity?.item?.id === entry.item.id"
-                    class="icon-grid-item"
+                    class="cursor-pointer"
                 />
+                <app-capture-toggle class="text-white" [class.text-black]="selectedEntity?.item?.id === entry.item.id" [compact]="true" [itemId]="entry.item.id" [itemName]="entry.item | localizedEntityName" />
+                </div>
                 }
             </div>
 
             } @else {
 
-            <app-caught-table [dataSource]="syncedData" />
+            <app-caught-table [dataSource]="visibleData" />
 
             } }
         </mat-tab>

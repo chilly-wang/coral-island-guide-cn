@@ -1,4 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { CapturedChecklistService } from '../../../core/services/checklists/captured-checklist.service';
+import { CaptureToggleComponent } from '../../../shared/components/capture-toggle/capture-toggle.component';
+import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
 import { Critter, Fish, Season, Seasons, Weather, Weathers } from '@ci/data-types';
 import { BaseJournalPageComponent } from '../base-journal-page/base-journal-page.component';
 import { getTruthyValues } from '@ci/util';
@@ -20,6 +23,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        CaptureToggleComponent,
+        LocalizedEntityNamePipe,
         ListDetailContainerComponent,
         CaughtDetailsComponent,
         MatTabGroup,
@@ -32,6 +37,18 @@ import { TranslatePipe } from '@ngx-translate/core';
     ],
 })
 export class CaughtComponent extends BaseJournalPageComponent<Fish | Critter> {
+    readonly captures = inject(CapturedChecklistService);
+    readonly captureFilter = signal('ALL');
+    readonly captureFilters = ['ALL', 'UNCAPTURED', 'CAPTURED'];
+
+    filterCaptures(entries: (Fish | Critter)[]): (Fish | Critter)[] {
+        return entries.filter(entry => this.captureFilter() === 'ALL' ||
+            this.captures.isChecked(entry.item.id) === (this.captureFilter() === 'CAPTURED'));
+    }
+
+    // Route using stable English tab IDs also works after changing UI language.
+    override urlPathFromLabel = () => ['fish', 'insects', 'seacritters'][this.selectedTabIndex()];
+
     private readonly SEA_CRITTERS_INDEX = 2;
     protected showMap = false;
     protected readonly spawnZoneMapPaths = [

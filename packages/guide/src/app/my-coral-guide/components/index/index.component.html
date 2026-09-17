@@ -49,11 +49,12 @@
                         <app-item-icon
                                 (click)="showDetails({id: entry.entry.id, displayName: '', iconName: entry.entry.iconName})"
                                 [itemName]="entry.entry.iconName"/>
+                        <app-capture-toggle class="text-white text-center my-1" [itemId]="entry.entry.id" />
                         <label class="text-white flex justify-center" for="entry-{{entry.entry.id}}-input">
                             <mat-checkbox class="flex" id="entry-{{entry.entry.id}}"
                                           [checked]="entry.completed"
                                           (change)="updateChecklist($event, entry.entry.id); entry.completed = !entry.completed"
-                                          name="entry-{{entry.entry.id}}"/>
+                                          name="entry-{{entry.entry.id}}">{{ 'APP.STATUS.DONATED' | translate }}</mat-checkbox>
                         </label>
                     </div>
                 } @empty {
@@ -74,11 +75,12 @@
                         <app-item-icon
                                 (click)="showDetails({id: entry.entry.id, displayName: '', iconName: entry.entry.iconName})"
                                 [itemName]="entry.entry.iconName"/>
+                        <app-capture-toggle class="text-white text-center my-1" [itemId]="entry.entry.id" />
                         <label class="text-white flex justify-center" for="entry-{{entry.entry.id}}-input">
                             <mat-checkbox class="flex" id="entry-{{entry.entry.id}}"
                                           [checked]="entry.completed"
                                           (change)="updateChecklist($event, entry.entry.id); entry.completed = !entry.completed"
-                                          name="entry-{{entry.entry.id}}"/>
+                                          name="entry-{{entry.entry.id}}">{{ 'APP.STATUS.DONATED' | translate }}</mat-checkbox>
                         </label>
                     </div>
                 } @empty {
@@ -99,11 +101,12 @@
                         <app-item-icon
                                 (click)="showDetails({id: entry.entry.id, displayName: '', iconName: entry.entry.iconName})"
                                 [itemName]="entry.entry.iconName"/>
+                        <app-capture-toggle class="text-white text-center my-1" [itemId]="entry.entry.id" />
                         <label class="text-white flex justify-center" for="entry-{{entry.entry.id}}-input">
                             <mat-checkbox class="flex" id="entry-{{entry.entry.id}}"
                                           [checked]="entry.completed"
                                           (change)="updateChecklist($event, entry.entry.id); entry.completed = !entry.completed"
-                                          name="entry-{{entry.entry.id}}"/>
+                                          name="entry-{{entry.entry.id}}">{{ 'APP.STATUS.DONATED' | translate }}</mat-checkbox>
                         </label>
                     </div>
                 } @empty {

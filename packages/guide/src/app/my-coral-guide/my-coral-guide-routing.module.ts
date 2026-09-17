@@ -7,6 +7,11 @@ export const routes: Routes = [
         loadComponent: () => import('./my-coral-guide.component').then(m => m.MyCoralGuideComponent),
         children: [
             {
+                path: 'captured/:tabName',
+                loadComponent: () => import('../journal/components/caught/caught.component').then(m => m.CaughtComponent),
+                title: 'APP.COLLECTION.CHECKLIST'
+            },
+            {
                 path: '', loadComponent: () => import('./components/index/index.component').then(m => m.IndexComponent)
             },
             {

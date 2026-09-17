@@ -27,6 +27,7 @@ import { QualityGridComponent } from '../quality-grid/quality-grid.component';
 import { ItemIconComponent } from '../item-icon/item-icon.component';
 import { CardComponent } from '../card/card.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CaptureToggleComponent } from '../capture-toggle/capture-toggle.component';
 import { ChecklistToggles } from './checklist-toggles';
 import { LocalizedDisplayPipe, LocalizedEntityNamePipe } from '../../pipes/localized-display.pipe';
 
@@ -47,6 +48,7 @@ import { LocalizedDisplayPipe, LocalizedEntityNamePipe } from '../../pipes/local
         CardComponent,
         TranslatePipe,
         ChecklistToggles,
+        CaptureToggleComponent,
         LocalizedDisplayPipe,
         LocalizedEntityNamePipe,
     ],

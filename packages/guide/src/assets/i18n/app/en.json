@@ -1,5 +1,6 @@
 {
   "APP": {
+    "COLLECTION": {"ALL": "All", "UNCAPTURED": "Not caught", "CAPTURED": "Caught", "TOGGLE": "Toggle capture status", "ROMANCEABLE": "Romanceable", "PIN": "Pin", "PINNED": "Pinned", "CHECKLIST": "Capture checklist"},
     "BRAND": {
       "NAME": "珊瑚岛手册",
       "LOGO_ALT": "Coral Island Handbook logo"
@@ -75,7 +76,8 @@
       "AUTHOR": "Author: 南溟北榠",
       "ORIGINAL_AUTHOR": "Original Coral Guide author: Koenig",
       "GAME_VERSION": "Game data version (Steam): {version}",
-      "SOURCE_CODE": "Code on GitHub"
+      "CN_SOURCE": "珊瑚岛手册 GitHub",
+      "SOURCE_CODE": "Original project GitHub"
     },
     "FILTER": {
       "SEASON": "Season",
