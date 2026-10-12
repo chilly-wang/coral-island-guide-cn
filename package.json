@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "nx build guide --configuration=production --excludeTaskDependencies",
+    "build": "nx build guide --configuration=production --excludeTaskDependencies && node scripts/generate-sitemap.mjs",
     "i18n:audit": "node scripts/i18n-audit.mjs",
     "extract-assets-live": "json -I -f \"./packages/file-extraction/UnrealExporter/configs/config.json\" -e \"this.outputDir='../../../pak-assets/live'\" &&  START /D \".\\packages\\file-extraction\\UnrealExporter\" UnrealExporter.exe config",
     "extract-assets-beta": "json -I -f \"./packages/file-extraction/UnrealExporter/configs/config.json\" -e \"this.outputDir='../../../pak-assets/beta'\" &&  START /D \".\\packages\\file-extraction\\UnrealExporter\" UnrealExporter.exe config",

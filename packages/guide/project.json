@@ -13,10 +13,6 @@
         {
           "projects": "self",
           "target": "build-routes"
-        },
-        {
-          "projects": "self",
-          "target": "build-changelog"
         }
       ],
       "options": {
@@ -33,9 +29,7 @@
           "packages/guide/src/apple-touch-icon.png",
           "packages/guide/src/assets",
           "packages/guide/src/manifest.webmanifest",
-          "packages/guide/src/CNAME",
-          "packages/guide/src/CHANGELOG.md",
-          "packages/guide/src/assets/latest-changelog.md"
+          "packages/guide/src/robots.txt"
         ],
         "styles": ["packages/guide/src/styles.scss"],
         "stylePreprocessorOptions": {
@@ -64,9 +58,7 @@
               "ignore": ["beta/**/*"]
             },
             "packages/guide/src/manifest.webmanifest",
-            "packages/guide/src/CNAME",
-            "packages/guide/src/CHANGELOG.md",
-            "packages/guide/src/assets/latest-changelog.md"
+            "packages/guide/src/robots.txt"
           ],
           "budgets": [
             {
@@ -118,15 +110,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-    "build-changelog": {
-      "executor": "nx:run-commands",
-      "configurations": {
-        "extract": {
-          "commands": ["ts-node changelog-extractor.ts"]
-        }
-      },
-      "defaultConfiguration": "extract"
     },
     "build-routes": {
       "executor": "nx:run-commands",
