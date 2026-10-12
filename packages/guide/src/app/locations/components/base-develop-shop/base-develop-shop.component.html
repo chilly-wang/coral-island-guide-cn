@@ -1,0 +1,156 @@
+<app-list-detail-container>
+    <ng-container listDetail>
+        @if (selectedProcessEntity) {
+            <app-shop-item-process-data-details [itemProcessData]="selectedProcessEntity"/>
+        }
+        @if (selectedEntity) {
+            <app-shop-item-data-details [shopItemData]="selectedEntity"/>
+        }
+        @if (selectedItemUpgrade) {
+            <app-item-upgrade-details [itemUpgradeData]="selectedItemUpgrade"/>
+        }
+        @if (selectedDevelopEquipment) {
+            <app-develop-equipment-details [developEquipment]="selectedDevelopEquipment"/>
+        }
+    </ng-container>
+    <app-card>
+        <h1 class="mb-4 font-semibold text-3xl text-black flex items-center gap-x-4 ">
+            <app-ui-icon [uiIcon]="SHOP_ICONS[shopName]"/>
+            {{ display.translate(SHOP_DISPLAY_NAMES[shopName], 'shop') }}
+        </h1>
+        @if (openingHours$) {
+
+            @if ((openingHours$.value()); as openingHours) {
+                <app-opening-hours [openingHours]="openingHours"/>
+            }
+
+        }
+    </app-card>
+
+    @if (shopItemData$) {
+
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate('APP.SHOP.STOCK_LIST') }}</h2>
+        @if ((shopItemData$ |async); as shopItemData) {
+
+            <app-data-filter [(showTable)]="showTable"/>
+            @if (!showTable) {
+                <div class="icon-grid">
+
+                    @for (shopItem of shopItemData; track shopItem) {
+                        <app-item-icon (click)="showDetails(shopItem)"
+                                       [class.selected-icon]="selectedEntity?.item?.id === shopItem.item.id"
+                                       [itemName]="shopItem.item.iconName"
+                                       class="icon-grid-item"/>
+                    }
+                </div>
+            }
+            @if (showTable) {
+                <app-shop-item-data-table [dataSource]="shopItemData"/>
+            }
+
+
+        }
+
+    }
+
+    @if (tailShopItemData$) {
+
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate('APP.SHOP.TAILS') }}</h2>
+        @if ((tailShopItemData$ |async); as tailShopItemData) {
+
+            <app-data-filter [(showTable)]="showTailTable"/>
+            @if (!showTailTable) {
+                <div class="icon-grid">
+
+                    @for (shopItem of tailShopItemData; track shopItem) {
+                        <app-item-icon (click)="showDetails(shopItem)"
+                                       [class.selected-icon]="selectedEntity?.item?.id === shopItem.item.id"
+                                       [itemName]="shopItem.item.iconName"
+                                       class="icon-grid-item"/>
+                    }
+                </div>
+            }
+            @if (showTailTable) {
+                <app-shop-item-data-table [dataSource]="tailShopItemData"/>
+            }
+
+        }
+
+    }
+
+    @if (itemProcessing$) {
+
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate('APP.SHOP.ITEM_PROCESSING') }}</h2>
+        @if ((itemProcessing$ |async); as shopItemData) {
+
+
+            <app-data-filter [(showTable)]="showProcessingTable"/>
+            @if (!showProcessingTable) {
+                <div class="icon-grid">
+
+                    @for (shopItem of shopItemData; track shopItem) {
+                        <app-item-icon (click)="showProcessDetails(shopItem)"
+                                       [class.selected-icon]="selectedProcessEntity?.input?.id === shopItem.input.id"
+                                       [itemName]="shopItem.input.iconName"
+                                       class="icon-grid-item"/>
+                    }
+                </div>
+            }
+            @if (showProcessingTable) {
+                <app-shop-item-process-table [dataSource]="shopItemData"/>
+            }
+
+
+        }
+
+    }
+
+    @if (itemUpgrade$) {
+
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate(upgradeHeaderText) }}</h2>
+        @if ((itemUpgrade$ |async); as shopItemData) {
+
+
+            <app-data-filter [(showTable)]="showPItemUpgradeTable"/>
+            @if (!showPItemUpgradeTable) {
+                <div class="icon-grid">
+
+                    @for (shopItem of shopItemData; track shopItem) {
+                        <app-item-icon (click)="showItemUpgradeDetails(shopItem)"
+                                       [class.selected-icon]="selectedItemUpgrade?.item?.id === shopItem.item.id"
+                                       [itemName]="shopItem.item.iconName"
+                                       [quality]="shopItem.level"
+                                       class="icon-grid-item"/>
+                    }
+                </div>
+            }
+            @if (showPItemUpgradeTable) {
+                <app-item-upgrade-table [dataSource]="shopItemData"/>
+            }
+
+        }
+
+    }
+
+    <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate(developEquipmentHeaderText) }}</h2>
+    @if ((developEquipment$ | async); as developEquipment) {
+
+        <app-data-filter [(showTable)]="showDevelopEquipmentTable"/>
+        @if (!showDevelopEquipmentTable) {
+            <div class="icon-grid">
+
+                @for (entry of developEquipment; track entry.key) {
+                    <app-item-icon (click)="showDevelopEquipmentDetails(entry)"
+                                   [class.selected-icon]="selectedDevelopEquipment?.key === entry.key"
+                                   [itemName]="entry.iconName"
+                                   class="icon-grid-item"/>
+                }
+            </div>
+        }
+        @if (showDevelopEquipmentTable) {
+            <app-develop-equipment-table [dataSource]="developEquipment"/>
+        }
+
+    }
+
+</app-list-detail-container>

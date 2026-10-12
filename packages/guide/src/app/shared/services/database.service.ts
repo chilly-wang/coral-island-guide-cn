@@ -22,6 +22,7 @@ import {
     ItemMixingRecipeData,
     ItemProcessing,
     ItemProcessShopData,
+    DevelopEquipmentData,
     ItemUpgradeData,
     JournalOrder,
     MailData,
@@ -82,6 +83,7 @@ export class DatabaseService extends BaseDbService {
     private _FESTIVAL_DATA: Map<string, FestivalData> = new Map<string, FestivalData>();
     private _SHOP_PROCESS_ITEMS: Map<string, ItemProcessShopData[]> = new Map<string, ItemProcessShopData[]>();
     private _ITEM_UPGRADE: Map<string, ItemUpgradeData[]> = new Map<string, ItemUpgradeData[]>();
+    private _DEVELOP_EQUIPMENT = new Map<ShopName, Observable<DevelopEquipmentData[]>>();
     private _PET_SHOP_ADOPTIONS$?: Observable<PetShopAdoptions[]>;
     private _NPCS: NPC[] = [];
     private _NPCS$?: Observable<NPC[]>;
@@ -519,6 +521,14 @@ export class DatabaseService extends BaseDbService {
             return of(this._ITEM_UPGRADE.get(shopName)!)
         }
 
+    }
+
+    fetchDevelopEquipment$(shopName: ShopName): Observable<DevelopEquipmentData[]> {
+        if (!this._DEVELOP_EQUIPMENT.has(shopName)) {
+            this._DEVELOP_EQUIPMENT.set(shopName, this.http.get<DevelopEquipmentData[]>(`${this.BASE_PATH_WITH_LANG}/${shopName}-develop-equipment.json`)
+                .pipe(shareReplay(1)));
+        }
+        return this._DEVELOP_EQUIPMENT.get(shopName)!;
     }
 
     fetchOpeningHours$(shopName: ShopName) {

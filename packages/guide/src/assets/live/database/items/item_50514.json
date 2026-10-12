@@ -1025,6 +1025,33 @@
         "url": "bos",
         "displayName": "Band of Smiles"
       }
+    },
+    {
+      "item": {
+        "id": "item_50514",
+        "displayName": "DT_InventoryItems.item_50514_name",
+        "iconName": "Wind_essence_Sprite",
+        "price": 75,
+        "sellPrice": 25
+      },
+      "allowedDays": [],
+      "allowedSeasons": [],
+      "allowedWeather": [],
+      "forbiddenDays": [],
+      "forbiddenSeasons": [],
+      "forbiddenWeather": [],
+      "townRank": 0,
+      "tag": [],
+      "priceOverride": 0,
+      "priority": 5,
+      "enabled": true,
+      "availableSinceDate": false,
+      "availableTillDate": false,
+      "availableDuringTime": false,
+      "shop": {
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
+      }
     }
   ]
 }

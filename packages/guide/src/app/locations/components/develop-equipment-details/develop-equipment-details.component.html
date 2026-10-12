@@ -1,0 +1,56 @@
+@let entry = developEquipment();
+<app-card class="text-lg font-semibold relative">
+    <div cardActions class="card-actions">
+        <button (click)="listDetails.close()" [matTooltip]="'APP.COMMON.CLOSE' | translate">
+            <app-ui-icon [uiIcon]="uiIcon.CROSS" class="!w-8 !h-8 hover:text-black focus-visible:text-black"/>
+        </button>
+    </div>
+
+    <app-item-icon cardIcon [itemName]="entry.iconName"/>
+    <div class="flex justify-between items-center">
+        <div class="flex flex-col">
+            <div class="text-black text-2xl">{{ entry.displayName | translate }}</div>
+            @if (entry.appliesTo) {
+                <span class="text-accent text-2xl">{{ entry.appliesTo | translate }}</span>
+            }
+        </div>
+        @if (entry.item) {
+            <span [matTooltip]="'APP.ITEM.OPEN_IN_DATABASE' | translate" matTooltipPosition="before">
+                <a [routerLink]="['/database', entry.item.id]">
+                    <app-ui-icon [uiIcon]="uiIcon.DATABASE" class="focus-visible:!text-black hover:!text-black"/>
+                </a>
+            </span>
+        }
+    </div>
+    <hr class="my-5"/>
+    @if (entry.description) {
+        <div class="text-lg mb-6">{{ entry.description | translate }}</div>
+    }
+
+    @if (entry.townRank !== null) {
+        <div class="mb-3">{{ 'APP.SHOP_DETAIL.TOWN_RANK' | translate }}:
+            <span class="text-black">{{ entry.townRank | townrank }}</span>
+        </div>
+    }
+
+    @if (entry.dependencies.length) {
+        <div class="mb-3">{{ 'APP.SHOP_DETAIL.REQUIRES_DEVELOPED' | translate }}:
+            <span class="text-black">
+                @for (dependency of entry.dependencies; track dependency.key; let last = $last) {
+                    <span>{{ dependency.displayName | translate }}{{ last ? '' : '、' }}</span>
+                }
+            </span>
+        </div>
+    }
+
+    <div>{{ 'APP.SHOP_DETAIL.DEVELOP_COST' | translate }}:
+        <span class="text-black"><app-money [amount]="entry.price"/></span>
+    </div>
+    <app-item-list [itemList]="entry.requirements"/>
+    <app-item-list [itemList]="entry.genericRequirements" class="mb-6"/>
+
+    @if (entry.item) {
+        <div>{{ 'APP.SHOP_DETAIL.DEVELOP_REWARD' | translate }}</div>
+        <app-item-list [itemList]="[{item: entry.item, amount: 1}]"/>
+    }
+</app-card>

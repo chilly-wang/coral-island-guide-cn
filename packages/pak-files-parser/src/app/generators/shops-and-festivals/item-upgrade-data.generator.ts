@@ -17,6 +17,8 @@ export class ItemUpgradeDataGenerator extends BaseGenerator<RawItemUpgradeData, 
 
     handleEntry(itemKey: string, dbItem: RawItemUpgradeData | RawLabUpgradeData): ItemUpgradeData | undefined {
 
+        if ('underwater' in dbItem && dbItem.underwater) return;
+
 
         const foundItem = this.itemMap.get(dbItem.item.itemID);
 

@@ -3,6 +3,7 @@ import { BaseDatabaseDetailPartComponent } from "../base-database-detail-part.co
 import { ExpandableComponent } from "../../../shared/components/expandable/expandable.component";
 import { DatabaseHeaderButtonComponent } from "../database-header-button/database-header-button.component";
 import { CaughtTableComponent } from "../../../journal/components/tables/caught-table/caught-table.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-database-insects',
@@ -13,7 +14,8 @@ import { CaughtTableComponent } from "../../../journal/components/tables/caught-
     imports: [
         ExpandableComponent,
         DatabaseHeaderButtonComponent,
-        CaughtTableComponent
+        CaughtTableComponent,
+        TranslatePipe
     ]
 })
 export class DatabaseInsectsComponent extends BaseDatabaseDetailPartComponent {

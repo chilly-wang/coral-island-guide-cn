@@ -26,7 +26,7 @@
         </div>
     }
 
-    @if (itemUpgradeData().requirements.length || itemUpgradeData().priceOverride || itemUpgradeData().price) {
+    @if (itemUpgradeData().requirements.length || itemUpgradeData().genericRequirements?.length || itemUpgradeData().priceOverride || itemUpgradeData().price) {
 
         <div>{{ 'APP.LOCATION_DETAIL.UPGRADE_REQUIREMENTS' | translate }}:</div>
         @if (itemUpgradeData().priceOverride || itemUpgradeData().price) {
@@ -40,6 +40,9 @@
         @if (itemUpgradeData().requirements.length) {
             <app-item-list [itemList]="itemUpgradeData().requirements"
                            class="mb-3"/>
+        }
+        @if (itemUpgradeData().genericRequirements?.length) {
+            <app-item-list [itemList]="itemUpgradeData().genericRequirements!" class="mb-3"/>
         }
 
     }

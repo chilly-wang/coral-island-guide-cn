@@ -2,18 +2,13 @@
     <mat-spinner class="mx-auto text-white"/>
 } @else {
     <app-card class="mt-6">
-        <h2 class="mb-4 font-semibold text-2xl text-black">
-            Unlinked images
-        </h2>
+        <h2 class="mb-4 font-semibold text-2xl text-black">{{ 'APP.NPCS.UNLINKED_IMAGES' | translate }}</h2>
 
-        <p class="text-black">
-            The following images couldn't get matched with any data at the moment. They may contain <strong>future
-            content/spoilers</strong>, leftovers, tests/not planned content or just are wrongly matched.
-        </p>
+        <p class="text-black" [innerHTML]="'APP.NPCS.UNLINKED_IMAGES_TEXT' | translate"></p>
 
         <app-expandable #expandableComponent>
             <h3 class="text-xl p-2 mt-2 text-black" expandableHeader>
-                <app-database-header-button [templateRef]="expandableComponent">Open images
+                <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.NPCS.OPEN_IMAGES' | translate }}
                 </app-database-header-button>
             </h3>
             <div class="font-semibold text-black mb-6">

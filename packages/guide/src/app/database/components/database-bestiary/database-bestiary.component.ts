@@ -3,6 +3,7 @@ import { BaseDatabaseDetailPartComponent } from "../base-database-detail-part.co
 import { ExpandableComponent } from "../../../shared/components/expandable/expandable.component";
 import { DatabaseHeaderButtonComponent } from "../database-header-button/database-header-button.component";
 import { BestiaryTableComponent } from "../../../journal/components/tables/bestiary-table/bestiary-table.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-database-bestiary',
@@ -12,7 +13,8 @@ import { BestiaryTableComponent } from "../../../journal/components/tables/besti
     imports: [
         ExpandableComponent,
         DatabaseHeaderButtonComponent,
-        BestiaryTableComponent
+        BestiaryTableComponent,
+        TranslatePipe
     ]
 })
 export class DatabaseBestiaryComponent extends BaseDatabaseDetailPartComponent {

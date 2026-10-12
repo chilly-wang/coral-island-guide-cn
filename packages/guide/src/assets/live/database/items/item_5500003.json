@@ -10,7 +10,7 @@
     "displayKey": "ItemUpgrade",
     "description": "DT_InventoryItems.item_5500003_description",
     "qualities": {},
-    "iconName": "placeholder_icon",
+    "iconName": "Seedbag_Sprite",
     "tags": [
       "income.farming"
     ]
@@ -21,7 +21,7 @@
       "item": {
         "id": "item_5500003",
         "displayName": "DT_InventoryItems.item_5500003_name",
-        "iconName": "placeholder_icon"
+        "iconName": "Seedbag_Sprite"
       },
       "price": 20000,
       "daysDelay": 2,
@@ -57,7 +57,7 @@
       "item": {
         "id": "item_5500003",
         "displayName": "DT_InventoryItems.item_5500003_name",
-        "iconName": "placeholder_icon"
+        "iconName": "Seedbag_Sprite"
       },
       "price": 20000,
       "daysDelay": 2,
@@ -66,6 +66,17 @@
       "priceOverride": 0,
       "priority": 16,
       "requirements": [],
+      "genericRequirements": [
+        {
+          "shouldBeSameItem": false,
+          "amount": 60,
+          "genericItem": {
+            "key": "Any_Gold_UnderwaterCrop",
+            "displayName": "445D8A9442CA2A5B01AF98BD02F23377",
+            "iconName": "Any_Underwater_Crops_Sprite"
+          }
+        }
+      ],
       "unlockRequirements": [],
       "category": "None",
       "customIcon": null,
@@ -76,8 +87,8 @@
       "affecting": "UnderwaterSeeds",
       "level": "osmium",
       "shop": {
-        "url": "lab",
-        "displayName": "Lab"
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
       }
     }
   ]

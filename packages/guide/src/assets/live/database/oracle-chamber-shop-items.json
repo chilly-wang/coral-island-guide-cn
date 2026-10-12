@@ -1,0 +1,117 @@
+[
+  {
+    "item": {
+      "id": "item_62010",
+      "displayName": "DT_InventoryItems.item_62010_name",
+      "iconName": "Solar_Core_Sprite",
+      "price": 1000,
+      "sellPrice": 200
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 1,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  },
+  {
+    "item": {
+      "id": "item_50504",
+      "displayName": "DT_InventoryItems.item_50504_name",
+      "iconName": "Flame_essence_Sprite",
+      "price": 75,
+      "sellPrice": 25
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 2,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  },
+  {
+    "item": {
+      "id": "item_50512",
+      "displayName": "DT_InventoryItems.item_50512_name",
+      "iconName": "Earth_essence_Sprite",
+      "price": 75,
+      "sellPrice": 25
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 3,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  },
+  {
+    "item": {
+      "id": "item_50513",
+      "displayName": "DT_InventoryItems.item_50513_name",
+      "iconName": "Water_essence_Sprite",
+      "price": 75,
+      "sellPrice": 25
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 4,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  },
+  {
+    "item": {
+      "id": "item_50514",
+      "displayName": "DT_InventoryItems.item_50514_name",
+      "iconName": "Wind_essence_Sprite",
+      "price": 75,
+      "sellPrice": 25
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 5,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  }
+]

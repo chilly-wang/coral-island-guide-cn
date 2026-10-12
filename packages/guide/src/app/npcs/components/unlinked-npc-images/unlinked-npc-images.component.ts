@@ -9,6 +9,7 @@ import { UiIcon } from "@ci/data-types";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import { DatabaseHeaderButtonComponent } from "../../../database/components/database-header-button/database-header-button.component";
 import { ExpandableComponent } from "../../../shared/components/expandable/expandable.component";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-unlinked-npc-images',
@@ -22,6 +23,7 @@ import { ExpandableComponent } from "../../../shared/components/expandable/expan
         MatProgressSpinner,
         DatabaseHeaderButtonComponent,
         ExpandableComponent,
+        TranslatePipe,
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
     host: {

@@ -3573,5 +3573,159 @@
       ],
       "eitherOrIngredients": []
     }
+  ],
+  "isUpgradeResult": [
+    {
+      "item": {
+        "id": "item_50303",
+        "displayName": "DT_InventoryItems.item_50303_name",
+        "iconName": "Seaweed_Sprite"
+      },
+      "price": 2000,
+      "daysDelay": 2,
+      "townRank": 0,
+      "tag": [],
+      "priceOverride": 0,
+      "priority": 4,
+      "requirements": [],
+      "genericRequirements": [
+        {
+          "shouldBeSameItem": false,
+          "amount": 5,
+          "genericItem": {
+            "key": "Any_UnderwaterAnimalProduce",
+            "displayName": "D9847FD243A16419B6A225AEBD8DDBA6",
+            "iconName": "Any_Underwater_Ranch_Sprite"
+          }
+        }
+      ],
+      "unlockRequirements": [],
+      "category": "None",
+      "customIcon": null,
+      "hardnessLevel": "Basic",
+      "toolType": "None",
+      "useCategory": true,
+      "useCustomIcon": false,
+      "affecting": "UnderwaterFodder",
+      "level": "bronze",
+      "shop": {
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
+      }
+    },
+    {
+      "item": {
+        "id": "item_50303",
+        "displayName": "DT_InventoryItems.item_50303_name",
+        "iconName": "Seaweed_Sprite"
+      },
+      "price": 5000,
+      "daysDelay": 2,
+      "townRank": 0,
+      "tag": [],
+      "priceOverride": 0,
+      "priority": 9,
+      "requirements": [],
+      "genericRequirements": [
+        {
+          "shouldBeSameItem": false,
+          "amount": 10,
+          "genericItem": {
+            "key": "Any_Bronze_UnderwaterAnimalProduce",
+            "displayName": "314BCA0843AE2E54D4922FB86C86A493",
+            "iconName": "Any_Underwater_Ranch_Sprite"
+          }
+        }
+      ],
+      "unlockRequirements": [],
+      "category": "None",
+      "customIcon": null,
+      "hardnessLevel": "Basic",
+      "toolType": "None",
+      "useCategory": true,
+      "useCustomIcon": false,
+      "affecting": "UnderwaterFodder",
+      "level": "silver",
+      "shop": {
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
+      }
+    },
+    {
+      "item": {
+        "id": "item_50303",
+        "displayName": "DT_InventoryItems.item_50303_name",
+        "iconName": "Seaweed_Sprite"
+      },
+      "price": 10000,
+      "daysDelay": 2,
+      "townRank": 0,
+      "tag": [],
+      "priceOverride": 0,
+      "priority": 14,
+      "requirements": [],
+      "genericRequirements": [
+        {
+          "shouldBeSameItem": false,
+          "amount": 15,
+          "genericItem": {
+            "key": "Any_Silver_UnderwaterAnimalProduce",
+            "displayName": "98E4CE734FB3EC9BC93FAD8667EFCFE6",
+            "iconName": "Any_Underwater_Ranch_Sprite"
+          }
+        }
+      ],
+      "unlockRequirements": [],
+      "category": "None",
+      "customIcon": null,
+      "hardnessLevel": "Basic",
+      "toolType": "None",
+      "useCategory": true,
+      "useCustomIcon": false,
+      "affecting": "UnderwaterFodder",
+      "level": "gold",
+      "shop": {
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
+      }
+    },
+    {
+      "item": {
+        "id": "item_50303",
+        "displayName": "DT_InventoryItems.item_50303_name",
+        "iconName": "Seaweed_Sprite"
+      },
+      "price": 20000,
+      "daysDelay": 2,
+      "townRank": 0,
+      "tag": [],
+      "priceOverride": 0,
+      "priority": 19,
+      "requirements": [],
+      "genericRequirements": [
+        {
+          "shouldBeSameItem": false,
+          "amount": 30,
+          "genericItem": {
+            "key": "Any_Gold_UnderwaterAnimalProduce",
+            "displayName": "5CAC293B428715B73107BEA582D5E917",
+            "iconName": "Any_Underwater_Ranch_Sprite"
+          }
+        }
+      ],
+      "unlockRequirements": [],
+      "category": "None",
+      "customIcon": null,
+      "hardnessLevel": "Basic",
+      "toolType": "None",
+      "useCategory": true,
+      "useCustomIcon": false,
+      "affecting": "UnderwaterFodder",
+      "level": "osmium",
+      "shop": {
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
+      }
+    }
   ]
 }

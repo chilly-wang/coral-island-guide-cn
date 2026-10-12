@@ -4,7 +4,7 @@
 @if (isUpgradeResult && isUpgradeResult.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Is result of upgrade
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.UPGRADE_RESULT' | translate }}
             </app-database-header-button>
         </h3>
         <app-item-upgrade-table [dataSource]="isUpgradeResult"/>
@@ -13,7 +13,7 @@
 @if (isUpgradeRequirement && isUpgradeRequirement.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Is used as requirement in
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.UPGRADE_REQUIREMENT' | translate }}
             </app-database-header-button>
         </h3>
         <app-item-upgrade-table [dataSource]="isUpgradeRequirement"/>

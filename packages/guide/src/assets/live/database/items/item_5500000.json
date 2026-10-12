@@ -66,6 +66,17 @@
       "priceOverride": 0,
       "priority": 1,
       "requirements": [],
+      "genericRequirements": [
+        {
+          "shouldBeSameItem": false,
+          "amount": 15,
+          "genericItem": {
+            "key": "Any_UnderwaterCrop",
+            "displayName": "BD4A080C4ED5FE77CEAA5BBBE894FF79",
+            "iconName": "Any_Underwater_Crops_Sprite"
+          }
+        }
+      ],
       "unlockRequirements": [],
       "category": "None",
       "customIcon": null,
@@ -76,8 +87,8 @@
       "affecting": "UnderwaterSeeds",
       "level": "bronze",
       "shop": {
-        "url": "lab",
-        "displayName": "Lab"
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
       }
     }
   ]

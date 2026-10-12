@@ -672,7 +672,7 @@
       "item": {
         "id": "item_5500002",
         "displayName": "DT_InventoryItems.item_5500002_name",
-        "iconName": "placeholder_icon"
+        "iconName": "Seedbag_Sprite"
       },
       "price": 10000,
       "daysDelay": 2,

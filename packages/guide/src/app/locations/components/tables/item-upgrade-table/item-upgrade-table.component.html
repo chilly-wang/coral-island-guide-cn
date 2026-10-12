@@ -50,6 +50,9 @@
                         <app-money [amount]="element.priceOverride !== 0 ? element.priceOverride : element.price"/>
                     </div>
                     <app-table-item-list [itemList]="element.requirements"/>
+                    @if (element.genericRequirements) {
+                        <app-table-item-list [itemList]="element.genericRequirements"/>
+                    }
                 </td>
             </ng-container>
 

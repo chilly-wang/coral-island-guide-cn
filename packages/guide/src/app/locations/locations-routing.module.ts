@@ -22,6 +22,8 @@ export const routes: Routes = [
                 loadComponent: () => import('./components/lake-temple/lake-temple.component').then(c => c.LakeTempleComponent),
                 title: 'APP.ROUTE.LAKE_TEMPLE_LOCATIONS'
             },
+            // The Oracle Chamber used to be listed as the "Merfolk tail store"; keep old links working.
+            {path: 'merfolk-oracle-tail-store', redirectTo: 'oracle-chamber', pathMatch: 'full'},
 
             ...shopRouteConfig.map(config => {
 

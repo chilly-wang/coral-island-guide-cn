@@ -40,8 +40,8 @@
       "availableTillDate": false,
       "availableDuringTime": false,
       "shop": {
-        "url": "merfolk-oracle-tail-store",
-        "displayName": "Merfolk tail store"
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
       }
     }
   ]

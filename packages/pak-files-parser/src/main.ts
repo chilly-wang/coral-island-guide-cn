@@ -372,6 +372,8 @@ try {
                 (generatorValues[`${shopName}-indoor-shop-items`] ?? []),
                 // @ts-ignore
                 (generatorValues[`${shopName}-outdoor-shop-items`] ?? []),
+                // @ts-ignore
+                (generatorValues[`${shopName}-tail-shop-items`] ?? []),
 
             ].flat()
 

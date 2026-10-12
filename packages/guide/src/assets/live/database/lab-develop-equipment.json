@@ -1,0 +1,742 @@
+[
+  {
+    "key": "Recipe_SprinklerAttachmentA",
+    "displayName": "2CF4B2684C665068720C77A498D92E24",
+    "description": "6C7258144A07DDCA0BD49F91F3F0DFC0",
+    "iconName": "Auto_fertilizer_Sprite",
+    "item": {
+      "id": "item_65338",
+      "displayName": "DT_InventoryItems.item_65338_name",
+      "iconName": "Auto_fertilizer_Sprite"
+    },
+    "price": 4000,
+    "townRank": 1,
+    "appliesTo": "82F48B42442BD0B7C39BD9AC3AF84A99",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 1
+      },
+      {
+        "item": {
+          "id": "item_62007",
+          "displayName": "DT_InventoryItems.item_62007_name",
+          "iconName": "Silver_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 50
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_SprinklerAttachmentB",
+    "displayName": "0D8F97D049E4473CF9833FB1502F96A9",
+    "description": "094BDE7D4C25C3C53E5110B119444667",
+    "iconName": "Auto_seed_Sprite",
+    "item": {
+      "id": "item_65339",
+      "displayName": "DT_InventoryItems.item_65339_name",
+      "iconName": "Auto_seed_Sprite"
+    },
+    "price": 4000,
+    "townRank": 1,
+    "appliesTo": "7FA4F1FD4A0AF393060A7ABDB50C6A25",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 2
+      },
+      {
+        "item": {
+          "id": "item_62006",
+          "displayName": "DT_InventoryItems.item_62006_name",
+          "iconName": "Gold_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 50
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_SprinklerAttachmentA",
+        "displayName": "2CF4B2684C665068720C77A498D92E24"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_AutoHarvest",
+    "displayName": "8BFBEA0547FACC7EBB580D9A2E41CB05",
+    "description": "36B9766F400D1F6902C6E7B84DD05BD6",
+    "iconName": "Auto_harvest_Sprite",
+    "item": {
+      "id": "item_65530",
+      "displayName": "DT_InventoryItems.item_65530_name",
+      "iconName": "Auto_harvest_Sprite"
+    },
+    "price": 8000,
+    "townRank": 1,
+    "appliesTo": "DD9AEB514D430E2649376B98FD0D6FBC",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 4
+      },
+      {
+        "item": {
+          "id": "item_62006",
+          "displayName": "DT_InventoryItems.item_62006_name",
+          "iconName": "Gold_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65063",
+          "displayName": "DT_InventoryItems.item_65063_name",
+          "iconName": "HardWood_Sprite"
+        },
+        "amount": 40
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_SprinklerAttachmentA",
+        "displayName": "2CF4B2684C665068720C77A498D92E24"
+      },
+      {
+        "key": "Recipe_SprinklerAttachmentB",
+        "displayName": "0D8F97D049E4473CF9833FB1502F96A9"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_SprinklerAttachmentC",
+    "displayName": "E5A5626E4DF7A848B425439ED33622A0",
+    "description": "4AD583A44BDFCBC7264FCABC0990042A",
+    "iconName": "Auto_SFH_Sprite",
+    "item": {
+      "id": "item_65340",
+      "displayName": "DT_InventoryItems.item_65340_name",
+      "iconName": "Auto_SFH_Sprite"
+    },
+    "price": 15000,
+    "townRank": 1,
+    "appliesTo": "2E5C48104038825FED034096A9B693A1",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62008",
+          "displayName": "DT_InventoryItems.item_62008_name",
+          "iconName": "Osmium_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 50
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_AutoHarvest",
+        "displayName": "8BFBEA0547FACC7EBB580D9A2E41CB05"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_TemperatureMachine",
+    "displayName": "83C9429A4CA6914DC70A3890AA607CB3",
+    "description": "C7441555471231D1504325A3F0AC72CF",
+    "iconName": "Temperature_Machine_Sprite",
+    "item": {
+      "id": "item_65512",
+      "displayName": "DT_InventoryItems.item_65512_name",
+      "iconName": "Temperature_Machine_Sprite"
+    },
+    "price": 1500,
+    "townRank": 2,
+    "appliesTo": "23A22CC9407D114EE4913D8F233B4AB6",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 1
+      },
+      {
+        "item": {
+          "id": "item_50504",
+          "displayName": "DT_InventoryItems.item_50504_name",
+          "iconName": "Flame_essence_Sprite"
+        },
+        "amount": 2
+      },
+      {
+        "item": {
+          "id": "item_50513",
+          "displayName": "DT_InventoryItems.item_50513_name",
+          "iconName": "Water_essence_Sprite"
+        },
+        "amount": 2
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 50
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_AutoFeeder",
+    "displayName": "3CCEB5754C059E0283B7E982E00364EB",
+    "description": "5C4CF659497748BBB6F0EF881A2345D0",
+    "iconName": "Auto_Feeder_Sprite",
+    "item": {
+      "id": "item_65511",
+      "displayName": "DT_InventoryItems.item_65511_name",
+      "iconName": "Auto_Feeder_Sprite"
+    },
+    "price": 15000,
+    "townRank": 2,
+    "appliesTo": "E9F97C174A2256DC428B1E893D4326FD",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 2
+      },
+      {
+        "item": {
+          "id": "item_62007",
+          "displayName": "DT_InventoryItems.item_62007_name",
+          "iconName": "Silver_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65033",
+          "displayName": "DT_InventoryItems.item_65033_name",
+          "iconName": "Hay_Sprite"
+        },
+        "amount": 20
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 100
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_AutoPetter",
+    "displayName": "B00DD3F1462AC20A338228809EEA96C0",
+    "description": "87F40B004CE2613B1B6CE58BF67510E6",
+    "iconName": "Auto_Petter_Sprite",
+    "item": {
+      "id": "item_65509",
+      "displayName": "DT_InventoryItems.item_65509_name",
+      "iconName": "Auto_Petter_Sprite"
+    },
+    "price": 15000,
+    "townRank": 2,
+    "appliesTo": "A7A97E1041B2E3FADBC124BC66BAB539",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62006",
+          "displayName": "DT_InventoryItems.item_62006_name",
+          "iconName": "Gold_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_32009",
+          "displayName": "DT_InventoryItems.item_32009_name",
+          "iconName": "Large_wool_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 100
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_AutoCollector",
+    "displayName": "8D499183499C87FD41173F8AC46AD664",
+    "description": "479C4150441AE63E1AF8138BC217B53C",
+    "iconName": "Auto_Collector_Sprite",
+    "item": {
+      "id": "item_65510",
+      "displayName": "DT_InventoryItems.item_65510_name",
+      "iconName": "Auto_Collector_Sprite"
+    },
+    "price": 40000,
+    "townRank": 2,
+    "appliesTo": "EDB86450435ABEC8722740B0556F61E9",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62008",
+          "displayName": "DT_InventoryItems.item_62008_name",
+          "iconName": "Osmium_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_61045",
+          "displayName": "DT_InventoryItems.item_61045_name",
+          "iconName": "Silver_Ore_Sprite"
+        },
+        "amount": 20
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 100
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_SturdyComputer",
+    "displayName": "CEAEBB8F4B7C5F2F5B2C5D9E7AA0D6CF",
+    "description": "AF4D1CD146F54A89E47B01AD2F937CBE",
+    "iconName": "Sturdy_Computer_Sprite",
+    "item": {
+      "id": "item_65527",
+      "displayName": "DT_InventoryItems.item_65527_name",
+      "iconName": "Sturdy_Computer_Sprite"
+    },
+    "price": 40000,
+    "townRank": 2,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_61044",
+          "displayName": "DT_InventoryItems.item_61044_name",
+          "iconName": "Silver_Bar_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_61001",
+          "displayName": "DT_InventoryItems.item_61001_name",
+          "iconName": "Bronze_Ore_Sprite"
+        },
+        "amount": 20
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 100
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_InsectForecastComponent",
+    "displayName": "447A01D74E667BF86082B08C211E4DFD",
+    "description": "AE50EDEA46D65A408CCB44812EA15B4D",
+    "iconName": "Catching_information_component_Sprite",
+    "item": null,
+    "price": 15000,
+    "townRank": 2,
+    "appliesTo": "19AEB7E04437A6AC2132EB8EA8B3CCE8",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_61004",
+          "displayName": "DT_InventoryItems.item_61004_name",
+          "iconName": "Osmium_Ore_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_61002",
+          "displayName": "DT_InventoryItems.item_61002_name",
+          "iconName": "Gold_Ore_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_50514",
+          "displayName": "DT_InventoryItems.item_50514_name",
+          "iconName": "Wind_essence_Sprite"
+        },
+        "amount": 5
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_SturdyComputer",
+        "displayName": "CEAEBB8F4B7C5F2F5B2C5D9E7AA0D6CF"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_FishForecastComponent",
+    "displayName": "0CB092AE42FCD5D0C232B7A4F4C2BD06",
+    "description": "719260804B0685D04AF381A0186B568E",
+    "iconName": "Fishing_information_component_Sprite",
+    "item": null,
+    "price": 15000,
+    "townRank": 2,
+    "appliesTo": "869CEE8B4D26F8C9BC106EBA41202055",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_61004",
+          "displayName": "DT_InventoryItems.item_61004_name",
+          "iconName": "Osmium_Ore_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_61002",
+          "displayName": "DT_InventoryItems.item_61002_name",
+          "iconName": "Gold_Ore_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_50513",
+          "displayName": "DT_InventoryItems.item_50513_name",
+          "iconName": "Water_essence_Sprite"
+        },
+        "amount": 5
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_SturdyComputer",
+        "displayName": "CEAEBB8F4B7C5F2F5B2C5D9E7AA0D6CF"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_LootForecastComponent",
+    "displayName": "DFCE31EE4ECCB6FB0FBF0F848E828CBE",
+    "description": "240BEA1B402A4C1690E928A4D1A9D9AD",
+    "iconName": "Farm_stats_component_Sprite",
+    "item": null,
+    "price": 15000,
+    "townRank": 2,
+    "appliesTo": "881EF1554214B170BC3988B2AC31CFD6",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_61004",
+          "displayName": "DT_InventoryItems.item_61004_name",
+          "iconName": "Osmium_Ore_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_61002",
+          "displayName": "DT_InventoryItems.item_61002_name",
+          "iconName": "Gold_Ore_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_50512",
+          "displayName": "DT_InventoryItems.item_50512_name",
+          "iconName": "Earth_essence_Sprite"
+        },
+        "amount": 5
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_SturdyComputer",
+        "displayName": "CEAEBB8F4B7C5F2F5B2C5D9E7AA0D6CF"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_AutoTrashCollector",
+    "displayName": "5FBEA2214447D45F9333F79E713AD75B",
+    "description": "32E3C28F427CC35BF325928116364A59",
+    "iconName": "Auto_trash_collector_Sprite",
+    "item": {
+      "id": "item_65513",
+      "displayName": "DT_InventoryItems.item_65513_name",
+      "iconName": "Auto_trash_collector_Sprite"
+    },
+    "price": 25000,
+    "townRank": 3,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62006",
+          "displayName": "DT_InventoryItems.item_62006_name",
+          "iconName": "Gold_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 200
+      },
+      {
+        "item": {
+          "id": "item_50514",
+          "displayName": "DT_InventoryItems.item_50514_name",
+          "iconName": "Wind_essence_Sprite"
+        },
+        "amount": 5
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_UltimateScarecrow",
+    "displayName": "063EACAF4D45E570DCF06388F8B54F09",
+    "description": "68DDA3954F3F88F734C9E3AB6CE75E41",
+    "iconName": "Ultimate_Scarecrow_Sprite",
+    "item": {
+      "id": "item_65534",
+      "displayName": "DT_InventoryItems.item_65534_name",
+      "iconName": "Ultimate_Scarecrow_Sprite"
+    },
+    "price": 40000,
+    "townRank": 3,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65063",
+          "displayName": "DT_InventoryItems.item_65063_name",
+          "iconName": "HardWood_Sprite"
+        },
+        "amount": 20
+      },
+      {
+        "item": {
+          "id": "item_65032",
+          "displayName": "DT_InventoryItems.item_65032_name",
+          "iconName": "Fiber_Sprite"
+        },
+        "amount": 50
+      },
+      {
+        "item": {
+          "id": "item_41029",
+          "displayName": "DT_InventoryItems.item_41029_name",
+          "iconName": "Resin_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_61008",
+          "displayName": "DT_InventoryItems.item_61008_name",
+          "iconName": "Osmium_Bar_Sprite"
+        },
+        "amount": 5
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_AutoChest",
+    "displayName": "314C77FD48F718EC12ED78A216127CA6",
+    "description": "1CED4DF445876A428485618F5F7B115F",
+    "iconName": "Auto_Chest_Sprite",
+    "item": {
+      "id": "item_65535",
+      "displayName": "DT_InventoryItems.item_65535_name",
+      "iconName": "Auto_Chest_Sprite"
+    },
+    "price": 60000,
+    "townRank": 3,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65005",
+          "displayName": "DT_InventoryItems.item_65005_name",
+          "iconName": "Battery_Sprite"
+        },
+        "amount": 10
+      },
+      {
+        "item": {
+          "id": "item_62008",
+          "displayName": "DT_InventoryItems.item_62008_name",
+          "iconName": "Osmium_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_61008",
+          "displayName": "DT_InventoryItems.item_61008_name",
+          "iconName": "Osmium_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_65107",
+          "displayName": "DT_InventoryItems.item_65107_name",
+          "iconName": "Scrap_Sprite"
+        },
+        "amount": 200
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  }
+]

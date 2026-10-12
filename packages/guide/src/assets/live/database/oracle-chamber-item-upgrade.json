@@ -1,0 +1,274 @@
+[
+  {
+    "item": {
+      "id": "item_5500000",
+      "displayName": "DT_InventoryItems.item_5500000_name",
+      "iconName": "Seedbag_Sprite"
+    },
+    "price": 2000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 1,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 15,
+        "genericItem": {
+          "key": "Any_UnderwaterCrop",
+          "displayName": "BD4A080C4ED5FE77CEAA5BBBE894FF79",
+          "iconName": "Any_Underwater_Crops_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterSeeds",
+    "level": "bronze"
+  },
+  {
+    "item": {
+      "id": "item_5500001",
+      "displayName": "DT_InventoryItems.item_5500001_name",
+      "iconName": "Seedbag_Sprite"
+    },
+    "price": 5000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 6,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 25,
+        "genericItem": {
+          "key": "Any_Bronze_UnderwaterCrop",
+          "displayName": "BDBC46ED474DF8798722EF9176960F33",
+          "iconName": "Any_Underwater_Crops_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterSeeds",
+    "level": "silver"
+  },
+  {
+    "item": {
+      "id": "item_5500002",
+      "displayName": "DT_InventoryItems.item_5500002_name",
+      "iconName": "Seedbag_Sprite"
+    },
+    "price": 10000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 11,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 40,
+        "genericItem": {
+          "key": "Any_Silver_UnderwaterCrop",
+          "displayName": "278E5FF944797C4A28AE1280F9C352F2",
+          "iconName": "Any_Underwater_Crops_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterSeeds",
+    "level": "gold"
+  },
+  {
+    "item": {
+      "id": "item_5500003",
+      "displayName": "DT_InventoryItems.item_5500003_name",
+      "iconName": "Seedbag_Sprite"
+    },
+    "price": 20000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 16,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 60,
+        "genericItem": {
+          "key": "Any_Gold_UnderwaterCrop",
+          "displayName": "445D8A9442CA2A5B01AF98BD02F23377",
+          "iconName": "Any_Underwater_Crops_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterSeeds",
+    "level": "osmium"
+  },
+  {
+    "item": {
+      "id": "item_50303",
+      "displayName": "DT_InventoryItems.item_50303_name",
+      "iconName": "Seaweed_Sprite"
+    },
+    "price": 2000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 4,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 5,
+        "genericItem": {
+          "key": "Any_UnderwaterAnimalProduce",
+          "displayName": "D9847FD243A16419B6A225AEBD8DDBA6",
+          "iconName": "Any_Underwater_Ranch_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterFodder",
+    "level": "bronze"
+  },
+  {
+    "item": {
+      "id": "item_50303",
+      "displayName": "DT_InventoryItems.item_50303_name",
+      "iconName": "Seaweed_Sprite"
+    },
+    "price": 5000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 9,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 10,
+        "genericItem": {
+          "key": "Any_Bronze_UnderwaterAnimalProduce",
+          "displayName": "314BCA0843AE2E54D4922FB86C86A493",
+          "iconName": "Any_Underwater_Ranch_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterFodder",
+    "level": "silver"
+  },
+  {
+    "item": {
+      "id": "item_50303",
+      "displayName": "DT_InventoryItems.item_50303_name",
+      "iconName": "Seaweed_Sprite"
+    },
+    "price": 10000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 14,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 15,
+        "genericItem": {
+          "key": "Any_Silver_UnderwaterAnimalProduce",
+          "displayName": "98E4CE734FB3EC9BC93FAD8667EFCFE6",
+          "iconName": "Any_Underwater_Ranch_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterFodder",
+    "level": "gold"
+  },
+  {
+    "item": {
+      "id": "item_50303",
+      "displayName": "DT_InventoryItems.item_50303_name",
+      "iconName": "Seaweed_Sprite"
+    },
+    "price": 20000,
+    "daysDelay": 2,
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 19,
+    "requirements": [],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 30,
+        "genericItem": {
+          "key": "Any_Gold_UnderwaterAnimalProduce",
+          "displayName": "5CAC293B428715B73107BEA582D5E917",
+          "iconName": "Any_Underwater_Ranch_Sprite"
+        }
+      }
+    ],
+    "unlockRequirements": [],
+    "category": "None",
+    "customIcon": null,
+    "hardnessLevel": "Basic",
+    "toolType": "None",
+    "useCategory": true,
+    "useCustomIcon": false,
+    "affecting": "UnderwaterFodder",
+    "level": "osmium"
+  }
+]

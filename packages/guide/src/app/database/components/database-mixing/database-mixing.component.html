@@ -4,7 +4,7 @@
 @if (usedToMix && usedToMix.length) {
     <app-expandable #expandableComponent open>
         <h3 class="database-header" expandableHeader>
-            <app-database-header-button [templateRef]="expandableComponent">Usage in mixing
+            <app-database-header-button [templateRef]="expandableComponent">{{ 'APP.DATABASE.USAGE_MIXING' | translate }}
             </app-database-header-button>
         </h3>
         <app-mixing-table [dataSource]="usedToMix"/>

@@ -214,6 +214,8 @@
       "MIXING": "混合"
     },
     "NPCS": {
+      "UNLINKED_IMAGES_TEXT": "以下头像目前无法与任何数据对应。其中可能包含<strong>未来内容或剧透</strong>、残留素材、测试或未计划的内容，也可能只是匹配错误。",
+      "OPEN_IMAGES": "展开头像",
       "LIST": "角色列表",
       "GIFTING": "送礼",
       "UNLINKED_IMAGES": "未关联头像"
@@ -931,7 +933,7 @@
         "SAMS_GENERAL_STORE": "山姆的杂货店",
         "CARPENTER": "木匠作坊",
         "MERFOLK_GENERAL_STORE": "人鱼杂货店",
-        "MERFOLK_TAIL_STORE": "人鱼尾饰店",
+        "ORACLE_CHAMBER": "神谕室",
         "PET_SHOP": "宠物店",
         "RANCH": "牧场",
         "BEACH_SHACK": "沙滩小屋",
@@ -1039,6 +1041,9 @@
       "SUNDAY": "星期日"
     },
     "SHOP": {
+      "TAILS": "尾饰",
+      "UNDERWATER_CRAFTING_LAB": "水下工艺实验室",
+      "DEVELOP_EQUIPMENT": "研发设备",
       "STOCK_LIST": "商品列表",
       "ITEM_PROCESSING": "物品加工",
       "INDOOR_STOCK": "室内商品",
@@ -1056,6 +1061,10 @@
       "HAPPY_MOOD": "开心"
     },
     "SHOP_DETAIL": {
+      "DEVELOP_COST": "研发费用",
+      "APPLIES_TO": "适用于",
+      "REQUIRES_DEVELOPED": "需先研发",
+      "DEVELOP_REWARD": "研发后获得该物品及其制作配方",
       "ENABLED": "已启用",
       "BUY_PRICE": "买入价",
       "TOWN_RANK": "小镇等级",
@@ -1221,6 +1230,12 @@
       "CRAFTING": { "UNLOCKED": "解锁条件", "LEVEL_IN_MASTERY": "{mastery}精通达到 {level} 级", "UTENSILS": "厨具" }
     },
     "DATABASE": {
+      "UPGRADE_RESULT": "可通过升级获得",
+      "UPGRADE_REQUIREMENT": "用作升级材料",
+      "USAGE_MIXING": "用于混合",
+      "BUGS_AND_INSECTS": "捕虫信息",
+      "ENEMY_DROPS": "可由敌人掉落",
+      "PROCESSABLE_AT": "可在以下地点加工",
       "IMPORTANT_NOTE": "重要提示",
       "IMPORTANT_NOTE_TEXT": "物品列表数据较多，加载可能需要一些时间。列表中也包含游戏里无法获得的技术性物品；随着指南功能完善，物品详情会继续补充。",
       "GOT_IT": "知道了",

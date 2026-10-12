@@ -10,7 +10,7 @@
     "displayKey": "ItemUpgrade",
     "description": "DT_InventoryItems.item_5500001_description",
     "qualities": {},
-    "iconName": "placeholder_icon",
+    "iconName": "Seedbag_Sprite",
     "tags": [
       "income.farming"
     ]
@@ -21,7 +21,7 @@
       "item": {
         "id": "item_5500001",
         "displayName": "DT_InventoryItems.item_5500001_name",
-        "iconName": "placeholder_icon"
+        "iconName": "Seedbag_Sprite"
       },
       "price": 5000,
       "daysDelay": 2,
@@ -57,7 +57,7 @@
       "item": {
         "id": "item_5500001",
         "displayName": "DT_InventoryItems.item_5500001_name",
-        "iconName": "placeholder_icon"
+        "iconName": "Seedbag_Sprite"
       },
       "price": 5000,
       "daysDelay": 2,
@@ -66,6 +66,17 @@
       "priceOverride": 0,
       "priority": 6,
       "requirements": [],
+      "genericRequirements": [
+        {
+          "shouldBeSameItem": false,
+          "amount": 25,
+          "genericItem": {
+            "key": "Any_Bronze_UnderwaterCrop",
+            "displayName": "BDBC46ED474DF8798722EF9176960F33",
+            "iconName": "Any_Underwater_Crops_Sprite"
+          }
+        }
+      ],
       "unlockRequirements": [],
       "category": "None",
       "customIcon": null,
@@ -76,8 +87,8 @@
       "affecting": "UnderwaterSeeds",
       "level": "silver",
       "shop": {
-        "url": "lab",
-        "displayName": "Lab"
+        "url": "oracle-chamber",
+        "displayName": "Oracle Chamber"
       }
     }
   ]

@@ -154,7 +154,7 @@ export const getBaseGenerators = (itemDbMap: Map<string, Item>,
         'merfolk-general-store-shop-items': new ShopItemDataGenerator(itemDbMap, 'ProjectCoral/Content/ProjectCoral/Core/Data/Shops/DT_ShopMerfolkGeneralStore.json', {
             itemShipUnlockData: 'ProjectCoral/Content/ProjectCoral/Core/Data/Shops/GeneralMerfok/DT_MerfolkGeneralItemShipUnlock.json'
         }),
-        'merfolk-oracle-tail-store-shop-items': new ShopItemDataGenerator(itemDbMap, 'ProjectCoral/Content/ProjectCoral/Core/Data/Shops/DT_ShopMerfolkOracleTailStore.json'),
+        'oracle-chamber-tail-shop-items': new ShopItemDataGenerator(itemDbMap, 'ProjectCoral/Content/ProjectCoral/Core/Data/Shops/DT_ShopMerfolkOracleTailStore.json'),
 
         'pet-shop-adoptions': new PetShopAdoptionsGenerator(npcDbMap),
 

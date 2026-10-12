@@ -54023,7 +54023,7 @@
     "displayKey": "ItemUpgrade",
     "description": "DT_InventoryItems.item_5500001_description",
     "qualities": {},
-    "iconName": "placeholder_icon",
+    "iconName": "Seedbag_Sprite",
     "tags": [
       "income.farming"
     ]
@@ -54039,7 +54039,7 @@
     "displayKey": "ItemUpgrade",
     "description": "DT_InventoryItems.item_5500002_description",
     "qualities": {},
-    "iconName": "placeholder_icon",
+    "iconName": "Seedbag_Sprite",
     "tags": [
       "income.farming"
     ]
@@ -54055,7 +54055,7 @@
     "displayKey": "ItemUpgrade",
     "description": "DT_InventoryItems.item_5500003_description",
     "qualities": {},
-    "iconName": "placeholder_icon",
+    "iconName": "Seedbag_Sprite",
     "tags": [
       "income.farming"
     ]

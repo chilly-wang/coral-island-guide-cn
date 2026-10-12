@@ -1,0 +1,566 @@
+[
+  {
+    "key": "Recipe_LuminaWand_Bronze",
+    "displayName": "0B4CAB9942EC2B4A5FD0A09C02274D4A",
+    "description": "A2F0C0774DC06358D8EBDB9C765302BF",
+    "iconName": "Bronze_lumina_wand_Sprite",
+    "item": {
+      "id": "item_65692",
+      "displayName": "DT_InventoryItems.item_65692_name",
+      "iconName": "Bronze_lumina_wand_Sprite"
+    },
+    "price": 5000,
+    "townRank": null,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65691",
+          "displayName": "DT_InventoryItems.item_65691_name",
+          "iconName": "Basic_lumina_wand_Sprite"
+        },
+        "amount": 1
+      },
+      {
+        "item": {
+          "id": "item_61005",
+          "displayName": "DT_InventoryItems.item_61005_name",
+          "iconName": "Bronze_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 2
+      },
+      {
+        "item": {
+          "id": "item_65063",
+          "displayName": "DT_InventoryItems.item_65063_name",
+          "iconName": "HardWood_Sprite"
+        },
+        "amount": 10
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_LuminaWand_Silver",
+    "displayName": "A3CADA74433790E3E176BF8841DC7974",
+    "description": "A2F0C0774DC06358D8EBDB9C765302BF",
+    "iconName": "Silver_lumina_wand_Sprite",
+    "item": {
+      "id": "item_65693",
+      "displayName": "DT_InventoryItems.item_65693_name",
+      "iconName": "Silver_lumina_wand_Sprite"
+    },
+    "price": 7000,
+    "townRank": null,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65692",
+          "displayName": "DT_InventoryItems.item_65692_name",
+          "iconName": "Bronze_lumina_wand_Sprite"
+        },
+        "amount": 1
+      },
+      {
+        "item": {
+          "id": "item_61044",
+          "displayName": "DT_InventoryItems.item_61044_name",
+          "iconName": "Silver_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 4
+      },
+      {
+        "item": {
+          "id": "item_65063",
+          "displayName": "DT_InventoryItems.item_65063_name",
+          "iconName": "HardWood_Sprite"
+        },
+        "amount": 20
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_LuminaWand_Gold",
+    "displayName": "F2502EC748F2FF8A24C4CE9E40BCCA92",
+    "description": "A2F0C0774DC06358D8EBDB9C765302BF",
+    "iconName": "Gold_lumina_wand_Sprite",
+    "item": {
+      "id": "item_65694",
+      "displayName": "DT_InventoryItems.item_65694_name",
+      "iconName": "Gold_lumina_wand_Sprite"
+    },
+    "price": 10000,
+    "townRank": null,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65693",
+          "displayName": "DT_InventoryItems.item_65693_name",
+          "iconName": "Silver_lumina_wand_Sprite"
+        },
+        "amount": 1
+      },
+      {
+        "item": {
+          "id": "item_61006",
+          "displayName": "DT_InventoryItems.item_61006_name",
+          "iconName": "Gold_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 8
+      },
+      {
+        "item": {
+          "id": "item_65063",
+          "displayName": "DT_InventoryItems.item_65063_name",
+          "iconName": "HardWood_Sprite"
+        },
+        "amount": 20
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_LuminaWand_Osmium",
+    "displayName": "719880874D212310CCDE3C9651E0D91D",
+    "description": "A2F0C0774DC06358D8EBDB9C765302BF",
+    "iconName": "Osmium_lumina_wand_Sprite",
+    "item": {
+      "id": "item_65695",
+      "displayName": "DT_InventoryItems.item_65695_name",
+      "iconName": "Osmium_lumina_wand_Sprite"
+    },
+    "price": 15000,
+    "townRank": null,
+    "appliesTo": null,
+    "requirements": [
+      {
+        "item": {
+          "id": "item_65694",
+          "displayName": "DT_InventoryItems.item_65694_name",
+          "iconName": "Gold_lumina_wand_Sprite"
+        },
+        "amount": 1
+      },
+      {
+        "item": {
+          "id": "item_61008",
+          "displayName": "DT_InventoryItems.item_61008_name",
+          "iconName": "Osmium_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 12
+      },
+      {
+        "item": {
+          "id": "item_65063",
+          "displayName": "DT_InventoryItems.item_65063_name",
+          "iconName": "HardWood_Sprite"
+        },
+        "amount": 20
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_Lumina_Sprinkler",
+    "displayName": "B42E17AC4FFA4BCCD9D9BBBD3BBDC18E",
+    "description": "B197310D4CE00E6D9FEDDDA9DA00B391",
+    "iconName": "Lumina_sprinkler_I_Sprite",
+    "item": {
+      "id": "item_65773",
+      "displayName": "DT_InventoryItems.item_65773_name",
+      "iconName": "Lumina_sprinkler_I_Sprite"
+    },
+    "price": 10000,
+    "townRank": null,
+    "appliesTo": "7A5B3573499C6142062F0CB8B5CDA416",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_61005",
+          "displayName": "DT_InventoryItems.item_61005_name",
+          "iconName": "Bronze_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62003",
+          "displayName": "DT_InventoryItems.item_62003_name",
+          "iconName": "Silver_Kelp_Sprite"
+        },
+        "amount": 20
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 1
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": []
+  },
+  {
+    "key": "Recipe_Lumina_Sprinkler_2",
+    "displayName": "41B579814FBAD4899C49FAB2EEE686F1",
+    "description": "FDAF33E64722559AF6A4B898DB1C38B1",
+    "iconName": "Lumina_sprinkler_II_Sprite",
+    "item": {
+      "id": "item_65774",
+      "displayName": "DT_InventoryItems.item_65774_name",
+      "iconName": "Lumina_sprinkler_II_Sprite"
+    },
+    "price": 15000,
+    "townRank": null,
+    "appliesTo": "A81C7F7341D1F9A29D07EFB9E2C184AA",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_61044",
+          "displayName": "DT_InventoryItems.item_61044_name",
+          "iconName": "Silver_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62002",
+          "displayName": "DT_InventoryItems.item_62002_name",
+          "iconName": "Gold_Kelp_Sprite"
+        },
+        "amount": 20
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 3
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_Lumina_Sprinkler",
+        "displayName": "B42E17AC4FFA4BCCD9D9BBBD3BBDC18E"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_Lumina_Sprinkler_3",
+    "displayName": "BA077E084B3583B8977BAE8D38041AAD",
+    "description": "E65199CB453DDBA4A26784893A8011F3",
+    "iconName": "Lumina_sprinkler_III_Sprite",
+    "item": {
+      "id": "item_65775",
+      "displayName": "DT_InventoryItems.item_65775_name",
+      "iconName": "Lumina_sprinkler_III_Sprite"
+    },
+    "price": 30000,
+    "townRank": null,
+    "appliesTo": "E8F7A2A841A7D024E68CA6AB9F4049F4",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_61008",
+          "displayName": "DT_InventoryItems.item_61008_name",
+          "iconName": "Osmium_Bar_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62004",
+          "displayName": "DT_InventoryItems.item_62004_name",
+          "iconName": "Osmium_Kelp_Sprite"
+        },
+        "amount": 20
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 5
+      }
+    ],
+    "genericRequirements": [],
+    "dependencies": [
+      {
+        "key": "Recipe_Lumina_Sprinkler_2",
+        "displayName": "41B579814FBAD4899C49FAB2EEE686F1"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_Anemone_AutoFertilizer",
+    "displayName": "2522E88D44DC45E2FA4E47A7D86F14B7",
+    "description": "08B9179748C6FF9D53B5B7A9C28E7419",
+    "iconName": "Anemone_auto_fertilizer_Sprite",
+    "item": {
+      "id": "item_65776",
+      "displayName": "DT_InventoryItems.item_65776_name",
+      "iconName": "Anemone_auto_fertilizer_Sprite"
+    },
+    "price": 4000,
+    "townRank": null,
+    "appliesTo": "35A0258A4B56B84FDB42CFBF5CEDB531",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_62005",
+          "displayName": "DT_InventoryItems.item_62005_name",
+          "iconName": "Bronze_kelp_essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 3
+      },
+      {
+        "item": {
+          "id": "item_50506",
+          "displayName": "DT_InventoryItems.item_50506_name",
+          "iconName": "Slime_goop_Sprite"
+        },
+        "amount": 7
+      }
+    ],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 15,
+        "genericItem": {
+          "key": "Any_SeaScavenge",
+          "displayName": "439E7486474FD9C939E83C9A084E6F45",
+          "iconName": "Any_sea_scavangeable_Sprite"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "key": "Recipe_Lumina_Sprinkler",
+        "displayName": "B42E17AC4FFA4BCCD9D9BBBD3BBDC18E"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_Anemone_AutoSeed",
+    "displayName": "35B286784FCABC2817E589B427CA2915",
+    "description": "7EDB0D7146930E7F759481AFAF0879F7",
+    "iconName": "Anemone_auto_seed_Sprite",
+    "item": {
+      "id": "item_65778",
+      "displayName": "DT_InventoryItems.item_65778_name",
+      "iconName": "Anemone_auto_seed_Sprite"
+    },
+    "price": 4000,
+    "townRank": null,
+    "appliesTo": "35A0258A4B56B84FDB42CFBF5CEDB531",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_62007",
+          "displayName": "DT_InventoryItems.item_62007_name",
+          "iconName": "Silver_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 3
+      },
+      {
+        "item": {
+          "id": "item_50506",
+          "displayName": "DT_InventoryItems.item_50506_name",
+          "iconName": "Slime_goop_Sprite"
+        },
+        "amount": 7
+      }
+    ],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 15,
+        "genericItem": {
+          "key": "Any_SeaScavenge",
+          "displayName": "439E7486474FD9C939E83C9A084E6F45",
+          "iconName": "Any_sea_scavangeable_Sprite"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "key": "Recipe_Anemone_AutoFertilizer",
+        "displayName": "2522E88D44DC45E2FA4E47A7D86F14B7"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_Anemone_AutoHarvest",
+    "displayName": "939827244F1CF9850B8B47813B0E5E5C",
+    "description": "7BA6B0524635A173E1715B8D4607066A",
+    "iconName": "Anemone_auto_harvest_Sprite",
+    "item": {
+      "id": "item_65777",
+      "displayName": "DT_InventoryItems.item_65777_name",
+      "iconName": "Anemone_auto_harvest_Sprite"
+    },
+    "price": 8000,
+    "townRank": null,
+    "appliesTo": "35A0258A4B56B84FDB42CFBF5CEDB531",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_62006",
+          "displayName": "DT_InventoryItems.item_62006_name",
+          "iconName": "Gold_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 3
+      },
+      {
+        "item": {
+          "id": "item_50506",
+          "displayName": "DT_InventoryItems.item_50506_name",
+          "iconName": "Slime_goop_Sprite"
+        },
+        "amount": 7
+      }
+    ],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 15,
+        "genericItem": {
+          "key": "Any_SeaScavenge",
+          "displayName": "439E7486474FD9C939E83C9A084E6F45",
+          "iconName": "Any_sea_scavangeable_Sprite"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "key": "Recipe_Anemone_AutoSeed",
+        "displayName": "35B286784FCABC2817E589B427CA2915"
+      }
+    ]
+  },
+  {
+    "key": "Recipe_Anemone_AutoSFH",
+    "displayName": "092A2FA0472F2A4CF72908B6FBC8021F",
+    "description": "1DA542984F62A69C23F80CB52B7676B7",
+    "iconName": "Anemone_auto_SFH_Sprite",
+    "item": {
+      "id": "item_65779",
+      "displayName": "DT_InventoryItems.item_65779_name",
+      "iconName": "Anemone_auto_SFH_Sprite"
+    },
+    "price": 15000,
+    "townRank": null,
+    "appliesTo": "35A0258A4B56B84FDB42CFBF5CEDB531",
+    "requirements": [
+      {
+        "item": {
+          "id": "item_62008",
+          "displayName": "DT_InventoryItems.item_62008_name",
+          "iconName": "Osmium_Kelp_Essence_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_62010",
+          "displayName": "DT_InventoryItems.item_62010_name",
+          "iconName": "Solar_Core_Sprite"
+        },
+        "amount": 5
+      },
+      {
+        "item": {
+          "id": "item_50506",
+          "displayName": "DT_InventoryItems.item_50506_name",
+          "iconName": "Slime_goop_Sprite"
+        },
+        "amount": 7
+      }
+    ],
+    "genericRequirements": [
+      {
+        "shouldBeSameItem": false,
+        "amount": 20,
+        "genericItem": {
+          "key": "Any_SeaScavenge",
+          "displayName": "439E7486474FD9C939E83C9A084E6F45",
+          "iconName": "Any_sea_scavangeable_Sprite"
+        }
+      }
+    ],
+    "dependencies": [
+      {
+        "key": "Recipe_Anemone_AutoHarvest",
+        "displayName": "939827244F1CF9850B8B47813B0E5E5C"
+      }
+    ]
+  }
+]

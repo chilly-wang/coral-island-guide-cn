@@ -219,6 +219,8 @@
       "MIXING": "Mixing"
     },
     "NPCS": {
+      "UNLINKED_IMAGES_TEXT": "The following images couldn't get matched with any data at the moment. They may contain <strong>future content/spoilers</strong>, leftovers, tests/not planned content or just are wrongly matched.",
+      "OPEN_IMAGES": "Open images",
       "LIST": "NPC List",
       "GIFTING": "Gifting",
       "UNLINKED_IMAGES": "Unlinked images"
@@ -942,7 +944,7 @@
         "SAMS_GENERAL_STORE": "Sam's General Store",
         "CARPENTER": "Carpenter",
         "MERFOLK_GENERAL_STORE": "Merfolk General Store",
-        "MERFOLK_TAIL_STORE": "Merfolk Tail Store",
+        "ORACLE_CHAMBER": "Oracle Chamber",
         "PET_SHOP": "Pet Shop",
         "RANCH": "Ranch",
         "BEACH_SHACK": "Beach Shack",
@@ -1050,6 +1052,9 @@
       "SUNDAY": "Sunday"
     },
     "SHOP": {
+      "TAILS": "Tails",
+      "UNDERWATER_CRAFTING_LAB": "Underwater crafting lab",
+      "DEVELOP_EQUIPMENT": "Develop equipment",
       "STOCK_LIST": "Stock list",
       "ITEM_PROCESSING": "Item processing",
       "INDOOR_STOCK": "Indoor stock",
@@ -1067,6 +1072,10 @@
       "HAPPY_MOOD": "Happy"
     },
     "SHOP_DETAIL": {
+      "DEVELOP_COST": "Development cost",
+      "APPLIES_TO": "Used with",
+      "REQUIRES_DEVELOPED": "Requires",
+      "DEVELOP_REWARD": "Receive this item and its crafting recipe",
       "ENABLED": "Enabled",
       "BUY_PRICE": "Buy price",
       "TOWN_RANK": "Town rank",
@@ -1232,6 +1241,12 @@
       "CRAFTING": { "UNLOCKED": "Unlocked", "LEVEL_IN_MASTERY": "Level {level} in {mastery}", "UTENSILS": "Utensil(s)" }
     },
     "DATABASE": {
+      "UPGRADE_RESULT": "Is result of upgrade",
+      "UPGRADE_REQUIREMENT": "Is used as requirement in",
+      "USAGE_MIXING": "Usage in mixing",
+      "BUGS_AND_INSECTS": "Bugs and insects",
+      "ENEMY_DROPS": "Can be dropped from enemies",
+      "PROCESSABLE_AT": "Can be processed at",
       "IMPORTANT_NOTE": "Important note",
       "IMPORTANT_NOTE_TEXT": "The item list contains a lot of data and may take a while to load. It includes technical items that cannot be obtained in game. Item details will continue to expand as the guide adds new features.",
       "GOT_IT": "Got it!",
