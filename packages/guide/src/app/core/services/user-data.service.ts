@@ -1,6 +1,6 @@
 import { computed, effect, inject, Injectable, linkedSignal, signal, untracked } from '@angular/core';
 import { SettingsService } from "../../shared/services/settings.service";
-import { UserData } from "../types/user-data.type";
+import { UserData, UserDataStore } from "../types/user-data.type";
 import { LocalStorageService } from "../local-storage/local-storage.service";
 
 @Injectable({
@@ -10,10 +10,13 @@ export class UserDataService {
     private static readonly _CURRENT_USER_DATA_VERSION = 3;
     private static readonly _USER_DATA_STORE_KEY = 'user-data'
     private static readonly _SAVE_GAME_NAME_PREFIX = '存档'
-    userData = signal<{ version: number, currentIndex: number; data: UserData[] }>({
+    /** NPC favorites used to live in their own storage key; migrated into user data on read. */
+    private static readonly _LEGACY_NPC_FAVORITES_KEY = 'coral-guide-npc-favorites'
+    userData = signal<UserDataStore>({
         version: UserDataService._CURRENT_USER_DATA_VERSION,
         currentIndex: -1,
-        data: []
+        data: [],
+        npcFavorites: []
     });
     currentIndex = linkedSignal(() => this.userData().currentIndex);
     readonly #localStorage = inject(LocalStorageService);
@@ -57,10 +60,36 @@ export class UserDataService {
             this.userData.set({
                 version: UserDataService._CURRENT_USER_DATA_VERSION,
                 currentIndex: 0,
-                data: [this.createEmptyUserData()]
+                data: [this.createEmptyUserData()],
+                npcFavorites: []
             })
             this.save();
         }
+
+        this.#migrateLegacyNpcFavorites();
+    }
+
+    #migrateLegacyNpcFavorites(): void {
+        const legacy = this.#localStorage.getItem(UserDataService._LEGACY_NPC_FAVORITES_KEY);
+        if (legacy === null) return;
+
+        let legacyFavorites: string[] = [];
+        try {
+            legacyFavorites = this.#sanitizeNpcFavorites(JSON.parse(legacy));
+        } catch {
+            // ignore broken legacy data
+        }
+
+        this.userData.update(store => ({
+            ...store,
+            npcFavorites: [...new Set([...store.npcFavorites, ...legacyFavorites])]
+        }));
+        this.save();
+        this.#localStorage.removeItem(UserDataService._LEGACY_NPC_FAVORITES_KEY);
+    }
+
+    #sanitizeNpcFavorites(value: unknown): string[] {
+        return Array.isArray(value) ? value.filter((key): key is string => typeof key === 'string') : [];
     }
 
     delete(index?: number) {
@@ -110,7 +139,11 @@ export class UserDataService {
                 const migrated = this.#migrate({
                     version: imported.version || 1,
                     currentIndex: currentData.currentIndex,
-                    data: newData
+                    data: newData,
+                    npcFavorites: [...new Set([
+                        ...currentData.npcFavorites,
+                        ...this.#sanitizeNpcFavorites(imported.npcFavorites)
+                    ])]
                 });
 
                 this.userData.set(migrated);
@@ -122,7 +155,7 @@ export class UserDataService {
     }
 
     // TODO just assuming type, use zod or similar to actually verify
-     #mergeData(currentData: { version: number; currentIndex: number; data: UserData[] }, imported: { version: number; currentIndex: number; data: UserData[] }) {
+     #mergeData(currentData: UserDataStore, imported: { version: number; currentIndex: number; data: UserData[] }) {
         const newData = [...currentData.data];
 
         imported.data.forEach((item: UserData) => {
@@ -140,7 +173,7 @@ export class UserDataService {
         return newData;
     }
 
-    #migrate(userData: any): { version: number, currentIndex: number; data: UserData[] } {
+    #migrate(userData: any): UserDataStore {
         let migratedData: UserData[] = userData.data ?? [];
         let existingVersion = userData.version
         while (existingVersion !== UserDataService._CURRENT_USER_DATA_VERSION) {
@@ -170,7 +203,8 @@ export class UserDataService {
         return {
             version: UserDataService._CURRENT_USER_DATA_VERSION,
             currentIndex: userData.currentIndex ?? 0,
-            data: migratedData
+            data: migratedData,
+            npcFavorites: this.#sanitizeNpcFavorites(userData.npcFavorites)
         }
 
     }

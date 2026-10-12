@@ -14,6 +14,7 @@ export class LocalDataResetService {
         'checklist_beta',
         'latest-changelogs',
         'databaseHideImportantNote',
+        'coral-guide-npc-favorites',
         ...[
             'bought',
             'cooking-recipes',

@@ -9,3 +9,11 @@ export type UserData = {
     todos: ToDo[];
     checklists: Record<string, Checklist>;
 }
+
+export type UserDataStore = {
+    version: number;
+    currentIndex: number;
+    data: UserData[];
+    /** Shared by all save games. */
+    npcFavorites: string[];
+}
