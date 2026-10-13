@@ -1,6 +1,7 @@
 {
   "APP": {
-    "COLLECTION": {"ALL": "All", "UNCAPTURED": "Not caught", "CAPTURED": "Caught", "TOGGLE": "Toggle capture status", "ROMANCEABLE": "Romanceable", "PIN": "Pin", "PINNED": "Pinned", "CHECKLIST": "Capture checklist"},
+    "COLLECTION": {"ALL": "All", "UNCAPTURED": "Not caught", "CAPTURED": "Caught", "TOGGLE": "Toggle capture status", "ROMANCEABLE": "Romanceable", "PIN": "Pin", "PINNED": "Pinned", "CHECKLIST": "Capture checklist", "OBTAINED_CAPTURED": "Obtained", "OBTAINED_UNCAPTURED": "Not obtained", "DONATED": "Donated", "NOT_DONATED": "Not donated", "DONATED_IMPLIES_OBTAINED": "Donated to the museum, so it counts as obtained"},
+    "GACHA": {"TITLE": "Gacha machines", "HOW_TO": "Hand in crops worth 1,000 gold (any crop, including ocean crops, any quality) to get one capsule. Each machine can be used up to 5 times a day; special rewards come in golden capsules.", "MACHINE": {"WEST": "West machine", "EAST": "East machine"}, "MACHINE_HINT": {"WEST": "West of the Savannah ranch. Mostly indoor furniture, plus some of Fenn's secret maps.", "EAST": "East side of the Savannah. Mostly outdoor decorations, plus some of Fenn's secret maps."}, "TIER": {"SPECIAL": "Special rewards", "A": "Tier A", "B": "Tier B", "C": "Tier C"}},
     "BRAND": {
       "NAME": "珊瑚岛手册",
       "LOGO_ALT": "Coral Island Handbook logo"
@@ -190,6 +191,7 @@
       "LOCATIONS": "Locations"
     },
     "JOURNAL": {
+      "SAVANNAH": "Savannah",
       "SPAWN_ZONE_MAP_ALT": "{category} spawn zone map",
       "PRODUCE": "Produce",
       "CAUGHT": "Caught",
@@ -234,6 +236,7 @@
       "FESTIVALS": "Festivals"
     },
     "MY_GUIDE": {
+      "GACHA_CHECKLIST": "Gacha checklist",
       "TITLE": "My Coral Island Progress",
       "DASHBOARD": "Journal Progress",
       "TO_DOS": "To-dos",
@@ -409,6 +412,8 @@
         "DATABASE": "Database"
       },
       "ROUTE": {
+        "WEST": "West machine",
+        "EAST": "East machine",
         "FISH": "Fish",
         "INSECTS": "Insects",
         "SEA_CRITTERS": "Sea Critters",
@@ -1132,6 +1137,8 @@
       "YEARLY_LIMIT": "Yearly limit"
     },
     "ROUTE": {
+      "SAVANNAH_JOURNAL": "Gacha machines - Journal",
+      "GACHA_GUIDE": "Gacha checklist - My Progress",
       "DATABASE": "Item database",
       "INVENTORY_CRAFTING": "Inventory - Crafting",
       "ARTISAN_CRAFTING": "Processing - Crafting",

@@ -17,12 +17,7 @@
             />
             @let visibleData = filterCaptures(syncedData);
             @if (!showMap) {
-                <div class="flex flex-wrap gap-2 mb-5">
-                    @for (status of captureFilters; track status) {
-                        <button type="button" class="btn whitespace-nowrap" [class.btn-secondary]="captureFilter() === status"
-                            [attr.aria-pressed]="captureFilter() === status" (click)="captureFilter.set(status)">{{ 'APP.COLLECTION.' + status | translate }}</button>
-                    }
-                </div>
+                <app-status-filter [(value)]="captureFilter" [options]="captureFilters" />
             }
             @if (showMap) {
 

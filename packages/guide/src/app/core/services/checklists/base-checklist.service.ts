@@ -67,6 +67,11 @@ export abstract class BaseChecklistService {
         this.save();
     }
 
+    toggle(entry: string): void {
+        if (this.isChecked(entry)) this.remove(entry);
+        else this.add(entry);
+    }
+
     isChecked(value: string): boolean {
         return this.getCurrentChecklist().entries.includes(value);
     }

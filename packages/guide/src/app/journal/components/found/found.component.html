@@ -11,21 +11,26 @@
         @for (tab of tabs; track tab) {
             <mat-tab [label]="tab.translationKey ? (tab.translationKey | translate) : tab.title">
                 <app-data-filter [(showTable)]="showTable" [parentFormGroup]="formControl"/>
+                <app-status-filter [(value)]="obtainedFilter" [options]="obtainedFilters"/>
                 @if ((tab.data |async); as syncedData) {
+                    @let visibleData = filterObtained(syncedData);
 
                     @if (!showTable) {
                         <div class="icon-grid">
-                            @for (entry of syncedData; track entry) {
-                                <app-item-icon (click)="showDetails(entry)"
-                                               [class.selected-icon]="selectedEntity?.id === entry.id"
-                                               [itemName]="entry.iconName"
-                                               class="icon-grid-item"
-                                />
+                            @for (entry of visibleData; track entry.id) {
+                                <div class="icon-grid-item flex flex-col items-center gap-1" [class.selected-icon]="selectedEntity?.id === entry.id">
+                                    <app-item-icon (click)="showDetails(entry)"
+                                                   [itemName]="entry.iconName"
+                                                   class="cursor-pointer"
+                                    />
+                                    <app-capture-toggle class="text-white" [class.text-black]="selectedEntity?.id === entry.id" [compact]="true"
+                                                        wording="obtained" [itemId]="entry.id" [itemName]="entry | localizedEntityName"/>
+                                </div>
                             }
                         </div>
                     }
                     @if (showTable) {
-                        <app-non-specialized-table [dataSource]="syncedData"/>
+                        <app-non-specialized-table [dataSource]="visibleData"/>
                     }
 
                 }

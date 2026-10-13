@@ -1,5 +1,6 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CapturedChecklistService } from '../../../core/services/checklists/captured-checklist.service';
+import { CollectionStatus, collectionStatusOptions, matchesCollectionStatus, StatusFilterComponent } from '../../../shared/components/status-filter/status-filter.component';
 import { CaptureToggleComponent } from '../../../shared/components/capture-toggle/capture-toggle.component';
 import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
 import { Critter, Fish, Season, Seasons, Weather, Weathers } from '@ci/data-types';
@@ -24,6 +25,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         CaptureToggleComponent,
+        StatusFilterComponent,
         LocalizedEntityNamePipe,
         ListDetailContainerComponent,
         CaughtDetailsComponent,
@@ -38,12 +40,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class CaughtComponent extends BaseJournalPageComponent<Fish | Critter> {
     readonly captures = inject(CapturedChecklistService);
-    readonly captureFilter = signal('ALL');
-    readonly captureFilters = ['ALL', 'UNCAPTURED', 'CAPTURED'];
+    readonly captureFilter = signal<CollectionStatus>('ALL');
+    readonly captureFilters = collectionStatusOptions('APP.COLLECTION.CAPTURED', 'APP.COLLECTION.UNCAPTURED');
 
     filterCaptures(entries: (Fish | Critter)[]): (Fish | Critter)[] {
-        return entries.filter(entry => this.captureFilter() === 'ALL' ||
-            this.captures.isChecked(entry.item.id) === (this.captureFilter() === 'CAPTURED'));
+        return entries.filter(entry => matchesCollectionStatus(this.captureFilter(), this.captures.isObtained(entry.item.id)));
     }
 
     // Route using stable English tab IDs also works after changing UI language.

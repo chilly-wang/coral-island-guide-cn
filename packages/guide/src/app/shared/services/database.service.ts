@@ -23,6 +23,7 @@ import {
     ItemProcessing,
     ItemProcessShopData,
     DevelopEquipmentData,
+    GachaMachineData,
     ItemUpgradeData,
     JournalOrder,
     MailData,
@@ -84,6 +85,7 @@ export class DatabaseService extends BaseDbService {
     private _SHOP_PROCESS_ITEMS: Map<string, ItemProcessShopData[]> = new Map<string, ItemProcessShopData[]>();
     private _ITEM_UPGRADE: Map<string, ItemUpgradeData[]> = new Map<string, ItemUpgradeData[]>();
     private _DEVELOP_EQUIPMENT = new Map<ShopName, Observable<DevelopEquipmentData[]>>();
+    private _SAVANNAH_GACHA$?: Observable<GachaMachineData[]>;
     private _PET_SHOP_ADOPTIONS$?: Observable<PetShopAdoptions[]>;
     private _NPCS: NPC[] = [];
     private _NPCS$?: Observable<NPC[]>;
@@ -521,6 +523,14 @@ export class DatabaseService extends BaseDbService {
             return of(this._ITEM_UPGRADE.get(shopName)!)
         }
 
+    }
+
+    fetchSavannahGacha$(): Observable<GachaMachineData[]> {
+        if (!this._SAVANNAH_GACHA$) {
+            this._SAVANNAH_GACHA$ = this.http.get<GachaMachineData[]>(`${this.BASE_PATH_WITH_LANG}/savannah-gacha.json`)
+                .pipe(shareReplay(1));
+        }
+        return this._SAVANNAH_GACHA$;
     }
 
     fetchDevelopEquipment$(shopName: ShopName): Observable<DevelopEquipmentData[]> {

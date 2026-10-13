@@ -1,0 +1,38 @@
+<app-list-detail-container>
+    @if (selectedEntity) {
+        <app-database-item-details [itemId]="selectedEntity.id" listDetail/>
+    }
+
+    <app-card class="mb-6">
+        <h1 class="mb-4 font-semibold text-3xl text-black">{{ 'APP.GACHA.TITLE' | translate }}</h1>
+        <p class="text-black">{{ 'APP.GACHA.HOW_TO' | translate }}</p>
+    </app-card>
+
+    @if (machines$ | async; as machines) {
+        <mat-tab-group (selectedTabChange)="updateUrl(tabKeys[$event.index])" [selectedIndex]="selectedTabIndex()">
+            @for (machine of machines; track machine.key) {
+                <mat-tab [label]="'APP.GACHA.MACHINE.' + machine.key.toUpperCase() | translate">
+                    <p class="text-white mb-4">{{ 'APP.GACHA.MACHINE_HINT.' + machine.key.toUpperCase() | translate }}</p>
+                    <app-status-filter [(value)]="obtainedFilter" [options]="obtainedFilters"/>
+                    <app-status-filter [(value)]="tierFilter" [options]="tierFilters"/>
+
+                    @for (tier of tiers; track tier) {
+                        @let rewards = rewardsOfTier(machine, tier);
+                        @if (rewards.length) {
+                            <h2 class="mt-2 mb-3 font-semibold text-2xl text-white">{{ 'APP.GACHA.TIER.' + tier.toUpperCase() | translate }}</h2>
+                            <div class="icon-grid mb-6">
+                                @for (item of rewards; track item.id) {
+                                    <div class="icon-grid-item flex flex-col items-center gap-1" [class.selected-icon]="selectedEntity?.id === item.id">
+                                        <app-item-icon (click)="showDetails(item)" [itemName]="item.iconName" class="cursor-pointer"/>
+                                        <app-capture-toggle class="text-white" [class.text-black]="selectedEntity?.id === item.id" [compact]="true"
+                                                            checklist="gacha" wording="obtained" [itemId]="item.id" [itemName]="item | localizedEntityName"/>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </mat-tab>
+            }
+        </mat-tab-group>
+    }
+</app-list-detail-container>

@@ -6,6 +6,7 @@
 // - Oracle Chamber opening hours                 -> oracle-chamber-opening-hours.json
 // - Oracle Chamber underwater produce upgrades   -> oracle-chamber-item-upgrade.json
 // - Oracle Chamber "Underwater crafting lab"     -> oracle-chamber-develop-equipment.json
+// - Savannah gacha machines (Treasure Bubbles)  -> savannah-gacha.json (prize pools from scripts/data/treasure-bubbles.json)
 // It also links these entries from the item database pages (buyAt / isUpgradeResult) and adds the
 // official names and descriptions (all game languages) to the database i18n files.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -217,6 +218,28 @@ const oracleUpgrades = Object.values(rows(join(SHOP_DATA, 'DT_LabUpgrade.json'))
 writeJson(join(DATABASE, 'oracle-chamber-item-upgrade.json'), oracleUpgrades);
 
 // ---------------------------------------------------------------------------------------------
+// Savannah gacha machines (Treasure Bubbles). The prize pools are not in the extracted game data, so
+// scripts/data/treasure-bubbles.json keeps the wiki's list; names are matched to items by English name.
+// ---------------------------------------------------------------------------------------------
+
+const englishItemNames = readJson(join(DATABASE, 'i18n', 'en.json'));
+const itemsByEnglishName = new Map();
+for (const item of items.values()) {
+    const name = englishItemNames[item.displayName]?.trim().toLowerCase();
+    if (name) itemsByEnglishName.set(name, [...(itemsByEnglishName.get(name) ?? []), item.id]);
+}
+
+const gachaMachines = readJson('scripts/data/treasure-bubbles.json').machines.map((machine) => ({
+    key: machine.key,
+    rewards: machine.rewards.map((reward) => {
+        const ids = itemsByEnglishName.get(reward.name.toLowerCase()) ?? [];
+        if (ids.length !== 1) throw new Error(`Gacha reward "${reward.name}" matches ${ids.length} items`);
+        return { item: minimalItem(ids[0]), tier: reward.tier };
+    }),
+}));
+writeJson(join(DATABASE, 'savannah-gacha.json'), gachaMachines);
+
+// ---------------------------------------------------------------------------------------------
 // Item database pages
 // ---------------------------------------------------------------------------------------------
 
@@ -273,5 +296,6 @@ for (const language of ['de', 'en', 'es', 'fr', 'id', 'ja', 'ko', 'pt-BR', 'th-T
 
 console.log(
     `lab develop equipment: ${labDevelopEquipment.length}, oracle chamber: ${oracleShopItems.length} stock, ` +
-    `${oracleUpgrades.length} upgrades, ${oracleDevelopEquipment.length} develop equipment, ${textKeys.size} texts`,
+    `${oracleUpgrades.length} upgrades, ${oracleDevelopEquipment.length} develop equipment, ` +
+    `gacha: ${gachaMachines.map((machine) => machine.rewards.length).join(' + ')}, ${textKeys.size} texts`,
 );

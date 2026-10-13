@@ -1,10 +1,16 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { BaseChecklistService } from './base-checklist.service';
+import { MuseumChecklistService } from './museum-checklist.service';
 
-/** One capture checklist per existing save slot; donation remains independent. */
+/**
+ * One capture/"obtained" checklist per existing save slot, used by the caught and found journals.
+ * Donating to the museum implies having obtained the item, so donated items count as obtained,
+ * while obtained items are not necessarily donated.
+ */
 @Injectable({ providedIn: 'root' })
 export class CapturedChecklistService extends BaseChecklistService {
     private readonly revision = signal(0);
+    private readonly museum = inject(MuseumChecklistService);
 
     constructor() { super('captured'); }
 
@@ -18,7 +24,12 @@ export class CapturedChecklistService extends BaseChecklistService {
         this.revision.update(value => value + 1);
     }
 
-    toggle(id: string): void {
-        this.isChecked(id) ? this.remove(id) : this.add(id);
+    isDonated(id: string): boolean {
+        this.revision();
+        return this.museum.isChecked(id);
+    }
+
+    isObtained(id: string): boolean {
+        return this.isChecked(id) || this.isDonated(id);
     }
 }

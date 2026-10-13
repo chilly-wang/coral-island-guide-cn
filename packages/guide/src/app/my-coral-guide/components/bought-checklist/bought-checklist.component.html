@@ -12,11 +12,12 @@
         <mat-tab-group (selectedTabChange)="updateUrl($event)" [selectedIndex]="selectedTabIndex()">
             @for (tab of (checklistDefinition | keyvalue: null); track tab) {
                 <mat-tab [formGroup]="checklistForm" [label]="tab.key | localizedDisplay:'route'">
+            <app-status-filter [(value)]="statusFilter" [options]="statusFilters"/>
 
                     @if (!showTable) {
 
                         <div class="icon-grid">
-                            @for (entry of tab.value; track entry) {
+                            @for (entry of filterByStatus(tab.value); track entry.id) {
                                 <div
                                         [class.checklist-checked]="checklistForm.get(entry.id)?.value"
                                         [class.selected-icon]="selectedEntity?.id === entry.id"

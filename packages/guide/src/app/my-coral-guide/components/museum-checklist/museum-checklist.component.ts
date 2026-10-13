@@ -12,6 +12,7 @@ import { ItemIconComponent } from '../../../shared/components/item-icon/item-ico
 import { MatCheckbox } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LocalizedDisplayPipe } from '../../../shared/pipes/localized-display.pipe';
+import { collectionStatusOptions, StatusFilterComponent } from "../../../shared/components/status-filter/status-filter.component";
 
 @Component({
     selector: 'app-museum-checklist',
@@ -19,6 +20,7 @@ import { LocalizedDisplayPipe } from '../../../shared/pipes/localized-display.pi
 
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        StatusFilterComponent,
         ListDetailContainerComponent,
         DatabaseItemDetailsComponent,
         FishComponent,
@@ -37,6 +39,7 @@ import { LocalizedDisplayPipe } from '../../../shared/pipes/localized-display.pi
 export class MuseumChecklistComponent extends BaseItemChecklistComponent {
     checklistService = inject(MuseumChecklistService);
     checklistDefinition$ = this._database.fetchMuseumChecklist$();
+    override statusFilters = collectionStatusOptions('APP.COLLECTION.DONATED', 'APP.COLLECTION.NOT_DONATED');
 
     constructor() {
         super();

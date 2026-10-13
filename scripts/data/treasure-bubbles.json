@@ -1,0 +1,305 @@
+{
+  "source": "https://coralisland.fandom.com/wiki/Treasure_Bubbles",
+  "retrieved": "2026-10-12",
+  "note": "The prize pools are not part of the extracted game data, so they are taken from the wiki. Names are the in-game English item names.",
+  "machines": [
+    {
+      "key": "west",
+      "rewards": [
+        {
+          "name": "Mushroom wall",
+          "tier": "special"
+        },
+        {
+          "name": "Blue carpet flooring",
+          "tier": "special"
+        },
+        {
+          "name": "Fantasy mushroom bed",
+          "tier": "special"
+        },
+        {
+          "name": "Big mushroom reading chair",
+          "tier": "special"
+        },
+        {
+          "name": "Big mushroom fireplace",
+          "tier": "special"
+        },
+        {
+          "name": "Mushroom shaped rug",
+          "tier": "special"
+        },
+        {
+          "name": "Log mushroom sofa",
+          "tier": "special"
+        },
+        {
+          "name": "Mushroom coffee table",
+          "tier": "special"
+        },
+        {
+          "name": "Blue mushroom chair",
+          "tier": "special"
+        },
+        {
+          "name": "Flower floor lamp",
+          "tier": "special"
+        },
+        {
+          "name": "Fenn's secret map 1",
+          "tier": "A"
+        },
+        {
+          "name": "Fenn's secret map 3",
+          "tier": "A"
+        },
+        {
+          "name": "Fenn's secret map 5",
+          "tier": "A"
+        },
+        {
+          "name": "Wooden mushroom bookcase",
+          "tier": "A"
+        },
+        {
+          "name": "Mushroom pattern bed",
+          "tier": "A"
+        },
+        {
+          "name": "Small mushroom fireplace",
+          "tier": "A"
+        },
+        {
+          "name": "Mushroom pattern sofa",
+          "tier": "A"
+        },
+        {
+          "name": "Square mushroom rug",
+          "tier": "A"
+        },
+        {
+          "name": "Mushroom arm chair",
+          "tier": "A"
+        },
+        {
+          "name": "Mushroom shelves",
+          "tier": "A"
+        },
+        {
+          "name": "Tall blue mushroom floor lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Blue mushroom wall lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Small blue mushroom floor lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Mushroom nightstand",
+          "tier": "B"
+        },
+        {
+          "name": "Small yellow mushroom lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Tall red mushroom floor lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Small red mushroom floor lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Red mushroom decor",
+          "tier": "B"
+        },
+        {
+          "name": "Mushroom window",
+          "tier": "B"
+        },
+        {
+          "name": "White mushroom wall lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Big white mushroom decor",
+          "tier": "C"
+        },
+        {
+          "name": "Small white mushroom decor",
+          "tier": "C"
+        },
+        {
+          "name": "Red mushroom chair",
+          "tier": "C"
+        },
+        {
+          "name": "Log mushroom chest",
+          "tier": "C"
+        },
+        {
+          "name": "Tree stump chair",
+          "tier": "C"
+        },
+        {
+          "name": "Tree stump dining chair",
+          "tier": "C"
+        }
+      ]
+    },
+    {
+      "key": "east",
+      "rewards": [
+        {
+          "name": "Shroomba statue",
+          "tier": "special"
+        },
+        {
+          "name": "Ersa statue",
+          "tier": "special"
+        },
+        {
+          "name": "Mushroom campfire",
+          "tier": "special"
+        },
+        {
+          "name": "Mushroom patio table",
+          "tier": "special"
+        },
+        {
+          "name": "Mushroom fountain",
+          "tier": "special"
+        },
+        {
+          "name": "Large mushroom house",
+          "tier": "special"
+        },
+        {
+          "name": "Colorful mushrooms decor",
+          "tier": "special"
+        },
+        {
+          "name": "Yellow mushroom lantern",
+          "tier": "special"
+        },
+        {
+          "name": "Wilting flower garden lamp",
+          "tier": "special"
+        },
+        {
+          "name": "Blooming flower garden lamp",
+          "tier": "special"
+        },
+        {
+          "name": "Fenn's secret map 2",
+          "tier": "A"
+        },
+        {
+          "name": "Fenn's secret map 4",
+          "tier": "A"
+        },
+        {
+          "name": "Fenn's secret map 6",
+          "tier": "A"
+        },
+        {
+          "name": "Mushroom gazebo",
+          "tier": "A"
+        },
+        {
+          "name": "Small mushroom house",
+          "tier": "A"
+        },
+        {
+          "name": "Small blue mushroom garden lamp",
+          "tier": "A"
+        },
+        {
+          "name": "Large white mushroom decor",
+          "tier": "A"
+        },
+        {
+          "name": "Twin white mushroom decor",
+          "tier": "A"
+        },
+        {
+          "name": "Rock garden bench",
+          "tier": "A"
+        },
+        {
+          "name": "Twin red mushroom decor",
+          "tier": "A"
+        },
+        {
+          "name": "Large red mushroom decor",
+          "tier": "B"
+        },
+        {
+          "name": "Red mushroom outdoor decor",
+          "tier": "B"
+        },
+        {
+          "name": "Large yellow mushroom decor",
+          "tier": "B"
+        },
+        {
+          "name": "Yellow mushroom garden lamp",
+          "tier": "B"
+        },
+        {
+          "name": "Yellow mushroom decor",
+          "tier": "B"
+        },
+        {
+          "name": "Blue mushroom lantern",
+          "tier": "B"
+        },
+        {
+          "name": "Blue mushroom decor",
+          "tier": "B"
+        },
+        {
+          "name": "Blue mushroom garden lamp",
+          "tier": "B"
+        },
+        {
+          "name": "White mushroom decor",
+          "tier": "B"
+        },
+        {
+          "name": "Large leaf decor",
+          "tier": "B"
+        },
+        {
+          "name": "Small red mushroom decor",
+          "tier": "C"
+        },
+        {
+          "name": "Small white mushroom outdoor decor",
+          "tier": "C"
+        },
+        {
+          "name": "Small blue mushroom decor",
+          "tier": "C"
+        },
+        {
+          "name": "Tree stump pond",
+          "tier": "C"
+        },
+        {
+          "name": "Small leaf decor",
+          "tier": "C"
+        },
+        {
+          "name": "Leaf decor",
+          "tier": "C"
+        }
+      ]
+    }
+  ]
+}

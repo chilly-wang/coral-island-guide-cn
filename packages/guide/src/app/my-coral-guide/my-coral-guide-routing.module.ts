@@ -70,6 +70,16 @@ export const routes: Routes = [
                 title: 'APP.ROUTE.CLOTHING_GUIDE'
             },
             {
+                path: 'gacha-checklist',
+                redirectTo: 'gacha-checklist/',
+                pathMatch: 'full'
+            },
+            {
+                path: 'gacha-checklist/:tabName',
+                loadComponent: () => import('./components/gacha-checklist/gacha-checklist.component').then(m => m.GachaChecklistComponent),
+                title: 'APP.ROUTE.GACHA_GUIDE'
+            },
+            {
                 path: 'settings',
                 loadChildren: () => import('../settings/settings-routing.module').then((m) => m.routes),
                 title: 'APP.ROUTE.SETTINGS_GUIDE'

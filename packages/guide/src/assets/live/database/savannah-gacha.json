@@ -1,0 +1,588 @@
+[
+  {
+    "key": "west",
+    "rewards": [
+      {
+        "item": {
+          "id": "item_98043",
+          "displayName": "DT_InventoryItems.item_98043_name",
+          "iconName": "Mushroom_Wallpaper_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_99037",
+          "displayName": "DT_InventoryItems.item_99037_name",
+          "iconName": "Blue_Carpet_Flooring_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_91160",
+          "displayName": "DT_InventoryItems.item_91160_name",
+          "iconName": "Fantasy_Mushroom_Red_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_91168",
+          "displayName": "DT_InventoryItems.item_91168_name",
+          "iconName": "Big_Mushroom_Reading_Chair_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_95072",
+          "displayName": "DT_InventoryItems.item_95072_name",
+          "iconName": "Big_Mushroom_Fireplace_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_95071",
+          "displayName": "DT_InventoryItems.item_95071_name",
+          "iconName": "Mushroom_Shaped_Rug_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_92081",
+          "displayName": "DT_InventoryItems.item_92081_name",
+          "iconName": "Log_Mushroom_Sofa_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_91163",
+          "displayName": "DT_InventoryItems.item_91163_name",
+          "iconName": "Mushroom_Cafe_Table_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_91165",
+          "displayName": "DT_InventoryItems.item_91165_name",
+          "iconName": "Blue_Mushroom_Chair_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_92087",
+          "displayName": "DT_InventoryItems.item_92087_name",
+          "iconName": "Flower_Floor_Lamp_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_10012",
+          "displayName": "DT_InventoryItems.item_10012_name",
+          "iconName": "Savannah_Map_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_10014",
+          "displayName": "DT_InventoryItems.item_10014_name",
+          "iconName": "Savannah_Map_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_10016",
+          "displayName": "DT_InventoryItems.item_10016_name",
+          "iconName": "Savannah_Map_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_93069",
+          "displayName": "DT_InventoryItems.item_93069_name",
+          "iconName": "Wooden_Mushroom_Bookshelf_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_91161",
+          "displayName": "DT_InventoryItems.item_91161_name",
+          "iconName": "Mushroom_Pattern_Bed_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_95073",
+          "displayName": "DT_InventoryItems.item_95073_name",
+          "iconName": "Small_Mushroom_Fireplace_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_92082",
+          "displayName": "DT_InventoryItems.item_92082_name",
+          "iconName": "Mushroom_Pattern_Sofa_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_95070",
+          "displayName": "DT_InventoryItems.item_95070_name",
+          "iconName": "Square_Mushroom_Rug_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_91167",
+          "displayName": "DT_InventoryItems.item_91167_name",
+          "iconName": "Mushroom_Arm_Chair_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_93068",
+          "displayName": "DT_InventoryItems.item_93068_name",
+          "iconName": "Mushroom_Shelf_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_92084",
+          "displayName": "DT_InventoryItems.item_92084_name",
+          "iconName": "Tall_Blue_Mushroom_Floor_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_96115",
+          "displayName": "DT_InventoryItems.item_96115_name",
+          "iconName": "Blue_Mushroom_Wall_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_92083",
+          "displayName": "DT_InventoryItems.item_92083_name",
+          "iconName": "Small_Blue_Mushroom_Floor_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_91162",
+          "displayName": "DT_InventoryItems.item_91162_name",
+          "iconName": "Mushroom_Nightstand_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_92088",
+          "displayName": "DT_InventoryItems.item_92088_name",
+          "iconName": "Small_Yellow_Mushroom_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_92086",
+          "displayName": "DT_InventoryItems.item_92086_name",
+          "iconName": "Tall_Red_Mushroom_Floor_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_92085",
+          "displayName": "DT_InventoryItems.item_92085_name",
+          "iconName": "Small_Red_Mushroom_Floor_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_96117",
+          "displayName": "DT_InventoryItems.item_96117_name",
+          "iconName": "Red_Mushroom_Decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_90071",
+          "displayName": "DT_InventoryItems.item_90071_name",
+          "iconName": "Mushroom_Window_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_96116",
+          "displayName": "DT_InventoryItems.item_96116_name",
+          "iconName": "White_Mushroom_Wall_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_94108",
+          "displayName": "DT_InventoryItems.item_94108_name",
+          "iconName": "Big_White_Mushroom_Decor_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_94107",
+          "displayName": "DT_InventoryItems.item_94107_name",
+          "iconName": "Small_White_Mushroom_Decor_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_91164",
+          "displayName": "DT_InventoryItems.item_91164_name",
+          "iconName": "Red_Mushroom_Chair_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_94109",
+          "displayName": "DT_InventoryItems.item_94109_name",
+          "iconName": "Log_Mushroom_Chest_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_91166",
+          "displayName": "DT_InventoryItems.item_91166_name",
+          "iconName": "Tree_Stump_Chair_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_91169",
+          "displayName": "DT_InventoryItems.item_91169_name",
+          "iconName": "Tree_Stump_Dining_Chair_Sprite"
+        },
+        "tier": "C"
+      }
+    ]
+  },
+  {
+    "key": "east",
+    "rewards": [
+      {
+        "item": {
+          "id": "item_65767",
+          "displayName": "DT_InventoryItems.item_65767_name",
+          "iconName": "Shroomba_Statue_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65766",
+          "displayName": "DT_InventoryItems.item_65766_name",
+          "iconName": "Ersa_Statue_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65765",
+          "displayName": "DT_InventoryItems.item_65765_name",
+          "iconName": "Mushroom_Campfire_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65760",
+          "displayName": "DT_InventoryItems.item_65760_name",
+          "iconName": "Mushroom_Pation_Table_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65761",
+          "displayName": "DT_InventoryItems.item_65761_name",
+          "iconName": "Mushroom_Fountain_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65764",
+          "displayName": "DT_InventoryItems.item_65764_name",
+          "iconName": "Large_mushroom_house_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65744",
+          "displayName": "DT_InventoryItems.item_65744_name",
+          "iconName": "Colorful_mushrooms_decor_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65749",
+          "displayName": "DT_InventoryItems.item_65749_name",
+          "iconName": "Yellow_Mushroom_Lantern_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65750",
+          "displayName": "DT_InventoryItems.item_65750_name",
+          "iconName": "Wilting_flower_garden_lamp_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_65751",
+          "displayName": "DT_InventoryItems.item_65751_name",
+          "iconName": "Blooming_flower_garden_lamp_Sprite"
+        },
+        "tier": "special"
+      },
+      {
+        "item": {
+          "id": "item_10013",
+          "displayName": "DT_InventoryItems.item_10013_name",
+          "iconName": "Savannah_Map_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_10015",
+          "displayName": "DT_InventoryItems.item_10015_name",
+          "iconName": "Savannah_Map_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_10017",
+          "displayName": "DT_InventoryItems.item_10017_name",
+          "iconName": "Savannah_Map_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65759",
+          "displayName": "DT_InventoryItems.item_65759_name",
+          "iconName": "Mushroom_Gazebo_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65763",
+          "displayName": "DT_InventoryItems.item_65763_name",
+          "iconName": "Small_mushroom_house_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65747",
+          "displayName": "DT_InventoryItems.item_65747_name",
+          "iconName": "Blue_mushroom_garden_lamp_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65738",
+          "displayName": "DT_InventoryItems.item_65738_name",
+          "iconName": "Large_white_mushroom_decor_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65739",
+          "displayName": "DT_InventoryItems.item_65739_name",
+          "iconName": "Twin_white_mushroom_decor_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65758",
+          "displayName": "DT_InventoryItems.item_65758_name",
+          "iconName": "Rock_garden_bench_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65735",
+          "displayName": "DT_InventoryItems.item_65735_name",
+          "iconName": "Twin_red_mushroom_decor_Sprite"
+        },
+        "tier": "A"
+      },
+      {
+        "item": {
+          "id": "item_65734",
+          "displayName": "DT_InventoryItems.item_65734_name",
+          "iconName": "Large_red_mushroom_decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65733",
+          "displayName": "DT_InventoryItems.item_65733_name",
+          "iconName": "Red_mushroom_outdoor_decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65743",
+          "displayName": "DT_InventoryItems.item_65743_name",
+          "iconName": "Large_yellow_mushroom_decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65745",
+          "displayName": "DT_InventoryItems.item_65745_name",
+          "iconName": "Yellow_Mushroom_Lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65742",
+          "displayName": "DT_InventoryItems.item_65742_name",
+          "iconName": "Yellow_mushroom_decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65748",
+          "displayName": "DT_InventoryItems.item_65748_name",
+          "iconName": "Blue_Mushroom_Lantern_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65741",
+          "displayName": "DT_InventoryItems.item_65741_name",
+          "iconName": "Blue_mushroom_decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65746",
+          "displayName": "DT_InventoryItems.item_65746_name",
+          "iconName": "Small_blue_mushroom_garden_lamp_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65737",
+          "displayName": "DT_InventoryItems.item_65737_name",
+          "iconName": "White_mushroom_decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65754",
+          "displayName": "DT_InventoryItems.item_65754_name",
+          "iconName": "Large_leaf_decor_Sprite"
+        },
+        "tier": "B"
+      },
+      {
+        "item": {
+          "id": "item_65732",
+          "displayName": "DT_InventoryItems.item_65732_name",
+          "iconName": "Small_red_mushroom_decor_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_65736",
+          "displayName": "DT_InventoryItems.item_65736_name",
+          "iconName": "Small_white_mushroom_outdoor_decor_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_65740",
+          "displayName": "DT_InventoryItems.item_65740_name",
+          "iconName": "Small_blue_mushroom_decor_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_65762",
+          "displayName": "DT_InventoryItems.item_65762_name",
+          "iconName": "Tree_Stump_Pond_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_65752",
+          "displayName": "DT_InventoryItems.item_65752_name",
+          "iconName": "Small_leaf_decor_Sprite"
+        },
+        "tier": "C"
+      },
+      {
+        "item": {
+          "id": "item_65753",
+          "displayName": "DT_InventoryItems.item_65753_name",
+          "iconName": "Leaf_decor_Sprite"
+        },
+        "tier": "C"
+      }
+    ]
+  }
+]

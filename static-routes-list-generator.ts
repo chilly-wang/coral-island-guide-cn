@@ -50,6 +50,11 @@ routes.push(...foundTabs.slice(0, caughtTabs.length).map(utensil => '/my/museum-
 const notesTabs =  ['Letters', 'Torn pages', 'Treasure Map'];
 routes.push(...notesTabs.map(utensil => '/journal/notes/' + transformTabName(utensil)))
 
+/** Savannah gacha machines **/
+const gachaMachines = ['west', 'east'];
+routes.push(...gachaMachines.map(machine => '/journal/savannah/' + machine))
+routes.push(...gachaMachines.map(machine => '/my/gacha-checklist/' + machine))
+
 let routeFile = path.join(__dirname, 'packages/guide/src/generated/routes.txt');
 fs.writeFileSync(routeFile, routes.join('\n'), {flag: 'w'});
 

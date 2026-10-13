@@ -32,6 +32,16 @@ export const routes: Routes = [
                 title: 'APP.ROUTE.NOTES_JOURNAL'
             },
             {
+                path: 'savannah',
+                redirectTo: 'savannah/',
+                pathMatch: 'full'
+            },
+            {
+                path: 'savannah/:tabName',
+                loadComponent: () => import('./components/gacha/gacha.component').then(m => m.GachaComponent),
+                title: 'APP.ROUTE.SAVANNAH_JOURNAL'
+            },
+            {
                 path: 'clothing/:tabName',
                 loadComponent: () => import('./components/bought/bought.component').then(m => m.BoughtComponent),
                 title: 'APP.ROUTE.CLOTHING_JOURNAL'

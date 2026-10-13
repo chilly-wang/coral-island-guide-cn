@@ -11,12 +11,14 @@ import { DatabaseItemDetailsComponent } from '../../../shared/components/databas
 import { DatabaseItemDetailsDirective } from '../../../shared/directives/database-item-details.directive';
 import { BuyAtComponent } from '../../../shared/components/database-item-details/buy-at/buy-at.component';
 import { LocalizedDisplayPipe } from '../../../shared/pipes/localized-display.pipe';
+import { StatusFilterComponent } from "../../../shared/components/status-filter/status-filter.component";
 
 @Component({
     selector: 'app-bought-checklist',
     templateUrl: './bought-checklist.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
+        StatusFilterComponent,
         MatTab,
         ReactiveFormsModule,
         MatTabGroup,

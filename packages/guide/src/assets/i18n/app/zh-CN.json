@@ -1,6 +1,7 @@
 {
   "APP": {
-    "COLLECTION": {"ALL": "全部", "UNCAPTURED": "未捕获", "CAPTURED": "已捕获", "TOGGLE": "切换捕获状态", "ROMANCEABLE": "可恋爱", "PIN": "置顶", "PINNED": "已置顶", "CHECKLIST": "捕获清单"},
+    "COLLECTION": {"ALL": "全部", "UNCAPTURED": "未捕获", "CAPTURED": "已捕获", "TOGGLE": "切换捕获状态", "ROMANCEABLE": "可恋爱", "PIN": "置顶", "PINNED": "已置顶", "CHECKLIST": "捕获清单", "OBTAINED_CAPTURED": "已获取", "OBTAINED_UNCAPTURED": "未获取", "DONATED": "已捐赠", "NOT_DONATED": "未捐赠", "DONATED_IMPLIES_OBTAINED": "已捐赠给博物馆，视为已获取"},
+    "GACHA": {"TITLE": "扭蛋机", "HOW_TO": "提交价值 1,000 金币的作物（任意作物，包括海洋作物，品质不限）即可获得一个扭蛋。每台扭蛋机每天最多可以扭 5 次，特殊奖励装在金色扭蛋里。", "MACHINE": {"WEST": "西边扭蛋机", "EAST": "东边扭蛋机"}, "MACHINE_HINT": {"WEST": "位于萨凡纳牧场西侧，奖池以室内家具为主，另有几张芬恩的秘密地图。", "EAST": "位于萨凡纳东侧，奖池以户外装饰为主，另有几张芬恩的秘密地图。"}, "TIER": {"SPECIAL": "特殊奖励", "A": "A 档", "B": "B 档", "C": "C 档"}},
     "BRAND": {
       "NAME": "珊瑚岛手册",
       "LOGO_ALT": "珊瑚岛手册 Logo"
@@ -185,6 +186,7 @@
       "LOCATIONS": "地点"
     },
     "JOURNAL": {
+      "SAVANNAH": "萨凡纳",
       "SPAWN_ZONE_MAP_ALT": "{category}分区地图",
       "PRODUCE": "产物",
       "CAUGHT": "捕获",
@@ -229,6 +231,7 @@
       "FESTIVALS": "节日"
     },
     "MY_GUIDE": {
+      "GACHA_CHECKLIST": "扭蛋机清单",
       "TITLE": "我的珊瑚岛进度",
       "DASHBOARD": "图鉴进度",
       "TO_DOS": "待办事项",
@@ -398,6 +401,8 @@
         "DATABASE": "物品数据库"
       },
       "ROUTE": {
+        "WEST": "西边扭蛋机",
+        "EAST": "东边扭蛋机",
         "FISH": "鱼类",
         "INSECTS": "昆虫",
         "SEA_CRITTERS": "海洋生物",
@@ -1121,6 +1126,8 @@
       "YEARLY_LIMIT": "每年购买上限"
     },
     "ROUTE": {
+      "SAVANNAH_JOURNAL": "扭蛋机 - 图鉴",
+      "GACHA_GUIDE": "扭蛋机清单 - 我的进度",
       "DATABASE": "物品数据库",
       "INVENTORY_CRAFTING": "物品 - 制作",
       "ARTISAN_CRAFTING": "加工 - 制作",

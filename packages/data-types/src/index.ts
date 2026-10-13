@@ -22,6 +22,7 @@ export * from './lib/interfaces/critter.interface';
 export * from './lib/interfaces/crop.interface';
 export * from './lib/interfaces/custom-entry.interface';
 export * from './lib/interfaces/develop-equipment-data.interface';
+export * from './lib/interfaces/gacha-machine-data.interface';
 export * from './lib/interfaces/database-item.interface';
 export * from './lib/interfaces/enemy.interface';
 export * from './lib/interfaces/festival-data.interface';

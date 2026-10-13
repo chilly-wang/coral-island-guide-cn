@@ -270,3 +270,7 @@
 /journal/notes/letters
 /journal/notes/tornpages
 /journal/notes/treasuremap
+/journal/savannah/west
+/journal/savannah/east
+/my/gacha-checklist/west
+/my/gacha-checklist/east

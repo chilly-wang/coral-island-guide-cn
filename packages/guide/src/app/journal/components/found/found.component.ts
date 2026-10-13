@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, computed, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { BaseJournalPageComponent } from '../base-journal-page/base-journal-page.component';
 import { Item } from '@ci/data-types';
 import { FormGroup } from "@angular/forms";
@@ -15,6 +15,10 @@ import { ItemIconComponent } from "../../../shared/components/item-icon/item-ico
 import { AsyncPipe } from "@angular/common";
 import { NonSpecializedTableComponent } from "../../../shared/components/non-specialized-table/non-specialized-table.component";
 import { TranslatePipe } from "@ngx-translate/core";
+import { CapturedChecklistService } from "../../../core/services/checklists/captured-checklist.service";
+import { CaptureToggleComponent } from "../../../shared/components/capture-toggle/capture-toggle.component";
+import { CollectionStatus, collectionStatusOptions, matchesCollectionStatus, StatusFilterComponent } from "../../../shared/components/status-filter/status-filter.component";
+import { LocalizedEntityNamePipe } from "../../../shared/pipes/localized-display.pipe";
 
 @Component({
     selector: 'app-found',
@@ -31,10 +35,22 @@ import { TranslatePipe } from "@ngx-translate/core";
         ItemIconComponent,
         AsyncPipe,
         NonSpecializedTableComponent,
-        TranslatePipe
+        TranslatePipe,
+        CaptureToggleComponent,
+        StatusFilterComponent,
+        LocalizedEntityNamePipe,
     ]
 })
 export class FoundComponent extends BaseJournalPageComponent<Item> implements AfterViewInit {
+
+    readonly captures = inject(CapturedChecklistService);
+    readonly obtainedFilter = signal<CollectionStatus>('ALL');
+    readonly obtainedFilters = collectionStatusOptions('APP.COLLECTION.OBTAINED_CAPTURED', 'APP.COLLECTION.OBTAINED_UNCAPTURED');
+
+    /** Donated items count as obtained (see CapturedChecklistService). */
+    filterObtained(entries: Item[]): Item[] {
+        return entries.filter(entry => matchesCollectionStatus(this.obtainedFilter(), this.captures.isObtained(entry.id)));
+    }
 
     contextsPerTab: ToDoContext[] = [
         "journal_artifacts",
