@@ -16,7 +16,12 @@ export abstract class BaseTableComponent<T> implements AfterViewInit {
     readonly sort = viewChild(MatSort);
     sortingDataAccessor?: (item: T, property: string) => string | number
     dataSource = input.required<T[]>()
-    protected _dataSource = computed<T[]>(() => this.dataSource());
+    /**
+     * Pages often pass a freshly filtered array on every change detection
+     * (e.g. the obtained/caught status filters). Treat arrays holding the same
+     * items as equal so the table is not rebuilt each time.
+     */
+    protected _dataSource = computed<T[]>(() => this.dataSource(), { equal: sameItems });
     protected abstract readonly BASE_DISPLAY_COLUMNS: string[]
 
     constructor() {
@@ -29,11 +34,16 @@ export abstract class BaseTableComponent<T> implements AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.attachSort();
+    }
+
+    /** Connect the sort header to the current data source (also after it was rebuilt). */
+    private attachSort() {
         const sort = this.sort();
         if (this.matDataSource && sort) {
-            this.matDataSource.sort = sort;
             if (this.sortingDataAccessor)
                 this.matDataSource.sortingDataAccessor = this.sortingDataAccessor as MatTableDataSource<T>['sortingDataAccessor'];
+            this.matDataSource.sort = sort;
         }
     }
 
@@ -43,6 +53,8 @@ export abstract class BaseTableComponent<T> implements AfterViewInit {
         this.displayedColumns = [...this.BASE_DISPLAY_COLUMNS];
 
         this.displayHeaderColumns = this.displayedColumns.filter(column => column !== 'icon')
+        // A rebuilt data source keeps the column/direction the user picked.
+        this.attachSort();
     }
 
     protected sortHelper<T extends MinimalItem & {
@@ -74,4 +86,13 @@ export abstract class BaseTableComponent<T> implements AfterViewInit {
         }
     }
 
+}
+
+function sameItems<T>(a: T[], b: T[]): boolean {
+    if (a === b) return true;
+    if (!a || !b || a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
 }
