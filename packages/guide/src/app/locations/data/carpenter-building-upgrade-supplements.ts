@@ -7,6 +7,7 @@ const BUILDING_IDS = {
     coop1: 'item_110004',
     coop2: 'item_110005',
     coop3: 'item_110006',
+    underwaterBarn: 'item_110038',
 } as const;
 
 const BUILDING_ORDER = [
@@ -69,6 +70,8 @@ const ANIMAL_CAPACITY: Record<string, number> = {
     [BUILDING_IDS.barn1]: 4,
     [BUILDING_IDS.barn2]: 8,
     [BUILDING_IDS.barn3]: 12,
+    // Sold at the Underwater Ranch, not the carpenter, but shown the same way.
+    [BUILDING_IDS.underwaterBarn]: 4,
 };
 
 /**

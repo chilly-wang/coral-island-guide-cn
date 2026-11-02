@@ -18,13 +18,15 @@ import { CoffeeComponent } from "./components/shops/coffee/coffee.component";
 import { TavernComponent } from "./components/shops/tavern/tavern.component";
 import { Route } from "@angular/router";
 
-export const shopRouteConfig: ({ name: ShopName, betaOnly?: true, liveOnly?: true } & ({ component: Type<any>, } | {
+/**
+ * The sidebar lists the shops in this order (most important first), land shops and
+ * underwater (Merfolk Kingdom) shops in separate groups.
+ */
+export const shopRouteConfig: ({ name: ShopName, underwater?: true, betaOnly?: true, liveOnly?: true } & ({ component: Type<any>, } | {
     loadComponent: Route['loadComponent']
 }))[] = [
+    // Upgrades and buildings
     {
-        name: 'general-store',
-        component: GeneralStoreComponent,
-    }, {
         name: 'blacksmith',
         component: BlacksmithComponent
     },
@@ -37,48 +39,56 @@ export const shopRouteConfig: ({ name: ShopName, betaOnly?: true, liveOnly?: tru
         component: CarpenterComponent,
     },
     {
-        name: 'bos',
-        component: BosComponent,
+        name: 'beach-shack',
+        component: BeachShackComponent,
+    },
+    // Everyday shopping
+    {
+        name: 'general-store',
+        component: GeneralStoreComponent,
     },
     {
         name: 'ranch',
         component: RanchComponent,
     },
     {
+        name: 'socket-and-pan',
+        component: SocketAndPanComponent,
+    },
+    {
+        name: 'bos',
+        component: BosComponent,
+    },
+    {
         name: 'pet-shop',
         component: PetShopComponent,
     },
+    // Seasonal and special
     {
         name: 'bens-caravan',
         component: BensCaravanComponent,
     },
     {
-        name: 'socket-and-pan',
-        component: SocketAndPanComponent,
-    },
-    {
-        name: 'beach-shack',
-        component: BeachShackComponent,
-    },
-    {
         name: 'concerned-monkey',
         component: ConcernedMonkeyComponent,
     },
+    // Furniture and clothing
     {
-        name: 'merfolk-general-store',
-        component: MerfolkGeneralStoreComponent,
+        name: 'furniture-store',
+        loadComponent: () => import('./components/shops/furniture-store.component').then(c => c.FurnitureStoreComponent),
     },
     {
-        name: 'oracle-chamber',
-        component: OracleChamberComponent,
+        name: 'white-flamingo',
+        component: WhiteFlamingoComponent,
+    },
+    // Food and drink
+    {
+        name: 'tavern',
+        component: TavernComponent,
     },
     {
-        name: 'tidal-threads',
-        loadComponent: () => import('./components/shops/tidal-threads.component').then(c => c.TidalThreadsComponent),
-    },
-    {
-        name: 'underwater-ranch',
-        loadComponent: () => import('./components/underwater-ranch/underwater-ranch.component').then(c => c.UnderwaterRanchComponent),
+        name: 'coffee',
+        component: CoffeeComponent,
     },
     {
         name: 'taco-truck',
@@ -88,24 +98,30 @@ export const shopRouteConfig: ({ name: ShopName, betaOnly?: true, liveOnly?: tru
         name: 'ramen-shop',
         loadComponent: () => import('./components/shops/ramen-shop.component').then(c => c.RamenShopComponent),
     },
+    // Underwater
+    {
+        name: 'oracle-chamber',
+        underwater: true,
+        component: OracleChamberComponent,
+    },
+    {
+        name: 'merfolk-general-store',
+        underwater: true,
+        component: MerfolkGeneralStoreComponent,
+    },
+    {
+        name: 'underwater-ranch',
+        underwater: true,
+        loadComponent: () => import('./components/underwater-ranch/underwater-ranch.component').then(c => c.UnderwaterRanchComponent),
+    },
     {
         name: 'sales-cart-stall',
+        underwater: true,
         loadComponent: () => import('./components/shops/sales-cart-stall.component').then(c => c.SalesCartStallComponent),
     },
     {
-        name: 'furniture-store',
-        loadComponent: () => import('./components/shops/furniture-store.component').then(c => c.FurnitureStoreComponent),
-    },
-    {
-        name: 'white-flamingo',
-        component: WhiteFlamingoComponent,
-    },
-    {
-        name: 'tavern',
-        component: TavernComponent,
-    },
-    {
-        name: 'coffee',
-        component: CoffeeComponent,
+        name: 'tidal-threads',
+        underwater: true,
+        loadComponent: () => import('./components/shops/tidal-threads.component').then(c => c.TidalThreadsComponent),
     },
 ]

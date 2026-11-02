@@ -4,21 +4,32 @@
     }
 
     @let att = attractions.value();
+    @if (att) {
+        <div class="flex flex-wrap items-center gap-x-4 mb-5">
+            <app-status-filter [(value)]="statusFilter" [options]="statusFilters" class="!mb-0"/>
+            <span class="text-white font-semibold">{{ 'APP.COLLECTION.COMPLETED_COUNT' | translate: {done: completedCount(att), total: att.length} }}</span>
+        </div>
+    }
     <div class="flex gap-4 flex-wrap">
-        @for (attraction of att; track attraction) {
+        @for (attraction of filterByStatus(att ?? []); track attraction) {
+            @let isCompleted = completed.isChecked(attraction.key);
             <div
                     (click)="showDetails(attraction)"
                     [class.to-merino-300]="selectedEntity?.key === attraction.key"
-                    class="cursor-pointer rounded-xl flex flex-col items-center gap-4 max-w-52 bg-gradient-to-b from-transparent from-30% to-30% to-merino  hover:to-merino-200">
+                    [class.ring-4]="isCompleted"
+                    class="cursor-pointer rounded-xl ring-emerald-500 flex flex-col items-center gap-4 max-w-52 bg-gradient-to-b from-transparent from-30% to-30% to-merino  hover:to-merino-200">
                 <img alt="{{attraction.name | translate}} icon" class="w-full aspect-square"
                      src="{{iconsPath + attraction.projectImage}}.webp"
                      width="256"/>
-                <div class="text-lg font-semibold flex flex-col items-center justify-center px-4 pb-2 size-full text-center">
+                <div class="text-lg font-semibold flex flex-col items-center justify-center gap-1 px-4 pb-3 size-full text-center">
                     <app-item-icon [itemName]="attraction.projectIcon" class="size-8"/>
 
                     {{ attraction.name | translate }}
 
                     <span class="mt-auto">{{ attraction.daysToComplete }} {{ 'APP.DETAIL.DAYS' | translate }}</span>
+                    <app-capture-toggle checklist="attractions" wording="completed" [itemId]="attraction.key"
+                                        [itemName]="attraction.name | translate"
+                                        [class.text-emerald-800]="isCompleted"/>
                 </div>
             </div>
         }

@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AttractionsChecklistService } from '../core/services/checklists/attractions-checklist.service';
 import { BoughtChecklistService } from '../core/services/checklists/bought-checklist.service';
+import { CapturedChecklistService } from '../core/services/checklists/captured-checklist.service';
 import { CookingRecipesChecklistService } from '../core/services/checklists/cooking-recipes-checklist.service';
 import { CraftedChecklistService } from '../core/services/checklists/crafted-checklist.service';
 import { DefeatedChecklistService } from '../core/services/checklists/defeated-checklist.service';
+import { GachaChecklistService } from '../core/services/checklists/gacha-checklist.service';
 import { HeartEventsChecklistService } from '../core/services/checklists/heart-events-checklist.service';
 import { MuseumChecklistService } from '../core/services/checklists/museum-checklist.service';
 import { OfferingChecklistService } from '../core/services/checklists/offering-checklist.service';
@@ -30,10 +33,13 @@ export class SettingsComponent {
     readonly #toDo = inject(ToDoService);
     readonly #localDataReset = inject(LocalDataResetService);
     readonly #checklists = [
+        inject(AttractionsChecklistService),
         inject(BoughtChecklistService),
+        inject(CapturedChecklistService),
         inject(CookingRecipesChecklistService),
         inject(CraftedChecklistService),
         inject(DefeatedChecklistService),
+        inject(GachaChecklistService),
         inject(HeartEventsChecklistService),
         inject(MuseumChecklistService),
         inject(OfferingChecklistService),

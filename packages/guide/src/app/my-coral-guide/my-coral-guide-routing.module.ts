@@ -80,6 +80,12 @@ export const routes: Routes = [
                 title: 'APP.ROUTE.GACHA_GUIDE'
             },
             {
+                // Same page as Locations > Attractions; completing one here completes it there too.
+                path: 'attractions-checklist',
+                loadComponent: () => import('../locations/attractions/attractions.component').then(m => m.AttractionsComponent),
+                title: 'APP.ROUTE.ATTRACTIONS_GUIDE'
+            },
+            {
                 path: 'settings',
                 loadChildren: () => import('../settings/settings-routing.module').then((m) => m.routes),
                 title: 'APP.ROUTE.SETTINGS_GUIDE'

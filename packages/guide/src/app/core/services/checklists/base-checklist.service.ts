@@ -85,7 +85,8 @@ export abstract class BaseChecklistService {
             userData.checklists[this.checklistName] = this._createEmptyChecklist();
         });
         this.#localStorage.removeItem(BaseChecklistService._TO_DO_STORE_KEY + this.checklistName + '_live');
-        this.userData.save();
+        // Through save() so checklists that track changes in a signal refresh too.
+        this.save();
     }
 
     protected _createEmptyChecklist(): Checklist {

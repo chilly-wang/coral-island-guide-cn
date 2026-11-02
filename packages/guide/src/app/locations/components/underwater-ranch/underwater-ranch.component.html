@@ -4,6 +4,9 @@
         @if (selectedEntity) {
             <app-shop-item-data-details [shopItemData]="selectedEntity"/>
         }
+        @if (selectedItemUpgrade) {
+            <app-item-upgrade-details [itemUpgradeData]="selectedItemUpgrade"/>
+        }
         @if (selectedAnimal) {
             <app-animal-details [mappedAnimalShopData]="selectedAnimal"/>
         }
@@ -45,6 +48,31 @@
                 <app-shop-item-data-table [dataSource]="shopItemData"/>
             }
 
+
+        }
+
+    }
+
+    @if (itemUpgrade$) {
+
+        <h2 class="mt-6 mb-3 font-semibold text-2xl text-white">{{ display.translate(upgradeHeaderText) }}</h2>
+        @if ((itemUpgrade$ |async); as buildings) {
+
+            <app-data-filter [(showTable)]="showPItemUpgradeTable"/>
+            @if (!showPItemUpgradeTable) {
+                <div class="icon-grid">
+
+                    @for (building of buildings; track building) {
+                        <app-item-icon (click)="showItemUpgradeDetails(building)"
+                                       [class.selected-icon]="selectedItemUpgrade?.item?.id === building.item.id"
+                                       [itemName]="building.item.iconName"
+                                       class="icon-grid-item"/>
+                    }
+                </div>
+            }
+            @if (showPItemUpgradeTable) {
+                <app-item-upgrade-table [dataSource]="buildings"/>
+            }
 
         }
 

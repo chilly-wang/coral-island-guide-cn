@@ -1,0 +1,71 @@
+[
+  {
+    "item": {
+      "id": "item_50303",
+      "displayName": "DT_InventoryItems.item_50303_name",
+      "iconName": "Seaweed_Sprite",
+      "price": 15,
+      "sellPrice": 2
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 2,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  },
+  {
+    "item": {
+      "id": "item_65042",
+      "displayName": "DT_InventoryItems.item_65042_name",
+      "iconName": "Milk_Pail_Sprite",
+      "price": 300,
+      "sellPrice": 180
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 3,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  },
+  {
+    "item": {
+      "id": "item_65043",
+      "displayName": "DT_InventoryItems.item_65043_name",
+      "iconName": "Shears_Sprite",
+      "price": 400,
+      "sellPrice": 0
+    },
+    "allowedDays": [],
+    "allowedSeasons": [],
+    "allowedWeather": [],
+    "forbiddenDays": [],
+    "forbiddenSeasons": [],
+    "forbiddenWeather": [],
+    "townRank": 0,
+    "tag": [],
+    "priceOverride": 0,
+    "priority": 4,
+    "enabled": true,
+    "availableSinceDate": false,
+    "availableTillDate": false,
+    "availableDuringTime": false
+  }
+]

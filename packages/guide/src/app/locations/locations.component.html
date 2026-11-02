@@ -6,8 +6,15 @@
 
         <app-module-sidebar-item [uiIcon]="uiIcon.STORE" [label]="'APP.LOCATIONS.MERIT_EXCHANGE' | translate" routerLink="merit-exchange"/>
         <app-module-sidebar-item [uiIcon]="uiIcon.TOWN_RANK" [label]="'APP.LOCATIONS.ATTRACTIONS' | translate" routerLink="attractions"/>
-        <app-module-sidebar-item [label]="'APP.LOCATIONS.SHOPS' | translate"/>
-        @for (shopName of shops; track shopName) {
+        <app-module-sidebar-item [label]="'APP.LOCATIONS.SHOPS_LAND' | translate"/>
+        @for (shopName of landShops; track shopName) {
+
+            <app-module-sidebar-item [routerLink]="shopName"
+                                     [uiIcon]="SHOP_ICONS[shopName]">{{ SHOP_DISPLAY_NAMES[shopName] | localizedDisplay:'shop' }}
+            </app-module-sidebar-item>
+        }
+        <app-module-sidebar-item [label]="'APP.LOCATIONS.SHOPS_UNDERWATER' | translate"/>
+        @for (shopName of underwaterShops; track shopName) {
 
             <app-module-sidebar-item [routerLink]="shopName"
                                      [uiIcon]="SHOP_ICONS[shopName]">{{ SHOP_DISPLAY_NAMES[shopName] | localizedDisplay:'shop' }}

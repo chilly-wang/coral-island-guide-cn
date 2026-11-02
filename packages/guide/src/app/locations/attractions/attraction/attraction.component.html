@@ -20,6 +20,8 @@
 
 
         <span class="mt-auto text-lg ">{{ attraction().daysToComplete }} {{ 'APP.DETAIL.DAYS' | translate }}</span>
+        <app-capture-toggle checklist="attractions" wording="completed" [itemId]="attraction().key"
+                            [itemName]="attraction().name | translate" class="mt-2 self-start"/>
     </div>
     <hr class="my-3">
     <span class="text-lg">{{ 'APP.LOCATION_DETAIL.REWARDS' | translate }}</span>

@@ -41,10 +41,10 @@ export class LocationsComponent {
 
     protected isBeta = inject(SettingsService).getSettings().useBeta
 
-    protected shops: ShopName[] = shopRouteConfig
-        .filter(c => this.isBeta ? true : !c.betaOnly)
-        .map(c => c.name)
-        .sort((a, b) => ShopDisplayNames[a].localeCompare(ShopDisplayNames[b]))
+    // Kept in config order (most important first) rather than sorted by name.
+    #shops = shopRouteConfig.filter(c => this.isBeta ? true : !c.betaOnly)
+    protected landShops: ShopName[] = this.#shops.filter(c => !c.underwater).map(c => c.name)
+    protected underwaterShops: ShopName[] = this.#shops.filter(c => c.underwater).map(c => c.name)
 
     protected festivals: FestivalName[] = festivalRouteConfig
         .map(c => c.data.name)

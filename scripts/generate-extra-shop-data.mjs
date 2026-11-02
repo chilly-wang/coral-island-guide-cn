@@ -6,6 +6,7 @@
 // - Oracle Chamber opening hours                 -> oracle-chamber-opening-hours.json
 // - Oracle Chamber underwater produce upgrades   -> oracle-chamber-item-upgrade.json
 // - Oracle Chamber "Underwater crafting lab"     -> oracle-chamber-develop-equipment.json
+// - Underwater Ranch stock and buildings        -> underwater-ranch-shop-items.json, underwater-ranch-item-upgrade.json
 // - Savannah gacha machines (Treasure Bubbles)  -> savannah-gacha.json (prize pools from scripts/data/treasure-bubbles.json)
 // It also links these entries from the item database pages (buyAt / isUpgradeResult) and adds the
 // official names and descriptions (all game languages) to the database i18n files.
@@ -18,6 +19,7 @@ const SHOP_DATA = join(GAME_DATA, 'Shops');
 const DATABASE = 'packages/guide/src/assets/live/database';
 const ORACLE_CHAMBER = { url: 'oracle-chamber', displayName: 'Oracle Chamber' };
 const LEGACY_ORACLE_URL = 'merfolk-oracle-tail-store';
+const UNDERWATER_RANCH = { url: 'underwater-ranch', displayName: 'Underwater Ranch' };
 
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const writeJson = (path, data) => writeFileSync(path, JSON.stringify(data, null, 2));
@@ -141,28 +143,31 @@ writeJson(join(DATABASE, 'oracle-chamber-develop-equipment.json'), oracleDevelop
 // solar core and essences; the tails live in DT_ShopMerfolkOracleTailStore)
 // ---------------------------------------------------------------------------------------------
 
+/** A stock entry without date, season or weather limits. */
+const shopItem = (row) => {
+    const item = items.get(row.item.itemID);
+    return {
+        item: { ...minimalItem(item.id), price: item.price, sellPrice: item.sellPrice },
+        allowedDays: [],
+        allowedSeasons: [],
+        allowedWeather: [],
+        forbiddenDays: [],
+        forbiddenSeasons: [],
+        forbiddenWeather: [],
+        townRank: row.townRank,
+        tag: row.tag ?? [],
+        priceOverride: row.priceOverride,
+        priority: row.priority,
+        enabled: true,
+        availableSinceDate: false,
+        availableTillDate: false,
+        availableDuringTime: false,
+    };
+};
+
 const oracleShopItems = Object.values(rows(join(SHOP_DATA, 'MerfolkTail/DT_MerfolkTailShop.json')))
     .filter((row) => row.enable)
-    .map((row) => {
-        const item = items.get(row.item.itemID);
-        return {
-            item: { ...minimalItem(item.id), price: item.price, sellPrice: item.sellPrice },
-            allowedDays: [],
-            allowedSeasons: [],
-            allowedWeather: [],
-            forbiddenDays: [],
-            forbiddenSeasons: [],
-            forbiddenWeather: [],
-            townRank: row.townRank,
-            tag: row.tag ?? [],
-            priceOverride: row.priceOverride,
-            priority: row.priority,
-            enabled: true,
-            availableSinceDate: false,
-            availableTillDate: false,
-            availableDuringTime: false,
-        };
-    });
+    .map(shopItem);
 writeJson(join(DATABASE, 'oracle-chamber-shop-items.json'), oracleShopItems);
 
 // ---------------------------------------------------------------------------------------------
@@ -186,6 +191,29 @@ writeJson(join(DATABASE, 'oracle-chamber-opening-hours.json'), [
 // Oracle Chamber produce quality upgrades (the "underwater" rows of the lab upgrade table)
 // ---------------------------------------------------------------------------------------------
 
+/** An upgrade or building entry (C_ItemUpgradeData row). */
+const upgradeEntry = (row) => ({
+    item: minimalItem(row.item.itemID),
+    price: row.price,
+    daysDelay: row.daysDelay,
+    townRank: row.townRank,
+    tag: row.tag ?? [],
+    priceOverride: row.priceOverride,
+    priority: row.priority,
+    requirements: row.requirements.map((requirement) => ({
+        item: minimalItem(requirement.item.itemID),
+        amount: requirement.amount,
+    })),
+    genericRequirements: row.genericItem.map(genericEntry),
+    unlockRequirements: [],
+    category: enumValue(row.category),
+    customIcon: null,
+    hardnessLevel: enumValue(row.hardnessLevel),
+    toolType: enumValue(row.toolType),
+    useCategory: row.useCategory,
+    useCustomIcon: false,
+});
+
 const QUALITY_BY_LEVEL = { 1: 'bronze', 2: 'silver', 3: 'gold', 4: 'osmium' };
 // Grouped by kind (all seed levels, then all seaweed levels) rather than the game's level-by-level order.
 const UPGRADE_KIND_ORDER = ['EC_LabUpgradeEnum::UnderwaterSeeds', 'EC_LabUpgradeEnum::UnderwaterFodder'];
@@ -193,29 +221,30 @@ const oracleUpgrades = Object.values(rows(join(SHOP_DATA, 'DT_LabUpgrade.json'))
     .filter((row) => row.enable && row.underwater)
     .sort((a, b) => UPGRADE_KIND_ORDER.indexOf(a.affecting) - UPGRADE_KIND_ORDER.indexOf(b.affecting) || a.level - b.level)
     .map((row) => ({
-        item: minimalItem(row.item.itemID),
-        price: row.price,
-        daysDelay: row.daysDelay,
-        townRank: row.townRank,
-        tag: row.tag ?? [],
-        priceOverride: row.priceOverride,
-        priority: row.priority,
-        requirements: row.requirements.map((requirement) => ({
-            item: minimalItem(requirement.item.itemID),
-            amount: requirement.amount,
-        })),
-        genericRequirements: row.genericItem.map(genericEntry),
-        unlockRequirements: [],
-        category: enumValue(row.category),
-        customIcon: null,
-        hardnessLevel: enumValue(row.hardnessLevel),
-        toolType: enumValue(row.toolType),
-        useCategory: row.useCategory,
-        useCustomIcon: false,
+        ...upgradeEntry(row),
         affecting: enumValue(row.affecting),
         level: QUALITY_BY_LEVEL[row.level] ?? QUALITY_SUFFIXES[row.item.itemID.slice(-1)],
     }));
 writeJson(join(DATABASE, 'oracle-chamber-item-upgrade.json'), oracleUpgrades);
+
+// ---------------------------------------------------------------------------------------------
+// Underwater Ranch (水下牧场). One table holds both the buildings and the counter stock (seaweed,
+// milk pail, shears); blueprints are split off as buildings. The underwater silo row is enabled in the
+// data, but the game only lets you build the underwater barn (see the wiki), so it is left out.
+// ---------------------------------------------------------------------------------------------
+
+const HIDDEN_UNDERWATER_RANCH_ROWS = ['UnderwaterSilo'];
+const underwaterRanchRows = Object.entries(rows(join(SHOP_DATA, 'DT_CarpenterUnderwaterBuldingUpgrades.json')))
+    .filter(([key, row]) => row.enable && !HIDDEN_UNDERWATER_RANCH_ROWS.includes(key))
+    .map(([, row]) => row)
+    .sort((a, b) => a.priority - b.priority);
+const isBlueprint = (row) => items.get(row.item.itemID)?.inventoryCategory === 'Blueprint';
+
+const underwaterRanchShopItems = underwaterRanchRows.filter((row) => !isBlueprint(row)).map(shopItem);
+writeJson(join(DATABASE, 'underwater-ranch-shop-items.json'), underwaterRanchShopItems);
+
+const underwaterRanchBuildings = underwaterRanchRows.filter(isBlueprint).map(upgradeEntry);
+writeJson(join(DATABASE, 'underwater-ranch-item-upgrade.json'), underwaterRanchBuildings);
 
 // ---------------------------------------------------------------------------------------------
 // Savannah gacha machines (Treasure Bubbles). The prize pools are not in the extracted game data, so
@@ -276,6 +305,26 @@ for (const [id, upgrades] of upgradeResults) {
     });
 }
 
+// Underwater Ranch: stock (buyAt), buildings (isUpgradeResult) and their materials (isUpgradeRequirement)
+const underwaterRanchLinks = new Map();
+const addUnderwaterRanchLink = (id, field, entry) => {
+    const links = underwaterRanchLinks.get(id) ?? {};
+    links[field] = [...(links[field] ?? []), { ...entry, shop: UNDERWATER_RANCH }];
+    underwaterRanchLinks.set(id, links);
+};
+for (const entry of underwaterRanchShopItems) addUnderwaterRanchLink(entry.item.id, 'buyAt', entry);
+for (const building of underwaterRanchBuildings) {
+    addUnderwaterRanchLink(building.item.id, 'isUpgradeResult', building);
+    for (const requirement of building.requirements) addUnderwaterRanchLink(requirement.item.id, 'isUpgradeRequirement', building);
+}
+for (const [id, links] of underwaterRanchLinks) {
+    updateItemPage(id, (page) => {
+        for (const [field, entries] of Object.entries(links)) {
+            page[field] = [...(page[field] ?? []).filter((entry) => entry.shop?.url !== UNDERWATER_RANCH.url), ...entries];
+        }
+    });
+}
+
 // ---------------------------------------------------------------------------------------------
 // Official localizations live in the game's Localization folder; the site keeps one flat file per language.
 // ---------------------------------------------------------------------------------------------
@@ -297,5 +346,6 @@ for (const language of ['de', 'en', 'es', 'fr', 'id', 'ja', 'ko', 'pt-BR', 'th-T
 console.log(
     `lab develop equipment: ${labDevelopEquipment.length}, oracle chamber: ${oracleShopItems.length} stock, ` +
     `${oracleUpgrades.length} upgrades, ${oracleDevelopEquipment.length} develop equipment, ` +
+    `underwater ranch: ${underwaterRanchShopItems.length} stock, ${underwaterRanchBuildings.length} buildings, ` +
     `gacha: ${gachaMachines.map((machine) => machine.rewards.length).join(' + ')}, ${textKeys.size} texts`,
 );

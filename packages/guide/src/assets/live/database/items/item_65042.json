@@ -41,6 +41,33 @@
         "url": "ranch",
         "displayName": "Ranch"
       }
+    },
+    {
+      "item": {
+        "id": "item_65042",
+        "displayName": "DT_InventoryItems.item_65042_name",
+        "iconName": "Milk_Pail_Sprite",
+        "price": 300,
+        "sellPrice": 180
+      },
+      "allowedDays": [],
+      "allowedSeasons": [],
+      "allowedWeather": [],
+      "forbiddenDays": [],
+      "forbiddenSeasons": [],
+      "forbiddenWeather": [],
+      "townRank": 0,
+      "tag": [],
+      "priceOverride": 0,
+      "priority": 3,
+      "enabled": true,
+      "availableSinceDate": false,
+      "availableTillDate": false,
+      "availableDuringTime": false,
+      "shop": {
+        "url": "underwater-ranch",
+        "displayName": "Underwater Ranch"
+      }
     }
   ]
 }

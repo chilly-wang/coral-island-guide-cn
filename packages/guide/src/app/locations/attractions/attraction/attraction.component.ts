@@ -8,10 +8,12 @@ import { ConfigService } from '../../../core/services/config.service';
 import { UiIconComponent } from '../../../shared/components/ui-icon/ui-icon.component';
 import { MaskedImageComponent } from '../../../shared/masked-image/masked-image.component';
 import { LocalizedEntityNamePipe } from '../../../shared/pipes/localized-display.pipe';
+import { CaptureToggleComponent } from '../../../shared/components/capture-toggle/capture-toggle.component';
 
 @Component({
     selector: 'app-attraction',
     imports: [
+        CaptureToggleComponent,
         LocalizedEntityNamePipe,
         TranslatePipe,
         ItemIconComponent,
